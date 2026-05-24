@@ -1,0 +1,288 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{tabularray}
+\usepackage{afterpage}
+\usepackage{rotating}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{pdflscape}
+
+\geometry{margin=2.5cm}
+
+\definecolor{accent}{RGB}{30, 60, 100}
+
+\titleformat{\section}{\large\bfseries\color{accent}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{}{0em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\small Plan Zarządzania Komunikacją}
+\lhead{\small Projekt: \textit{Feedback}}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\hypersetup{colorlinks=true, linkcolor=accent, urlcolor=accent}
+
+\begin{document}
+
+% ── STRONA TYTUŁOWA ──────────────────────────────────────────────
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+{\LARGE\bfseries\color{accent} Plan Zarządzania Komunikacją}\\[0.5cm]
+{\large Projekt: \textit{Feedback}}\\[0.3cm]
+{\normalsize Mechanika parowania jako klucz do sukcesu}\\[2cm]
+
+\begin{tabular}{ll}
+\textbf{Kierownik projektu:}   & Kacper Trzciński \\[0.3em]
+\textbf{Przewodnicząca KS:}    & Aleksandra Sobótka \\[0.3em]
+\textbf{Główny Dostawca:}      & Aleksander Płocharski \\[0.3em]
+\textbf{Główny Użytkownik:}    & Tomasz Herman \\[0.3em]
+\textbf{Zespół:}               & A. Bielicki, R. Głasek, J. Pączka, \\
+                               & M. Popkowicz, F. Shramko, K. Trzciński \\[0.3em]
+\textbf{Data opracowania:}     & \today \\[0.3em]
+\end{tabular}
+
+\vfill
+{\small Zarządzanie Przedsięwzięciami Informatycznymi\\
+Wydział Matematyki i Nauk Informacyjnych, Politechnika Warszawska}
+\end{titlepage}
+
+% ── SPIS TREŚCI ─────────────────────────────────────────────────
+\tableofcontents
+\newpage
+
+% ════════════════════════════════════════════════════════════════
+\section{Wstęp}
+% ════════════════════════════════════════════════════════════════
+
+\subsection{Przeznaczenie dokumentu}
+Niniejszy dokument opisuje sposób organizacji komunikacji w projekcie \textit{Feedback} --- 
+grze \textit{puzzle-action platformer} tworzonej przez 6-osobowy zespół studencki w ramach przedmiotu Zarządzanie Przedsięwzięciami Informatycznymi. 
+Dokument określa, w jaki sposób, jak często i za pomocą jakich narzędzi będą wymieniać się informacjami wszyscy uczestnicy projektu.
+
+\subsection{Po co zarządzamy komunikacją w projekcie?}
+Projekt realizowany jest przez zespół pracujący równolegle nad kilkoma obszarami (backend, grafika, game design, testy). 
+Bez ustrukturyzowanego przepływu informacji łatwo o rozbieżności między dokumentacją a stanem implementacji, 
+pominięcie ważnych decyzji albo brak wiedzy o blokujących problemach. Zarządzanie komunikacją ma na celu:
+\begin{itemize}[noitemsep]
+    \item zapewnienie, że każdy członek zespołu zna swoje bieżące zadania i priorytety;
+    \item umożliwienie szybkiego wykrywania i eskalowania ryzyk i zagadnień;
+    \item utrzymanie regularnego kontaktu z Komitetem Sterującym i prowadzącymi przedmioty;
+    \item stworzenie utrwalonych zapisów decyzji projektowych, które chronią projekt przy ewentualnej zmianie składu zespołu.
+\end{itemize}
+
+% ════════════════════════════════════════════════════════════════
+\section{Procedury Komunikacji}
+% ════════════════════════════════════════════════════════════════
+
+\subsection{Formy komunikacji}
+
+\begin{description}[style=nextline]
+    \item[Spotkania tygodniowe (stand-upy)]
+    Cotygodniowe, krótkie spotkania całego zespołu (do 30 minut). Każdy uczestnik odpowiada na trzy pytania: 
+    co zrobił od ostatniego spotkania, co planuje zrobić do następnego, czy coś go blokuje.
+
+    \item[Spotkania etapowe (przeglądy sprintu)]
+    Na końcu każdego sprintu (ok. co 2--5 tygodni) odbywa się dłuższe spotkanie z udziałem Komitetu Sterującego. 
+    Omawia się stan projektu, wyniki minionego sprintu, plan kolejnego oraz aktualne ryzyka.
+
+    \item[Komunikacja asynchroniczna]
+    Bieżąca wymiana informacji między członkami zespołu za pośrednictwem serwera Discord zespołu.
+    Służy zadawaniu pytań, dzieleniu się postępem prac i szybkiemu rozwiązywaniu problemów niewymagających spotkania.
+
+    \item[Komunikacja formalna]
+    Komunikacja z prowadzącymi przedmioty i Komitetem Sterującym odbywa się za pośrednictwem serwera Discord specjalności --- przez dedykowany kanał lub wiadomości bezpośrednie. Wszelka korespondencja wychodząca poza zespół prowadzona jest przez kierownika projektu. Projekt realizowany jest w dwóch semestrach z różnymi prowadzącymi: Aleksandra Sobótka nadzoruje semestr dokumentacyjny (zimowy 2025/2026), natomiast Aleksander Płocharski --- semestr implementacyjny (letni 2026/2027). Komunikacja formalna kierowana jest każdorazowo do aktualnie prowadzącego.
+
+    \item[Prezentacje]
+    Prezentacja koncepcji projektu odbyła się 17.04.2026. Możliwa jest prezentacja
+    podsumowująca semestr letni pod koniec maja lub na początku czerwca 2026. Prezentacja
+    finalna z demo gry zaplanowana jest na początek semestru letniego 2026/2027 przed nowym
+    rocznikiem.
+
+    \item[Przeglądy kodu (\textit{code review})]
+    Każda zmiana w repozytorium przechodzi przez mechanizm pull requestów --- co najmniej jedna osoba poza autorem przegląda i zatwierdza kod przed scaleniem.
+\end{description}
+
+\subsection{Zasady ogólne}
+
+\begin{enumerate}[noitemsep]
+    \item Decyzje podjęte ustnie są dokumentowane w formie notatki i udostępniane całemu zespołowi w ciągu 24 godzin.
+    \item Problemy blokujące pracę są zgłaszane kierownikowi projektu niezwłocznie --- nie czekamy do najbliższego stand-upu.
+    \item Wszelka komunikacja dotycząca zmian zakresu lub harmonogramu odbywa się przez kierownika projektu i jest dokumentowana pisemnie.
+    \item Kierownik projektu jest jedynym przedstawicielem zespołu w komunikacji z prowadzącymi przedmioty i Komitetem Sterującym.
+\end{enumerate}
+
+% ════════════════════════════════════════════════════════════════
+\section{Narzędzia i Techniki}
+Narzędzia i techniki komunikacji przedstawiono w formie tabeli \ref{tab:narzedzia}. 
+% ════════════════════════════════════════════════════════════════
+
+% ════════════════════════════════════════════════════════════════
+\section{Raportowanie}
+% ════════════════════════════════════════════════════════════════
+
+\subsection{Raport końca sprintu}
+
+\begin{tabular}{ll}
+\textbf{Autor:}         & Kierownik projektu (Kacper Trzciński) \\
+\textbf{Odbiorcy:}      & Komitet Sterujący, prowadzący przedmiot \\
+\textbf{Częstotliwość:} & Po każdym sprincie (ok. co 2--5 tygodni) \\
+\textbf{Format:}        & Dokument PDF, dostarczany przez Discord \\
+\end{tabular}
+
+\vspace{0.5em}
+Zawartość raportu:
+\begin{itemize}[noitemsep]
+    \item lista zadań zamkniętych w sprincie i porównanie z planem;
+    \item aktualny stan harmonogramu i kamieni milowych;
+    \item nowe ryzyka i zmiany w ocenie istniejących;
+    \item zagadnienia wymagające decyzji Komitetu Sterującego;
+    \item plan zadań na kolejny sprint.
+\end{itemize}
+
+\subsection{Notatka ze spotkania}
+
+\begin{tabular}{ll}
+\textbf{Autor:}         & Sekretarz spotkania (rotacyjnie, wyznaczany na jego początku) \\
+\textbf{Odbiorcy:}      & Wszyscy uczestnicy spotkania \\
+\textbf{Częstotliwość:} & Po każdym spotkaniu zespołu \\
+\textbf{Format:}        & Dokument w Google Docs, udostępniany w ciągu 24h \\
+\end{tabular}
+
+\vspace{0.5em}
+Zawartość notatki:
+\begin{itemize}[noitemsep]
+    \item data, lista uczestników, czas trwania;
+    \item omówione tematy i podjęte decyzje;
+    \item action items: zadanie --- osoba odpowiedzialna --- termin.
+\end{itemize}
+
+\subsection{Raport z testów}
+
+\begin{tabular}{ll}
+\textbf{Autor:}         & Wyznaczony tester z zespołu projektowego \\
+\textbf{Odbiorcy:}      & Kierownik projektu, Komitet Sterujący, Główny Dostawca \\
+\textbf{Częstotliwość:} & Jednorazowo, po zakończeniu fazy testów (marzec~2027) \\
+\textbf{Format:}        & Dokument PDF \\
+\end{tabular}
+
+\vspace{0.5em}
+Zawartość raportu:
+\begin{itemize}[noitemsep]
+    \item lista zgłoszonych błędów z podziałem na priorytety (krytyczne, wysokie, niskie);
+    \item które błędy zostały naprawione, a które odłożone poza zakres;
+    \item ocena stabilności wersji grywalnej;
+    \item rekomendacja dotycząca gotowości do prezentacji finalnej.
+\end{itemize}
+
+% ════════════════════════════════════════════════════════════════
+\section{Harmonogram Działań Komunikacyjnych}
+Harmonogram działań komunikacyjnych przedstawiono w formie tabeli \ref{tab:harmonogram}.
+% ════════════════════════════════════════════════════════════════
+
+
+
+\vspace{1em}
+\noindent\textbf{Przegląd dokumentu:} niniejszy plan podlega przeglądowi na końcu każdego etapu projektu. W razie istotnych zmian (zmiana składu zespołu, zmiana narzędzi) kierownik projektu aktualizuje dokument i informuje wszystkich interesariuszy.
+
+% TABELE
+
+\vspace*{\fill}
+\clearpage
+
+\begin{landscape}
+    \begin{longtblr}[
+        caption = {Harmonogram działań komunikacyjnych},
+        label   = {tab:harmonogram},
+    ]{
+        colspec = {p{6cm} p{4cm} p{3.5cm} p{9cm}},
+        rowhead = 1,
+        hlines,
+        row{1} = {font=\bfseries},
+    }
+    Zdarzenie & Kiedy & Uczestnicy & Forma / Kanał \\
+    Stand-up tygodniowy
+        & Co tydzień (ustalony dzień tygodnia)
+        & Cały zespół
+        & Discord (kanał głosowy) lub stacjonarnie, maks. 30 min \\
+    Przegląd końca sprintu i planowanie kolejnego
+        & Po każdym sprincie (co 4--6 tyg.)
+        & Zespół + KS
+        & Spotkanie głosowe lub stacjonarne, ok. 60 min \\
+    Raport etapowy do KS i prowadzących
+        & Po każdym sprincie
+        & KP $\to$ KS, prowadzący
+        & Discord (wiadomość bezpośrednia lub kanał) z załączonym PDF (raport + zaktualizowany harmonogram) \\
+    Dostarczenie dokumentów do oceny
+        & Wg kamieni milowych (patrz Karta projektu)
+        & KP $\to$ prowadzący
+        & Discord z załączonym PDF \\
+    Code review (przegląd kodu)
+        & Przy każdym pull requeście
+        & Autor + co najmniej 1 recenzent
+        & GitHub --- recenzja i zatwierdzenie przed scaleniem \\
+    Zgłaszanie ryzyk i zagadnień
+        & Na bieżąco (max. 48h od wykrycia)
+        & Każdy członek $\to$ KP
+        & Discord \texttt{\#ryzyka} lub bezpośrednia wiadomość do KP \\
+    Przekazanie wersji testowej testerom
+        & Po Feature Complete (23.02.2027)
+        & Gł. Dostawca $\to$ testerzy
+        & Link przez GitHub Releases + formularz zgłoszeń (Google Forms) \\
+    Prezentacja koncepcji (pitch)
+        & 17.04.2026
+        & Zespół + prowadzący + KS
+        & Prezentacja live (slajdy), 10 min \\
+    Prezentacja finalna z demo gry
+        & Pocz. semestru letniego 2026/2027
+        & Zespół + nowy rocznik + prowadzący
+        & Demo live + landing page projektu \\
+    \end{longtblr}
+
+    \clearpage
+    \begin{longtblr}[
+        caption = {Narzędzia i techniki komunikacji},
+        label   = {tab:narzedzia},
+    ]{
+        width   = \linewidth,
+        colspec = {>{\bfseries}X[1] X[1.5] X[4]},
+        rowhead = 1,
+        hlines,
+        row{1} = {font=\bfseries},
+    }
+    Narzędzie & Zastosowanie & Szczegóły użycia \\
+    Discord (serwer zespołu)
+        & Codzienna komunikacja, stand-upy głosowe
+        & Kanały tematyczne: \texttt{\#general}, \texttt{\#backend}, \texttt{\#grafika}, \texttt{\#dokumentacja}, \texttt{\#ryzyka}. Kanał \texttt{\#announce} zarezerwowany wyłącznie dla kierownika projektu --- tylko ogłoszenia i ważne decyzje. \\
+    Discord (serwer specjalności)
+        & Formalna komunikacja z prowadzącymi przedmiot i Komitetem Sterującym
+        & Dedykowany kanał lub wiadomości bezpośrednie na serwerze specjalności. Wszelka korespondencja wychodząca poza zespół prowadzona przez kierownika projektu. Czas odpowiedzi: do 48h. \\
+    GitHub (Issues + Milestones)
+        & Zarządzanie zadaniami (Kanban), przeglądy kodu
+        & Issues odzwierciedlają zadania z WBS i służą jako tablica Kanban (kolumny: To Do / In Progress / Done). Milestones odpowiadają sprintom. Pull requesty wymagają co najmniej jednej recenzji przed scaleniem. \\
+    Google Drive + Google Docs
+        & Dokumentacja projektowa, notatki ze spotkań, raporty
+        & Wspólny folder projektu z podfolderami: \texttt{/Dokumenty}, \texttt{/Spotkania}, \texttt{/Raporty}. Prowadzący przedmioty mają dostęp tylko do odczytu. Preferowany format edycji dokumentów przed eksportem do PDF. \\
+    ProjectLibre
+        & Harmonogram projektu (diagram Gantta)
+        & Plik \texttt{harmonogram.pod} przechowywany w Google Drive. Aktualizowany przez kierownika projektu po każdym sprincie; eksport do PDF dołączany do raportu etapowego. \\
+    Google Forms + Sheets
+        & Zbieranie i agregowanie feedbacku od testerów
+        & Prosty formularz do zgłaszania błędów w fazie testów (luty--marzec 2027). Odpowiedzi automatycznie trafiają do arkusza Google Sheets, który służy jako rejestr błędów. \\
+    \end{longtblr}
+\end{landscape}
+
+\end{document}

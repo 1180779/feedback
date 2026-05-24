@@ -1,0 +1,430 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{tabularray}
+\usepackage{afterpage}
+\usepackage{rotating}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{pdflscape}
+
+\geometry{margin=2.5cm}
+
+\definecolor{accent}{RGB}{30, 60, 100}
+
+\titleformat{\section}{\large\bfseries\color{accent}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{}{0em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\small Plan Zarządzania Ryzykiem}
+\lhead{\small Projekt: \textit{Feedback}}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\hypersetup{colorlinks=true, linkcolor=accent, urlcolor=accent}
+
+\setlength{\emergencystretch}{3em}
+\hyphenpenalty=1000
+\tolerance=2000
+
+\begin{document}
+	
+	% ── STRONA TYTUŁOWA ──────────────────────────────────────────────
+	\begin{titlepage}
+		\centering
+		\vspace*{2cm}
+		{\LARGE\bfseries\color{accent} Plan Zarządzania Ryzykiem}\\[0.5cm]
+		{\large Projekt: \textit{Feedback}}\\[0.3cm]
+		{\normalsize Mechanika parowania jako klucz do sukcesu}\\[2cm]
+		
+		\begin{tabular}{ll}
+			\textbf{Kierownik projektu:}   & Kacper Trzciński \\[0.3em]
+			\textbf{Przewodnicząca KS:}    & Aleksandra Sobótka \\[0.3em]
+			\textbf{Główny Dostawca:}      & Aleksander Płocharski \\[0.3em]
+			\textbf{Główny Użytkownik:}    & Tomasz Herman \\[0.3em]
+			\textbf{Zespół:}               & A. Bielicki, R. Głasek, J. Pączka, \\
+			& M. Popkowicz, F. Shramko, K. Trzciński \\[0.3em]
+			\textbf{Data opracowania:}     & \today \\[0.3em]
+		\end{tabular}
+		
+		\vfill
+		{\small Zarządzanie Przedsięwzięciami Informatycznymi\\
+			Wydział Matematyki i Nauk Informacyjnych, Politechnika Warszawska}
+	\end{titlepage}
+	
+	% ── SPIS TREŚCI ─────────────────────────────────────────────────
+	\tableofcontents
+	\newpage
+	
+	% ════════════════════════════════════════════════════════════════
+	\section{Wstęp}
+	% ════════════════════════════════════════════════════════════════
+	
+	\subsection{Przeznaczenie dokumentu}
+	Niniejszy dokument opisuje sposób zarządzania ryzykiem w projekcie \textit{Feedback} ---
+	grze \textit{puzzle-action platformer} tworzonej przez 6-osobowy zespół studencki w ramach
+	przedmiotu Zarządzanie Przedsięwzięciami Informatycznymi. Plan określa, jak ryzyko będzie
+	oceniane, planowane i wdrażane, w jaki sposób będzie komunikowane oraz jakie tolerancje
+	przyjmuje kierownictwo projektu.
+	
+	\subsection{Po co zarządzamy ryzykiem w projekcie?}
+	Projekt prowadzony jest w dwóch semestrach przez zespół studencki obciążony równolegle
+	innymi przedmiotami i pracą zawodową. Mechanika parowania, na której opiera się rozgrywka,
+	wymaga precyzyjnej fizyki i wielu iteracji projektowych --- jej zbalansowanie nie jest
+	gwarantowane. Bez systematycznego podejścia do ryzyka łatwo o utratę kontroli nad zakresem
+	i terminem oddania. Zarządzanie ryzykiem ma na celu:
+	\begin{itemize}[noitemsep]
+		\item wczesne wykrywanie zagrożeń mogących wpłynąć na cele projektu;
+		\item planowanie reakcji proporcjonalnych do ekspozycji projektu na dane ryzyko;
+		\item utrzymanie ekspozycji projektu w ramach tolerancji zaakceptowanych przez Komitet Sterujący;
+		\item wykorzystanie zidentyfikowanych szans (np. szybkiej iteracji prototypu) tam, gdzie zwiększają one wartość produktu.
+	\end{itemize}
+	
+	\subsection{Definicje}
+	\begin{description}[style=nextline, leftmargin=0pt]
+		\item[Ryzyko] Niepewne zdarzenie lub zestaw zdarzeń, które --- jeśli wystąpią --- mogą mieć wpływ na osiągnięcie celów projektu. Ryzyko może być \textbf{zagrożeniem} (wpływ negatywny) albo \textbf{szansą} (wpływ pozytywny).
+		\item[Prawdopodobieństwo] Szacowana częstotliwość lub szansa wystąpienia ryzyka w horyzoncie projektu.
+		\item[Wpływ] Wielkość konsekwencji wystąpienia ryzyka dla celów projektu (zakres, harmonogram, jakość, ocena z przedmiotu).
+		\item[Ekspozycja na ryzyko] Iloczyn prawdopodobieństwa i wpływu, wykorzystywany do priorytetyzacji ryzyk.
+		\item[Tolerancja ryzyka] Akceptowalny poziom ekspozycji na ryzyko; przekroczenie tolerancji wymaga eskalacji do Komitetu Sterującego.
+		\item[Właściciel ryzyka] Osoba odpowiedzialna za monitorowanie konkretnego ryzyka i wykonanie zaplanowanej reakcji.
+	\end{description}
+	
+	% ════════════════════════════════════════════════════════════════
+	\section{Ocena ryzyka}
+	% ════════════════════════════════════════════════════════════════
+	
+	\subsection{Skala prawdopodobieństwa}
+	Prawdopodobieństwo wystąpienia ryzyka oceniane jest w skali pięciostopniowej (patrz tabela~\ref{tab:prawdopodobienstwo}). Skala została zaprojektowana w sposób umożliwiający przypisanie wartości na podstawie obserwowalnych przesłanek, bez konieczności analizy statystycznej.
+	
+	\begin{table}[h!]
+		\centering
+		\begin{tblr}{
+				colspec = {c l c p{8cm}},
+				hlines,
+				row{1} = {font=\bfseries},
+			}
+			Ocena & Określenie & Wartość & Charakterystyka \\
+			1 & Bardzo niskie & ok. 10\% & Wystąpienie ryzyka jest mało prawdopodobne; brak przesłanek w bieżącej sytuacji projektu. \\
+			2 & Niskie       & ok. 30\% & Ryzyko może wystąpić w określonych okolicznościach; nie ma jeszcze obserwowanych sygnałów. \\
+			3 & Średnie      & ok. 50\% & Wystąpienie ryzyka jest równie prawdopodobne co jego brak; występują pojedyncze przesłanki. \\
+			4 & Wysokie      & ok. 70\% & Występują wyraźne przesłanki wskazujące na materializację ryzyka. \\
+			5 & Bardzo wysokie & ok. 90\% & Materializacja ryzyka jest niemal pewna, jeżeli nie zostaną podjęte działania zaradcze. \\
+		\end{tblr}
+		\caption{Skala oceny prawdopodobieństwa wystąpienia ryzyka.}
+		\label{tab:prawdopodobienstwo}
+	\end{table}
+	
+	\subsection{Skala wpływu}
+	Wpływ ryzyka oceniany jest w skali pięciostopniowej, z opisem konsekwencji dla kluczowych
+	celów projektu: harmonogramu (terminowe oddanie dokumentów i wersji grywalnej), zakresu
+	(kompletność wymagań funkcjonalnych) oraz oceny z przedmiotu (patrz
+	tabela~\ref{tab:wplyw}).
+	
+	\begin{table}[h!]
+		\centering
+		\begin{tblr}{
+				colspec = {c l p{11cm}},
+				hlines,
+				row{1} = {font=\bfseries},
+			}
+			Ocena & Określenie & Charakterystyka wpływu \\
+			1 & Bardzo niski & Wpływ pomijalny; opóźnienie do 2 dni roboczych, brak konieczności zmiany zakresu, brak wpływu na ocenę. \\
+			2 & Niski        & Opóźnienie pojedynczego zadania o 3--5 dni roboczych, możliwe nadrobienie w bieżącym sprincie. \\
+			3 & Średni       & Opóźnienie kamienia milowego o 1--2 tygodnie, drobna redukcja zakresu w obszarach \textit{Should} lub \textit{Could} (MoSCoW), pojedyncze uwagi prowadzącego. \\
+			4 & Wysoki       & Opóźnienie kamienia milowego o ponad 2 tygodnie, konieczna redukcja zakresu obejmująca elementy \textit{Should}, istotne pogorszenie jakości oddania, ryzyko obniżenia oceny. \\
+			5 & Bardzo wysoki & Zagrożenie terminu finalnej prezentacji, niezaliczenie etapu lub semestru, utrata kluczowej funkcjonalności (\textit{Must}). \\
+		\end{tblr}
+		\caption{Skala oceny wpływu ryzyka.}
+		\label{tab:wplyw}
+	\end{table}
+	
+	\subsection{Macierz ryzyka}
+	Ekspozycja na ryzyko obliczana jest jako iloczyn prawdopodobieństwa i wpływu
+	($E = P \cdot W$), co daje wartości w zakresie 1--25. Na podstawie ekspozycji ryzyka
+	klasyfikuje się do trzech poziomów (patrz tabela~\ref{tab:macierz}):
+	
+	\begin{itemize}[noitemsep]
+		\item \textbf{Niskie} ($1 \le E \le 4$, kolor zielony) --- akceptowane, monitorowane;
+		\item \textbf{Średnie} ($5 \le E \le 12$, kolor żółty) --- wymagają zaplanowanej reakcji;
+		\item \textbf{Wysokie} ($E \ge 15$, kolor czerwony) --- wymagają natychmiastowej reakcji i eskalacji do Komitetu Sterującego.
+	\end{itemize}
+	
+	\definecolor{lowrisk}{RGB}{200, 230, 200}
+	\definecolor{medrisk}{RGB}{255, 235, 170}
+	\definecolor{highrisk}{RGB}{245, 195, 195}
+	
+	\begin{table}[h!]
+		\centering
+		\begin{tblr}{
+				colspec = {|c|c|c|c|c|c|},
+				row{1} = {font=\bfseries, c},
+				column{1} = {font=\bfseries},
+				cells = {c},
+				cell{2}{2}        = {bg=lowrisk},
+				cell{2}{3}        = {bg=medrisk},
+				cell{2}{4}        = {bg=highrisk},
+				cell{2}{5}        = {bg=highrisk},
+				cell{2}{6}        = {bg=highrisk},
+				cell{3}{2}        = {bg=lowrisk},
+				cell{3}{3}        = {bg=medrisk},
+				cell{3}{4}        = {bg=medrisk},
+				cell{3}{5}        = {bg=highrisk},
+				cell{3}{6}        = {bg=highrisk},
+				cell{4}{2}        = {bg=lowrisk},
+				cell{4}{3}        = {bg=medrisk},
+				cell{4}{4}        = {bg=medrisk},
+				cell{4}{5}        = {bg=medrisk},
+				cell{4}{6}        = {bg=highrisk},
+				cell{5}{2}        = {bg=lowrisk},
+				cell{5}{3}        = {bg=lowrisk},
+				cell{5}{4}        = {bg=medrisk},
+				cell{5}{5}        = {bg=medrisk},
+				cell{5}{6}        = {bg=medrisk},
+				cell{6}{2}        = {bg=lowrisk},
+				cell{6}{3}        = {bg=lowrisk},
+				cell{6}{4}        = {bg=lowrisk},
+				cell{6}{5}        = {bg=lowrisk},
+				cell{6}{6}        = {bg=lowrisk},
+				hlines, vlines,
+			}
+			P \textbackslash{} W & 1 & 2 & 3 & 4 & 5 \\
+			5 & 5  & 10 & 15 & 20 & 25 \\
+			4 & 4  & 8  & 12 & 16 & 20 \\
+			3 & 3  & 6  & 9  & 12 & 15 \\
+			2 & 2  & 4  & 6  & 8  & 10 \\
+			1 & 1  & 2  & 3  & 4  & 5  \\
+		\end{tblr}
+		
+		\vspace{2mm} % Opcjonalny delikatny odstęp między tabelą a podpisem wzorowany na rysunku
+		\caption{Macierz ekspozycji na ryzyko (prawdopodobieństwo $\times$ wpływ).}
+		\label{tab:macierz}
+	\end{table}
+	
+	\subsection{Kategorie reakcji na ryzyko}
+	W projekcie stosowane są kategorie reakcji zgodne z metodyką PRINCE2, w podziale na
+	zagrożenia i szanse (patrz tabela~\ref{tab:reakcje}).
+	
+	\begin{table}[h!]
+		\centering
+		\begin{tblr}{
+				colspec = {p{1.8cm} p{3cm} p{9.7cm}},
+				hlines,
+				row{1} = {font=\bfseries},
+			}
+			Typ ryzyka & Kategoria reakcji & Opis \\
+			{\bfseries Zagrożenie} & Unikanie       & Eliminacja źródła ryzyka --- np. rezygnacja z elementu zakresu, który niesie nieproporcjonalne ryzyko. \\
+			& Ograniczanie   & Redukcja prawdopodobieństwa lub wpływu --- np. wczesne prototypowanie, iteracyjne playtesty, redukcja zakresu w obszarach niekrytycznych. \\
+			& Transfer       & Przeniesienie skutku finansowego lub merytorycznego na inną stronę. W projekcie studenckim zastosowanie ograniczone (brak dostawców komercyjnych). \\
+			& Współdzielenie & Podział odpowiedzialności i konsekwencji z innym podmiotem (np. wspólne testowanie z zewnętrznymi playtesterami). \\
+			& Akceptacja     & Świadome przyjęcie ryzyka bez aktywnej reakcji; możliwe utworzenie rezerwy czasowej. \\
+			{\bfseries Szansa}     & Wykorzystanie  & Działania zwiększające prawdopodobieństwo do 100\% --- np. priorytetyzacja zadania, które otwiera dodatkową możliwość. \\
+			& Zwiększenie    & Działania zwiększające prawdopodobieństwo lub wpływ szansy, ale nie dające pewności. \\
+			& Współdzielenie & Włączenie partnera, który pomoże zrealizować szansę (np. zaproszenie testerów z innego rocznika do playtestów). \\
+			& Akceptacja     & Przyjęcie szansy bez aktywnych działań --- skorzystanie z niej, jeśli wystąpi. \\
+		\end{tblr}
+		\caption{Kategorie reakcji na ryzyko stosowane w projekcie.}
+		\label{tab:reakcje}
+	\end{table}
+	
+	% ════════════════════════════════════════════════════════════════
+	\section{Planowanie i wdrażanie reakcji na ryzyko}
+	% ════════════════════════════════════════════════════════════════
+	
+	\subsection{Wybór reakcji}
+	Dobór reakcji odbywa się w oparciu o klasyfikację ekspozycji (sekcja 2.3) oraz typ ryzyka
+	(zagrożenie lub szansa). Ogólne zasady doboru reakcji:
+	\begin{itemize}[noitemsep]
+		\item Dla ryzyk \textbf{niskich} (zielonych) domyślną reakcją jest \textit{akceptacja} z monitorowaniem.
+		\item Dla ryzyk \textbf{średnich} (żółtych) wymagana jest jedna z aktywnych reakcji (najczęściej \textit{ograniczanie}) z udokumentowanym planem działania.
+		\item Dla ryzyk \textbf{wysokich} (czerwonych) wymagane są działania zaradcze równolegle z planem awaryjnym (\textit{fallback}); reakcja musi być uzgodniona z Komitetem Sterującym.
+		\item Każde wybrane działanie musi mieć wskazanego \textbf{właściciela ryzyka}, termin wdrożenia oraz miernik skuteczności.
+	\end{itemize}
+	
+	\subsection{Wdrażanie i weryfikacja skuteczności}
+	Wdrożenie reakcji odbywa się w ramach bieżących sprintów na zasadach analogicznych do
+	pozostałych zadań projektowych (rejestracja w systemie śledzenia zadań, oszacowanie czasu, przypisanie
+	osoby). Po wdrożeniu działania właściciel ryzyka:
+	\begin{enumerate}[noitemsep]
+		\item ponownie ocenia prawdopodobieństwo i wpływ ryzyka po wdrożeniu reakcji (\textit{ryzyko rezydualne});
+		\item aktualizuje pozycję w rejestrze ryzyk;
+		\item zgłasza wynik kierownikowi projektu w trakcie najbliższego stand-upu.
+	\end{enumerate}
+	Jeżeli ryzyko rezydualne nadal przekracza tolerancję (sekcja~6), planowane jest kolejne
+	działanie zaradcze.
+	
+	\subsection{Plan awaryjny}
+	Dla ryzyk o ekspozycji wysokiej i o krytycznym wpływie (5) opracowywany jest plan
+	awaryjny --- zestaw działań uruchamianych w momencie materializacji ryzyka. Plan awaryjny
+	zawiera: opis działań do podjęcia, osoby odpowiedzialne, szacowany czas wdrożenia oraz
+	warunek aktywacji (zdarzenie, które uruchamia plan). Plany awaryjne są dokumentowane
+	w rejestrze ryzyk jako oddzielne pole dla każdej pozycji o ekspozycji wysokiej.
+	
+	Harmonogram projektu nie przewiduje formalnej rezerwy czasowej --- termin finalnej
+	prezentacji (początek semestru letniego 2026/2027) jest sztywno powiązany z kalendarzem
+	akademickim. W praktyce oznacza to, że materializacja ryzyka wysokiego w późnej fazie
+	projektu wymaga uruchomienia planu awaryjnego w trybie redukcji zakresu (zgodnie z
+	priorytetyzacją MoSCoW), a nie wydłużenia harmonogramu.
+	
+	% ════════════════════════════════════════════════════════════════
+	\section{Identyfikacja ryzyka}
+	% ════════════════════════════════════════════════════════════════
+	
+	\subsection{Źródła i odpowiedzialność}
+	Za identyfikację ryzyka odpowiedzialny jest \textbf{cały zespół projektowy}.
+	Każdy członek zespołu ma obowiązek zgłaszania zaobserwowanych zagrożeń i szans
+	niezwłocznie po ich wykryciu. Kierownik projektu pełni rolę koordynatora --- konsoliduje
+	zgłoszenia, weryfikuje ich kompletność i prowadzi rejestr ryzyk. Komitet Sterujący wnosi
+	perspektywę zewnętrzną (biznesową i akademicką) i identyfikuje ryzyka niewidoczne z
+	poziomu zespołu wykonawczego.
+	
+	\subsection{Techniki identyfikacji}
+	W projekcie stosowane są następujące techniki identyfikacji ryzyk:
+	\begin{description}[style=nextline]
+		\item[Burza mózgów]
+		Cykliczna burza mózgów dotycząca nowych ryzyk i szans odbywa się raz na sprint, podczas spotkania planującego kolejny sprint. Wszyscy członkowie zespołu zgłaszają obserwacje z minionego okresu.
+		
+		\item[SWOT]
+		Analiza SWOT (Mocne strony / Słabe strony / Szanse / Zagrożenia) przeprowadzana jest na początku każdego z dwóch semestrów oraz przed kluczowymi kamieniami milowymi. Mocne i słabe strony zespołu wskazują obszary podatne na ryzyko wewnętrzne; szanse i zagrożenia dotyczą czynników zewnętrznych.
+		
+		\item[Wywiady]
+		Krótkie indywidualne rozmowy kierownika projektu z członkami zespołu odbywają się przy każdej zmianie zakresu, składu lub harmonogramu. Wywiady ujawniają ryzyka, których członek zespołu mógłby nie zgłosić publicznie (przeciążenie, niejasność wymagań, problemy techniczne na początkowym etapie).
+		
+		\item[Przegląd dokumentacji]
+		Analiza Karty projektu, Rejestru Interesariuszy, WBS, harmonogramu i wymagań pod kątem założeń (\textit{assumptions}) i zależności, które mogą stać się ryzykiem.
+		
+		\item[Zgłoszenia ad hoc]
+		Każdy członek zespołu może zgłosić ryzyko poza cyklem burzy mózgów --- przez kanał \texttt{\#ryzyka} na serwerze Discord zespołu lub bezpośrednią wiadomość do kierownika projektu.
+	\end{description}
+	
+	\subsection{Narzędzia}
+	\begin{itemize}[noitemsep]
+		\item \textbf{Rejestr ryzyk} --- arkusz Google Sheets w folderze \texttt{/Dokumenty} na Google Drive; podstawowe narzędzie operacyjne.
+		\item \textbf{Discord, kanał \texttt{\#ryzyka}} --- zgłaszanie ryzyk ad hoc oraz dyskusja nad reakcjami.
+		\item \textbf{System śledzenia zadań w repozytorium kodu (z etykietą \texttt{risk})} --- techniczne ryzyka związane z konkretnym kodem lub komponentem; powiązane z odpowiednią pozycją w rejestrze.
+	\end{itemize}
+	
+	\subsection{Utrzymanie aktualności rejestru ryzyk}
+	Aby rejestr ryzyk nie utracił aktualności, w projekcie wprowadzono następujące mechanizmy:
+	\begin{itemize}[noitemsep]
+		\item \textbf{Przegląd cykliczny} --- pełny przegląd rejestru ryzyk odbywa się na końcu każdego sprintu, w ramach przeglądu sprintu z Komitetem Sterującym. Każda pozycja jest weryfikowana pod kątem aktualności prawdopodobieństwa, wpływu i statusu.
+		\item \textbf{Przegląd przy kamieniu milowym} --- pełny przegląd rejestru poprzedza każdy kamień milowy (Karta projektu, Prezentacja koncepcji, WBS + harmonogram, kolejne sprinty implementacyjne).
+		\item \textbf{Aktualizacja ad hoc} --- każda zmiana stanu ryzyka (materializacja, zamknięcie, zmiana oceny) skutkuje natychmiastową aktualizacją rejestru przez właściciela ryzyka, najpóźniej w ciągu 48 godzin od wykrycia zmiany.
+		\item \textbf{Audyt kierownika projektu} --- raz na dwa tygodnie kierownik projektu przegląda rejestr pod kątem pozycji nieaktualizowanych dłużej niż 30 dni i konsultuje je z właścicielami.
+	\end{itemize}
+	
+	\subsection{Struktura wpisu w rejestrze ryzyk}
+	Każda pozycja w rejestrze ryzyk zawiera następujące pola:
+	\begin{itemize}[noitemsep]
+		\item identyfikator (R-XX);
+		\item data zgłoszenia, autor zgłoszenia;
+		\item typ (zagrożenie / szansa);
+		\item opis zdarzenia, przyczyna, skutek;
+		\item prawdopodobieństwo, wpływ, ekspozycja (klasyfikacja: niska / średnia / wysoka);
+		\item kategoria reakcji i konkretne działanie zaradcze;
+		\item właściciel ryzyka; termin wdrożenia działania;
+		\item status (\textit{open / mitigated / materialised / closed});
+		\item ryzyko rezydualne po wdrożeniu reakcji;
+		\item historia zmian (data, zmiana, autor).
+	\end{itemize}
+	
+	% ════════════════════════════════════════════════════════════════
+	\section{Komunikacja zarządzania ryzykiem}
+	% ════════════════════════════════════════════════════════════════
+	
+	Komunikacja w obszarze ryzyka stanowi część ogólnego systemu komunikacji opisanego w
+	dokumencie \textit{Plan Zarządzania Komunikacją}. Poniżej wymieniono kanały i zdarzenia
+	istotne specyficznie dla ryzyka.
+	
+	\subsection{Kanały i zdarzenia}
+	\begin{description}[style=nextline]
+		\item[Kanał \texttt{\#ryzyka} na Discord]
+		Główny kanał do zgłaszania nowych ryzyk i dyskusji nad reakcjami. Czas reakcji kierownika projektu na zgłoszenie: do 48 godzin.
+		
+		\item[Stand-up tygodniowy]
+		Punkt stały agendy: ,,nowe ryzyka i zmiany statusu''. Każdy członek zespołu zgłasza ewentualne nowe obserwacje lub zmiany w monitorowanych ryzykach.
+		
+		\item[Przegląd końca sprintu (z udziałem KS)]
+		Pełen przegląd rejestru ryzyk; prezentacja statusu ryzyk wysokich, przegląd zmian w ocenie ryzyk średnich, omówienie ryzyk zmaterializowanych w sprincie. Decyzje dotyczące eskalacji.
+		
+		\item[Raport końca sprintu]
+		Sekcja ,,Ryzyko'' --- lista nowych ryzyk, zmian w ocenie istniejących oraz ryzyk zmaterializowanych. Raport trafia do KS i prowadzących przez Discord serwera specjalności.
+		
+		\item[Eskalacja]
+		Eskalacja do Komitetu Sterującego następuje niezwłocznie --- bez czekania na cykl raportowy --- w przypadku: (a) zidentyfikowania ryzyka o ekspozycji wysokiej (czerwonej); (b) materializacji ryzyka o wpływie 4 lub 5; (c) przekroczenia tolerancji ryzyka (sekcja~6). Eskalacja prowadzona jest przez kierownika projektu w formie wiadomości na serwerze specjalności.
+	\end{description}
+	
+	\subsection{Odpowiedzialności komunikacyjne}
+	\begin{itemize}[noitemsep]
+		\item \textbf{Każdy członek zespołu} --- zgłaszanie nowych ryzyk i zmian statusu ryzyk, w których jest właścicielem.
+		\item \textbf{Kierownik projektu} --- agregacja zgłoszeń, aktualizacja rejestru, raportowanie do Komitetu Sterującego, eskalacja.
+		\item \textbf{Komitet Sterujący} --- decyzje o akceptacji ryzyk wysokich, zatwierdzanie planów awaryjnych, decyzje w sytuacjach przekroczenia tolerancji.
+	\end{itemize}
+	
+	% ════════════════════════════════════════════════════════════════
+	\section{Tolerancja ryzyka}
+	% ════════════════════════════════════════════════════════════════
+	
+	\subsection{Tolerancje na poziomie projektu}
+	Poniższe tolerancje stanowią propozycję zespołu projektowego sformułowaną w ramach
+	niniejszego planu i podlegają zatwierdzeniu przez Komitet Sterujący w toku oceny
+	dokumentu. Przekroczenie którejkolwiek z zaakceptowanych tolerancji w trakcie realizacji
+	projektu skutkuje obowiązkiem eskalacji do KS i wymaga jego decyzji o dalszych krokach
+	(dostosowanie zakresu, zmiana planu, akceptacja odstępstwa).
+	
+	\begin{table}[h!]
+		\centering
+		\begin{tblr}{
+				colspec = {p{4cm} p{10.5cm}},
+				hlines,
+				row{1} = {font=\bfseries},
+			}
+			Wymiar & Tolerancja \\
+			Czas & Opóźnienie kamienia milowego o maksymalnie 1 tydzień bez eskalacji. Opóźnienie finalnej prezentacji nie jest dopuszczalne --- jest sztywno powiązane z początkiem semestru letniego 2026/2027. \\
+			Zakres & Dopuszczalna jest redukcja elementów oznaczonych w priorytetyzacji MoSCoW jako \textit{Should} lub \textit{Could}. Redukcja elementów \textit{Must} (mechanika parowania, 3 grywalne poziomy, 2 typy przeciwników, prezentacja przed nowym rocznikiem) wymaga decyzji KS. \\
+			Jakość & Dopuszczalne jest odstępstwo od pojedynczych wymagań niefunkcjonalnych w wymiarze do 20\% (np. spadek minimalnych FPS z 60 do 48). Większe odstępstwa wymagają decyzji KS. \\
+			Budżet & Budżet projektu wynosi 0~zł i nie podlega zmianom. Każda potencjalna potrzeba poniesienia kosztu finansowego wymaga eskalacji. \\
+			Ryzyko (zagregowane) & Liczba aktywnych ryzyk wysokich (czerwonych) w rejestrze nie powinna przekraczać 3 jednocześnie. Przekroczenie tej liczby wymaga przeglądu nadzwyczajnego z KS. \\
+		\end{tblr}
+		\caption{Tolerancje na poziomie projektu.}
+		\label{tab:tolerancje}
+	\end{table}
+	
+	\subsection{Tolerancje pojedynczego ryzyka}
+	\begin{itemize}[noitemsep]
+		\item \textbf{Ryzyko niskie} ($E \le 4$) --- akceptowane bez ograniczeń; monitorowanie cykliczne.
+		\item \textbf{Ryzyko średnie} ($5 \le E \le 12$) --- akceptowane pod warunkiem wdrożenia zaplanowanej reakcji; brak wdrożenia w terminie powoduje eskalację.
+		\item \textbf{Ryzyko wysokie} ($E \ge 15$) --- niemożliwe do zaakceptowania bez decyzji KS; wymaga planu awaryjnego.
+	\end{itemize}
+	
+	\subsection{Postępowanie w przypadku przekroczenia tolerancji}
+	W przypadku przekroczenia tolerancji kierownik projektu:
+	\begin{enumerate}[noitemsep]
+		\item niezwłocznie informuje Przewodniczącą Komitetu Sterującego (kanał: Discord serwera specjalności);
+		\item w ciągu 48 godzin przygotowuje krótki dokument zawierający opis sytuacji, możliwe scenariusze działania i rekomendację;
+		\item Komitet Sterujący podejmuje decyzję o jednym z scenariuszy: redukcja zakresu, modyfikacja harmonogramu, akceptacja odstępstwa lub zamknięcie etapu;
+		\item decyzja KS jest dokumentowana w rejestrze ryzyk i komunikowana zespołowi w ciągu 24 godzin.
+	\end{enumerate}
+	
+	% ════════════════════════════════════════════════════════════════
+	\section{Przegląd planu}
+	% ════════════════════════════════════════════════════════════════
+	
+	\noindent Niniejszy plan podlega przeglądowi na końcu każdego etapu projektu oraz przy każdej
+	istotnej zmianie kontekstu (zmiana składu zespołu, zmiana zakresu, zmiana prowadzącego
+	przedmiot). W razie potrzeby modyfikacji kierownik projektu aktualizuje dokument, opisuje
+	zmianę w sekcji historii i informuje wszystkich interesariuszy zgodnie z planem komunikacji.
+	
+\end{document}

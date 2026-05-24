@@ -1,0 +1,395 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{tabularray}
+\usepackage{afterpage}
+\usepackage{rotating}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{pdflscape}
+\usepackage{makecell}
+
+\geometry{margin=2.5cm}
+
+\definecolor{accent}{RGB}{30, 60, 100}
+\definecolor{placeholdercolor}{RGB}{160, 160, 160}
+\definecolor{rowA}{RGB}{235, 242, 250}
+
+\titleformat{\section}{\large\bfseries\color{accent}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{}{0em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\small Opis Ról i Obowiązków}
+\lhead{\small Projekt: \textit{Feedback}}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\hypersetup{colorlinks=true, linkcolor=accent, urlcolor=accent}
+
+% ── MAKRA RACI ───────────────────────────────────────────────────
+% ph = placeholder (do ustalenia)
+\newcommand{\ph}{{\color{placeholdercolor}?}}
+% Skróty ról RACI
+\newcommand{\R}{\textbf{R}}
+\newcommand{\Ac}{\textbf{A}}
+\newcommand{\C}{\textbf{C}}
+\newcommand{\I}{\textbf{I}}
+\newcommand{\Su}{\textbf{S}}
+\newcommand{\none}{--}
+
+% ── PRZYPISANIA RACI ─────────────────────────────────────────────
+% Wiersze: zadania | Kolumny: KP, AB, RG, JP, MP, FS, KS, GD, GU
+% KP = Trzciński, AB = Bielicki, RG = Głasek, JP = Pączka,
+% MP = Popkowicz, FS = Shramko
+% KS = Sobótka (Komitet Sterujący), GD = Płocharski (Gł. Dostawca), GU = Herman (Gł. Użytkownik)
+
+% 1. Dokumentacja PRINCE2
+\newcommand{\raciDocKP}{\R}
+\newcommand{\raciDocAB}{\Su}
+\newcommand{\raciDocRG}{\Su}
+\newcommand{\raciDocJP}{\Su}
+\newcommand{\raciDocMP}{\Su}
+\newcommand{\raciDocFS}{\Su}
+\newcommand{\raciDocKS}{\Ac}
+\newcommand{\raciDocGD}{\C}
+\newcommand{\raciDocGU}{\I}
+
+% 2. Mechanika parowania (backend core)
+\newcommand{\raciMechKP}{\Ac}
+\newcommand{\raciMechAB}{\ph}
+\newcommand{\raciMechRG}{\ph}
+\newcommand{\raciMechJP}{\ph}
+\newcommand{\raciMechMP}{\ph}
+\newcommand{\raciMechFS}{\ph}
+\newcommand{\raciMechKS}{\I}
+\newcommand{\raciMechGD}{\C}
+\newcommand{\raciMechGU}{\I}
+
+% 3. Frontend / UI / HUD
+\newcommand{\raciFrontKP}{\Ac}
+\newcommand{\raciFrontAB}{\ph}
+\newcommand{\raciFrontRG}{\ph}
+\newcommand{\raciFrontJP}{\ph}
+\newcommand{\raciFrontMP}{\ph}
+\newcommand{\raciFrontFS}{\ph}
+\newcommand{\raciFrontKS}{\I}
+\newcommand{\raciFrontGD}{\C}
+\newcommand{\raciFrontGU}{\C}
+
+% 4. Projektowanie poziomów i zagadek
+\newcommand{\raciLvlKP}{\Ac}
+\newcommand{\raciLvlAB}{\ph}
+\newcommand{\raciLvlRG}{\ph}
+\newcommand{\raciLvlJP}{\ph}
+\newcommand{\raciLvlMP}{\ph}
+\newcommand{\raciLvlFS}{\ph}
+\newcommand{\raciLvlKS}{\I}
+\newcommand{\raciLvlGD}{\C}
+\newcommand{\raciLvlGU}{\C}
+
+% 5. Grafika i assety
+\newcommand{\raciGrafKP}{\Ac}
+\newcommand{\raciGrafAB}{\ph}
+\newcommand{\raciGrafRG}{\ph}
+\newcommand{\raciGrafJP}{\ph}
+\newcommand{\raciGrafMP}{\ph}
+\newcommand{\raciGrafFS}{\ph}
+\newcommand{\raciGrafKS}{\I}
+\newcommand{\raciGrafGD}{\none}
+\newcommand{\raciGrafGU}{\C}
+
+% 6. Testy i kontrola jakości
+\newcommand{\raciTestKP}{\Ac}
+\newcommand{\raciTestAB}{\ph}
+\newcommand{\raciTestRG}{\ph}
+\newcommand{\raciTestJP}{\ph}
+\newcommand{\raciTestMP}{\ph}
+\newcommand{\raciTestFS}{\ph}
+\newcommand{\raciTestKS}{\I}
+\newcommand{\raciTestGD}{\Ac}
+\newcommand{\raciTestGU}{\C}
+
+% 7. Code review i zarządzanie repozytorium
+\newcommand{\raciCRKP}{\Ac}
+\newcommand{\raciCRAB}{\ph}
+\newcommand{\raciCRRG}{\ph}
+\newcommand{\raciCRJP}{\ph}
+\newcommand{\raciCRMP}{\ph}
+\newcommand{\raciCRFS}{\ph}
+\newcommand{\raciCRKS}{\none}
+\newcommand{\raciCRGD}{\none}
+\newcommand{\raciCRGU}{\none}
+
+% 8. Prezentacja finalna i demo
+\newcommand{\raciPrezKP}{\R}
+\newcommand{\raciPrezAB}{\Su}
+\newcommand{\raciPrezRG}{\Su}
+\newcommand{\raciPrezJP}{\Su}
+\newcommand{\raciPrezMP}{\Su}
+\newcommand{\raciPrezFS}{\Su}
+\newcommand{\raciPrezKS}{\Ac}
+\newcommand{\raciPrezGD}{\Ac}
+\newcommand{\raciPrezGU}{\C}
+
+% ─────────────────────────────────────────────────────────────────
+
+\begin{document}
+
+% ── STRONA TYTUŁOWA ──────────────────────────────────────────────
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+{\LARGE\bfseries\color{accent} Opis Ról i Obowiązków}\\[0.5cm]
+{\large Projekt: \textit{Feedback}}\\[0.3cm]
+{\normalsize Mechanika parowania jako klucz do sukcesu}\\[2cm]
+
+\begin{tabular}{ll}
+\textbf{Kierownik projektu:}   & Kacper Trzciński \\[0.3em]
+\textbf{Przewodnicząca KS:}    & Aleksandra Sobótka \\[0.3em]
+\textbf{Główny Dostawca:}      & Aleksander Płocharski \\[0.3em]
+\textbf{Główny Użytkownik:}    & Tomasz Herman \\[0.3em]
+\textbf{Zespół:}               & A. Bielicki, R. Głasek, J. Pączka, \\
+                               & M. Popkowicz, F. Shramko, K. Trzciński \\[0.3em]
+\textbf{Data opracowania:}     & \today \\[0.3em]
+\end{tabular}
+
+\vfill
+{\small Zarządzanie Przedsięwzięciami Informatycznymi\\
+Wydział Matematyki i Nauk Informacyjnych, Politechnika Warszawska}
+\end{titlepage}
+
+% ── SPIS TREŚCI ─────────────────────────────────────────────────
+\tableofcontents
+\newpage
+
+% ════════════════════════════════════════════════════════════════
+\section{Wstęp}
+% ════════════════════════════════════════════════════════════════
+
+\subsection{Przeznaczenie dokumentu}
+Niniejszy dokument opisuje strukturę organizacyjną projektu \textit{Feedback} oraz definiuje role, obowiązki i zakres odpowiedzialności wszystkich jego uczestników. Dokument stanowi uzupełnienie Karty projektu.
+
+\subsection{Po co definiujemy role i obowiązki?}
+W projekcie realizowanym przez 6-osobowy zespół studencki, działający równolegle w kilku obszarach (implementacja, grafika, game design, testy), szczególnie łatwo o sytuację, w której zadanie wypada między odpowiedzialnościami dwóch osób i nie zostaje wykonane przez nikogo. Precyzyjne zdefiniowanie ról ma na celu:
+
+\begin{itemize}[noitemsep]
+    \item jednoznaczne określenie, kto podejmuje decyzje w każdym obszarze projektu;
+    \item uniknięcie dublowania pracy lub powstawania luk odpowiedzialności;
+    \item ustalenie, do kogo należy się zwrócić po konsultację lub zatwierdzenie;
+    \item zapewnienie ciągłości projektu w przypadku zmiany składu zespołu.
+\end{itemize}
+
+% ════════════════════════════════════════════════════════════════
+\section{Struktura organizacyjna projektu wg PRINCE2}
+% ════════════════════════════════════════════════════════════════
+
+PRINCE2 definiuje trójwarstwową strukturę zarządzania projektem: Komitet Sterujący (poziom strategiczny), Kierownik projektu (poziom zarządczy) oraz Zespół projektowy (poziom wytwórczy). Poniżej opisano obsadę i obowiązki każdej wymaganej przez metodykę roli.
+
+\subsection{Komitet Sterujący}
+
+Komitet Sterujący (KS) ponosi ogólną odpowiedzialność za powodzenie projektu. Zatwierdza kluczowe decyzje, monitoruje zgodność z celami biznesowymi i reaguje na eskalowane ryzyka. W skład KS wchodzą trzy role:
+
+\subsubsection{Przewodniczący Komitetu Sterującego}
+\textbf{Obsada:} Aleksandra Sobótka (prowadząca przedmiot w semestrze dokumentacyjnym)
+
+\textbf{Obowiązki:}
+\begin{itemize}[noitemsep]
+    \item zatwierdzanie kluczowych dokumentów projektowych (Karta projektu, WBS, Rejestr ryzyk);
+    \item ocena postępów na kolejnych etapach semestrów;
+    \item rozstrzyganie eskalowanych zagadnień i decyzji wykraczających poza kompetencje kierownika projektu;
+    \item zatwierdzanie zmian zakresu projektu.
+\end{itemize}
+
+\subsubsection{Główny Użytkownik}
+\textbf{Obsada:} Tomasz Herman (asystent badawczo-dydaktyczny, regularnie uczestniczący w zajęciach)
+
+\textbf{Obowiązki:}
+\begin{itemize}[noitemsep]
+    \item reprezentowanie perspektywy końcowego odbiorcy gry (gracza);
+    \item weryfikacja, czy wymagania dotyczące rozgrywki i mechanik są spełnione;
+    \item uczestnictwo w playtestach i przekazywanie feedbacku na temat grywalności i czytelności mechaniki parowania;
+    \item zatwierdzenie finalnej wersji gry jako spełniającej oczekiwania użytkownika.
+\end{itemize}
+
+\subsubsection{Główny Dostawca}
+\textbf{Obsada:} Aleksander Płocharski (prowadzący przedmiot w semestrze implementacyjnym)
+
+\textbf{Obowiązki:}
+\begin{itemize}[noitemsep]
+    \item nadzór nad jakością techniczną dostarczanego produktu w semestrze letnim 2026/2027;
+    \item konsultacje dotyczące wyboru technologii, architektury i rozwiązań implementacyjnych;
+    \item zatwierdzanie wyników testów jako potwierdzenie gotowości do prezentacji finalnej;
+    \item weryfikacja, czy zespół dysponuje odpowiednimi zasobami i kompetencjami do realizacji zakresu.
+\end{itemize}
+
+% \noindent\textit{Uwaga: projekt realizowany jest dwuetapowo. W semestrze dokumentacyjnym (zimowym 2025/2026) rolę wiodącą w KS pełni Aleksandra Sobótka. Aleksander Płocharski obejmuje aktywny nadzór nad projektem od początku semestru letniego 2026/2027, kiedy rozpoczyna się faza implementacji.}
+
+\subsection{Kierownik Projektu}
+
+\textbf{Obsada:} Kacper Trzciński
+
+\textbf{Obowiązki:}
+\begin{itemize}[noitemsep]
+    \item planowanie i koordynowanie pracy zespołu zgodnie z harmonogramem i metodyką PRINCE2;
+    \item prowadzenie codziennej komunikacji wewnętrznej oraz jedyna formalna komunikacja z KS i prowadzącymi;
+    \item prowadzenie i aktualizowanie rejestru ryzyk, rejestru zagadnień i harmonogramu;
+    \item sporządzanie raportów końca sprintu;
+    \item zarządzanie zmianami zakresu i eskalowanie decyzji do KS;
+    \item prowadzenie i archiwizowanie notatek ze spotkań.
+\end{itemize}
+
+\textit{W projekcie tej skali Kierownik Projektu pełni jednocześnie role Kierownika Zespołu, Nadzoru Projektu oraz Wsparcia Projektu, zgodnie z dopuszczeniem PRINCE2 dla małych projektów.}
+
+\subsection{Zespół Projektowy}
+
+Sześciu członków zespołu realizuje zadania wytwórcze. Szczegółowy podział kompetencji i odpowiedzialności opisano w sekcji~\ref{sec:zespol} oraz w macierzy RACI (sekcja~\ref{sec:raci}).
+
+% ════════════════════════════════════════════════════════════════
+\section{Zespół projektowy --- kompetencje i obszary}
+\label{sec:zespol}
+% ════════════════════════════════════════════════════════════════
+
+\subsection{Wymagane kompetencje}
+
+Do realizacji projektu \textit{Feedback} niezbędne są następujące kompetencje:
+
+\begin{description}[style=nextline]
+    \item[Programowanie (backend gry)]
+    Implementacja mechaniki parowania (zmiana momentum, odbijanie pocisków), systemu kolizji i fizyki, logiki przeciwników, obsługi stanu gry. Wymagana znajomość wybranego silnika gry (Godot / Unity / Unreal) oraz podstaw fizyki 2D.
+
+    \item[Programowanie (frontend / UI)]
+    Implementacja interfejsu użytkownika (menu, HUD, ekran końcowy), obsługa sterowania postacią, integracja animacji i przejść między ekranami.
+
+    \item[Game design / projektowanie poziomów]
+    Projektowanie ekranów z zagadkami logicznymi opartymi na mechanice parowania, definiowanie typów przeciwników i ich roli w zagadkach, pacing i balans rozgrywki.
+
+    \item[Grafika 2D / UI art]
+    Tworzenie sprite'ów postaci, przeciwników i elementów poziomów, animacje ataku i parowania, projekt elementów interfejsu.
+
+    \item[Testowanie]
+    Weryfikacja poprawności mechaniki parowania, testowanie poziomów logicznych, testy systemu kolizji i wydajności, testy końcowe wersji grywalnej, rejestrowanie i priorytetyzacja błędów.
+
+    \item[Dokumentacja i zarządzanie projektem]
+    Przygotowywanie dokumentacji PRINCE2, prowadzenie harmonogramu (ProjectLibre), sporządzanie raportów i notatek ze spotkań. Kompetencja obsadzana przez Kierownika Projektu.
+\end{description}
+
+\subsection{Skład zespołu i planowane obszary odpowiedzialności}
+
+\begin{longtblr}[
+    caption = {Planowany podział obszarów w zespole},
+    label   = {tab:zespol},
+]{
+    colspec = {p{4cm} p{4cm} p{7cm}},
+    rowhead = 1,
+    hlines,
+    row{1} = {font=\bfseries},
+}
+Imię i nazwisko & Rola projektowa & Planowany obszar odpowiedzialności \\
+Kacper Trzciński    & Kierownik projektu & Koordynacja, dokumentacja PRINCE2, komunikacja z KS \\
+Aleksander Bielicki & \ph               & \ph \\
+Radosław Głasek     & \ph               & \ph \\
+Jakub Pączka        & \ph               & \ph \\
+Michał Popkowicz    & \ph               & \ph \\
+Filip Shramko       & \ph               & \ph \\
+\end{longtblr}
+
+\noindent\textit{Szczegółowy podział ról zostanie ustalony na początku fazy implementacji (sprint 0) na podstawie zdeklarowanych kompetencji i preferencji członków zespołu.}
+
+% ════════════════════════════════════════════════════════════════
+\section{Macierz RACI}
+\label{sec:raci}
+% ════════════════════════════════════════════════════════════════
+
+\subsection{Legenda}
+
+Macierz RACI (w rozszerzeniu RASCI) przypisuje każdemu zadaniu projektowemu jedną z następujących ról dla każdego uczestnika:
+
+\begin{description}[style=nextline, noitemsep]
+    \item[\textbf{R} --- Responsible (Odpowiedzialny wykonawczo)]
+    Osoba lub osoby, które faktycznie wykonują dane zadanie. Dbają o to, żeby praca została zrobiona. Za każde zadanie powinna być wyznaczona co najmniej jedna osoba z~rolą~R.
+    \item[\textbf{A} --- Accountable (Odpowiedzialny decyzyjnie)]
+    Jedna osoba, która zatwierdza wynik i ponosi ostateczną odpowiedzialność za jakość. Tylko jedna osoba na zadanie.
+    \item[\textbf{S} --- Support (Wsparcie)]
+    Osoby aktywnie uczestniczące w wykonaniu zadania, choć nie prowadzące go. Pomagają w realizacji, gdy są o to poproszone.
+    \item[\textbf{C} --- Consult (Konsultowany)]
+    Osoby, które nie wykonują zadania, ale dostarczają wiedzy lub informacji niezbędnych do jego realizacji. Komunikacja dwukierunkowa.
+    \item[\textbf{I} --- Inform (Informowany)]
+    Osoby, które otrzymują informację o postępie lub wynikach zadania, ale nie są zaangażowane w jego realizację. Komunikacja jednostronna.
+\end{description}
+
+\subsection{Skróty kolumn}
+
+\begin{tabular}{ll@{\hspace{2em}}ll}
+\textbf{KP} & Kacper Trzciński (Kierownik Projektu) &
+\textbf{MP} & Michał Popkowicz \\
+\textbf{AB} & Aleksander Bielicki &
+\textbf{FS} & Filip Shramko \\
+\textbf{RG} & Radosław Głasek &
+\textbf{KS} & Aleksandra Sobótka (Komitet Sterujący) \\
+\textbf{JP} & Jakub Pączka &
+\textbf{GD} & Aleksander Płocharski (Główny Dostawca) \\
+   &  &
+\textbf{GU} & Tomasz Herman (Główny Użytkownik) \\
+\end{tabular}
+
+\vspace{1em}
+\noindent Komórki oznaczone {\color{placeholdercolor}\textbf{?}} wymagają ustalenia na etapie planowania sprintu~0.
+
+\vspace{1em}
+\noindent\textbf{Przegląd dokumentu:} macierz RACI zostanie uzupełniona i zatwierdzona przez Kierownika Projektu na początku fazy implementacyjnej (sprint~0), po ustaleniu obszarów odpowiedzialności poszczególnych członków zespołu. Dokument podlega aktualizacji przy każdej istotnej zmianie składu lub zakresu projektu.
+
+\clearpage
+\begin{landscape}
+
+\begin{longtblr}[
+    caption = {Macierz RACI projektu Feedback},
+    label   = {tab:raci},
+]{
+    colspec = {p{5.5cm} *{9}{X[c]}},
+    rowhead = 1,
+    hlines,
+    row{1} = {font=\bfseries, bg=accent, fg=white},
+    row{3,5,7,9} = {bg=rowA},
+}
+Zadanie
+    & KP & AB & RG & JP & MP & FS & KS & GD & GU \\
+Dokumentacja PRINCE2
+    & \raciDocKP & \raciDocAB & \raciDocRG & \raciDocJP
+    & \raciDocMP & \raciDocFS & \raciDocKS & \raciDocGD & \raciDocGU \\
+Implementacja mechaniki parowania (backend)
+    & \raciMechKP & \raciMechAB & \raciMechRG & \raciMechJP
+    & \raciMechMP & \raciMechFS & \raciMechKS & \raciMechGD & \raciMechGU \\
+Frontend -- UI, HUD, sterowanie
+    & \raciFrontKP & \raciFrontAB & \raciFrontRG & \raciFrontJP
+    & \raciFrontMP & \raciFrontFS & \raciFrontKS & \raciFrontGD & \raciFrontGU \\
+Projektowanie poziomów i zagadek
+    & \raciLvlKP & \raciLvlAB & \raciLvlRG & \raciLvlJP
+    & \raciLvlMP & \raciLvlFS & \raciLvlKS & \raciLvlGD & \raciLvlGU \\
+Grafika i assety (sprite'y, animacje)
+    & \raciGrafKP & \raciGrafAB & \raciGrafRG & \raciGrafJP
+    & \raciGrafMP & \raciGrafFS & \raciGrafKS & \raciGrafGD & \raciGrafGU \\
+Testy i kontrola jakości
+    & \raciTestKP & \raciTestAB & \raciTestRG & \raciTestJP
+    & \raciTestMP & \raciTestFS & \raciTestKS & \raciTestGD & \raciTestGU \\
+Code review i zarządzanie repozytorium
+    & \raciCRKP & \raciCRAB & \raciCRRG & \raciCRJP
+    & \raciCRMP & \raciCRFS & \raciCRKS & \raciCRGD & \raciCRGU \\
+Prezentacja finalna i demo gry
+    & \raciPrezKP & \raciPrezAB & \raciPrezRG & \raciPrezJP
+    & \raciPrezMP & \raciPrezFS & \raciPrezKS & \raciPrezGD & \raciPrezGU \\
+\end{longtblr}
+
+\end{landscape}
+\end{document}

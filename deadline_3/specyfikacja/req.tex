@@ -1,0 +1,294 @@
+\section{Wymagania funkcjonalne}
+Wymagania funkcjonalne opisane zostały w formie historyjek użytkownika (\textit{user stories}) uzupełnionych kryteriami akceptacji wyrażonymi w notacji Gherkin (Mając--Kiedy--Wtedy). Takie połączenie pozwala zachować perspektywę odbiorcy oraz jednoznacznie zweryfikować spełnienie wymagania na etapie testów. Każdemu wymaganiu przypisano unikalny identyfikator (WF-XX) wykorzystywany w macierzy śledzenia oraz w rejestrze testów.
+
+\subsection{Sterowanie postacią}
+
+\subsubsection*{WF-01: Poruszanie się postaci}
+\textbf{User story:} Jako gracz chcę poruszać postacią w lewo i w prawo, aby przemieszczać się po poziomie.
+
+\textit{Kryteria akceptacji:}
+\begin{itemize}[noitemsep]
+    \item Mając aktywną postać na poziomie, kiedy gracz wciska klawisz ruchu w lewo lub w prawo, wtedy postać przyspiesza w danym kierunku do stałej prędkości bazowej.
+    \item Mając postać poruszającą się w jednym kierunku, kiedy gracz puszcza klawisz ruchu, wtedy postać zatrzymuje się w ciągu jednej klatki (brak inercji w poziomie poza efektem parowania).
+    \item Mając postać poruszającą się w jednym kierunku, kiedy gracz wciska klawisz ruchu w kierunku przeciwnym, wtedy zmiana kierunku następuje natychmiastowo.
+\end{itemize}
+
+\subsubsection*{WF-02: Skok}
+\textbf{User story:} Jako gracz chcę móc skakać, aby pokonywać przeszkody pionowe i platformy.
+
+\textit{Kryteria akceptacji:}
+\begin{itemize}[noitemsep]
+    \item Mając postać znajdującą się na powierzchni stałej, kiedy gracz wciska klawisz skoku, wtedy postać wykonuje skok o ustalonej wysokości bazowej.
+    \item Mając postać w powietrzu w wyniku skoku, kiedy gracz ponownie wciska klawisz skoku, wtedy postać nie wykonuje kolejnego skoku.
+    \item Mając postać w powietrzu, kiedy gracz wciska klawisz ruchu w lewo lub w prawo, wtedy postać reaguje na kierunek z ograniczonym wpływem na wektor prędkości (kontrola powietrzna).
+\end{itemize}
+
+\subsection{Mechanika parowania}
+
+\subsubsection*{WF-03: Aktywacja parowania}
+\textbf{User story:} Jako gracz chcę wykonywać parowanie, aby neutralizować ataki przeciwników i wykorzystywać ich energię.
+
+\textit{Kryteria akceptacji:}
+\begin{itemize}[noitemsep]
+    \item Mając postać w dowolnym stanie (na stałym podłożu lub w powietrzu), kiedy gracz wciska klawisz parowania, wtedy postać przechodzi w stan parowania na zdefiniowane okno czasowe (\textit{parry window}).
+    \item Mając postać w stanie parowania, kiedy do hitboxu parowania wchodzi atak (pocisk lub atak fizyczny), wtedy atak jest neutralizowany.
+    \item Mając zakończone okno parowania, kiedy gracz ponownie wciska klawisz parowania, wtedy obowiązuje okres odnowienia (\textit{cooldown}) uniemożliwiający natychmiastowe powtórzenie akcji.
+\end{itemize}
+
+\subsubsection*{WF-04: Odbijanie pocisków}
+\textbf{User story:} Jako gracz chcę sparowanym ciosem odbijać pociski przeciwników, aby przekierowywać je w przeciwników lub elementy otoczenia.
+
+\textit{Kryteria akceptacji:}
+\begin{itemize}[noitemsep]
+    \item Mając postać w stanie parowania, kiedy pocisk przeciwnika trafia w hitbox parowania, wtedy pocisk zmienia kierunek na przeciwny do pierwotnego.
+    \item Mając odbity pocisk, kiedy trafia on w przeciwnika, wtedy przeciwnik zostaje wyeliminowany.
+    \item Mając odbity pocisk, kiedy trafia on w element interaktywny otoczenia (np. przełącznik), wtedy element zostaje aktywowany zgodnie ze swoją funkcją.
+    \item Mając odbity pocisk, kiedy trafia on w postać gracza, wtedy postać ginie i poziom zostaje zrestartowany.
+\end{itemize}
+
+\subsubsection*{WF-05: Zmiana momentum po parowaniu}
+\textbf{User story:} Jako gracz chcę zyskiwać dodatkowy ruch po udanym sparowaniu ataku fizycznego, aby pokonywać przepaście i osiągać niedostępne miejsca.
+
+\textit{Kryteria akceptacji:}
+\begin{itemize}[noitemsep]
+    \item Mając postać w stanie parowania, kiedy atak fizyczny przeciwnika trafia w hitbox parowania, wtedy wektor pędu postaci zmienia się zgodnie z przekierowaniem energii ataku.
+    \item Mając zmieniony wektor pędu, kiedy postać znajduje się w powietrzu, wtedy zachowuje ten pęd do momentu zetknięcia z powierzchnią lub kolejnego parowania.
+    \item Mając postać po udanym parowaniu wybuchu, kiedy parowanie nastąpiło z dolnym hitboxem, wtedy postać uzyskuje pęd skierowany pionowo do góry (efekt \textit{rocket jump}).
+\end{itemize}
+
+\subsubsection*{WF-06: Wskazanie okna parowania}
+\textbf{User story:} Jako gracz chcę otrzymywać natychmiastową informację zwrotną o wykonaniu parowania, aby uczyć się timingu mechaniki.
+
+\textit{Kryteria akceptacji:}
+\begin{itemize}[noitemsep]
+    \item Mając wciśnięty klawisz parowania, kiedy okno parowania jest aktywne, wtedy postać wyświetla animację oraz efekt wizualny sygnalizujący gotowość obronną.
+    \item Mając udane parowanie, kiedy atak zostaje zneutralizowany, wtedy gra wyświetla wyraźny efekt wizualny i akustyczny potwierdzenia.
+    \item Mając nieudane parowanie (atak trafia poza oknem), kiedy postać zostaje trafiona, wtedy gra wyświetla efekt śmierci postaci.
+\end{itemize}
+
+\subsection{Przeciwnicy}
+
+\subsubsection*{WF-07: Przeciwnik dystansowy}
+\textbf{User story:} Jako gracz chcę zmierzyć się z przeciwnikiem strzelającym pociskami, aby wykorzystywać jego ataki jako element zagadki.
+
+\textit{Kryteria akceptacji:}
+\begin{itemize}[noitemsep]
+    \item Mając przeciwnika dystansowego na poziomie, kiedy postać gracza znajduje się w jego polu widzenia, wtedy przeciwnik wystrzeliwuje pocisk w kierunku gracza w stałym interwale czasowym.
+    \item Mając przeciwnika dystansowego, kiedy zostaje trafiony odbitym pociskiem, wtedy zostaje wyeliminowany z poziomu.
+    \item Mając przeciwnika dystansowego, kiedy gracz nie znajduje się w jego polu widzenia, wtedy przeciwnik nie wystrzeliwuje pocisków.
+\end{itemize}
+
+\subsubsection*{WF-08: Przeciwnik fizyczny}
+\textbf{User story:} Jako gracz chcę zmierzyć się z przeciwnikiem atakującym wręcz, aby sparować jego cios i wykorzystać przejęty pęd do ruchu.
+
+\textit{Kryteria akceptacji:}
+\begin{itemize}[noitemsep]
+    \item Mając przeciwnika fizycznego, kiedy gracz znajduje się w jego zasięgu, wtedy przeciwnik wykonuje atak posiadający fazę zapowiedzi (\textit{telegraph}) oraz fazę aktywną.
+    \item Mając atak przeciwnika w fazie zapowiedzi, kiedy gracz aktywuje parowanie tak, by okno parowania pokryło fazę aktywną, wtedy atak zostaje sparowany i przekazuje pęd graczowi.
+    \item Mając parowanie nieudane, kiedy atak przeciwnika trafia w postać, wtedy postać ginie i poziom zostaje zrestartowany.
+\end{itemize}
+
+\subsection{Poziomy i progresja}
+
+\subsubsection*{WF-09: Rozpoczęcie poziomu}
+\textbf{User story:} Jako gracz chcę rozpocząć poziom z ustalonego punktu startowego, aby mieć powtarzalne warunki rozgrywki przy każdej próbie.
+
+\textit{Kryteria akceptacji:}
+\begin{itemize}[noitemsep]
+    \item Mając wybrany poziom, kiedy poziom zostaje uruchomiony, wtedy postać pojawia się w zdefiniowanym dla tego poziomu punkcie startowym.
+    \item Mając uruchomiony poziom, kiedy poziom rozpoczyna się, wtedy wszystkie elementy interaktywne (przełączniki, drzwi, przeciwnicy) znajdują się w stanie początkowym.
+\end{itemize}
+
+\subsubsection*{WF-10: Ukończenie poziomu}
+\textbf{User story:} Jako gracz chcę móc ukończyć poziom przez dotarcie do punktu końcowego, aby przejść do kolejnego etapu.
+
+\textit{Kryteria akceptacji:}
+\begin{itemize}[noitemsep]
+    \item Mając aktywny poziom, kiedy postać dociera do oznaczonego punktu końcowego, wtedy poziom zostaje zakończony.
+    \item Mając ukończony poziom, kiedy zakończenie nastąpiło, wtedy gra automatycznie ładuje kolejny poziom z sekwencji lub wyświetla ekran końcowy, jeżeli był to ostatni poziom.
+\end{itemize}
+
+\subsubsection*{WF-11: Restart po śmierci}
+\textbf{User story:} Jako gracz chcę szybko wracać do początku poziomu po śmierci, aby zachować dynamikę rozgrywki i podejmować kolejne próby bez zwłoki.
+
+\textit{Kryteria akceptacji:}
+\begin{itemize}[noitemsep]
+    \item Mając aktywny poziom, kiedy postać gracza zostaje wyeliminowana (kontakt z przeciwnikiem, pociskiem, kolcami lub innym zagrożeniem), wtedy poziom zostaje zrestartowany w ciągu maksymalnie 1 sekundy.
+    \item Mając zrestartowany poziom, kiedy restart się zakończył, wtedy stan poziomu i postaci odpowiada stanowi z momentu jego rozpoczęcia.
+    \item Mając aktywny poziom, kiedy gracz wciska klawisz manualnego restartu, wtedy obowiązuje to samo zachowanie co przy śmierci postaci.
+\end{itemize}
+
+\subsubsection*{WF-12: Co najmniej trzy poziomy z zagadkami}
+\textbf{User story:} Jako gracz chcę rozwiązywać różnorodne zagadki na kolejnych poziomach, aby doskonalić umiejętność wykorzystania jednej mechaniki w zmiennych kontekstach.
+
+\textit{Kryteria akceptacji:}
+\begin{itemize}[noitemsep]
+    \item Mając ukończoną grę, kiedy gracz przeszedł całą sekwencję, wtedy zaliczył co najmniej trzy poziomy zawierające niepowtarzające się zagadki logiczne.
+    \item Mając każdy z poziomów, kiedy gracz analizuje jego strukturę, wtedy wymagana do ukończenia interakcja z przeciwnikiem wykorzystuje mechanikę parowania (odbicie pocisku lub zmianę momentum).
+\end{itemize}
+
+\subsection{Interakcje środowiskowe}
+
+\subsubsection*{WF-13: Elementy aktywowane parowaniem}
+\textbf{User story:} Jako gracz chcę aktywować elementy otoczenia za pomocą odbitych pocisków, aby otwierać drogę do dalszej części poziomu.
+
+\textit{Kryteria akceptacji:}
+\begin{itemize}[noitemsep]
+    \item Mając element aktywowany na poziomie (np. przełącznik), kiedy zostaje trafiony odbitym pociskiem, wtedy zmienia stan na aktywny.
+    \item Mając aktywowany przełącznik powiązany z drzwiami, kiedy zmienia stan na aktywny, wtedy odpowiadające mu drzwi otwierają się.
+    \item Mając aktywowany element, kiedy poziom zostaje zrestartowany, wtedy element wraca do stanu początkowego.
+\end{itemize}
+
+\subsubsection*{WF-14: Kolizje z otoczeniem}
+\textbf{User story:} Jako gracz chcę, aby fizyka kolizji z otoczeniem była przewidywalna, aby planować sekwencje ruchu i odbić.
+
+\textit{Kryteria akceptacji:}
+\begin{itemize}[noitemsep]
+    \item Mając postać poruszającą się w kierunku obiektu statycznego, kiedy następuje kolizja, wtedy ruch w danym kierunku zostaje zatrzymany bez efektu „wchodzenia w ścianę”.
+    \item Mając postać z aktywnym pędem po parowaniu, kiedy następuje kolizja z powierzchnią ustawioną pod kątem, wtedy postać odbija się zgodnie z kątem padania.
+    \item Mając postać znajdującą się w powietrzu, kiedy dotyka powierzchni dolnej platformy, wtedy zatrzymuje ruch pionowy i może wykonać kolejny skok.
+\end{itemize}
+
+\subsection{Interfejs użytkownika}
+
+\subsubsection*{WF-15: Menu główne}
+\textbf{User story:} Jako gracz chcę mieć dostęp do menu głównego, aby rozpocząć grę, kontynuować ostatnio osiągnięty poziom lub zakończyć aplikację.
+
+\textit{Kryteria akceptacji:}
+\begin{itemize}[noitemsep]
+    \item Mając uruchomioną grę, kiedy gracz uruchamia aplikację, wtedy wyświetlane jest menu główne zawierające co najmniej opcje: \textit{Nowa gra}, \textit{Kontynuuj}, \textit{Wyjście}.
+    \item Mając wyświetlone menu główne, kiedy gracz wybiera \textit{Nowa gra}, wtedy uruchamia się pierwszy poziom sekwencji.
+    \item Mając wyświetlone menu główne, kiedy gracz wybiera \textit{Kontynuuj}, wtedy uruchamia się ostatnio odblokowany poziom.
+\end{itemize}
+
+\subsubsection*{WF-16: Zapis postępu}
+\textbf{User story:} Jako gracz chcę, aby gra zapamiętała mój postęp, abym mógł kontynuować rozgrywkę po wyłączeniu aplikacji.
+
+\textit{Kryteria akceptacji:}
+\begin{itemize}[noitemsep]
+    \item Mając ukończony poziom, kiedy ekran przejścia się zakończył, wtedy informacja o odblokowanym kolejnym poziomie jest zapisywana lokalnie.
+    \item Mając wyłączoną i ponownie uruchomioną grę, kiedy gracz wybiera \textit{Kontynuuj}, wtedy uruchamiany jest ostatnio odblokowany poziom.
+\end{itemize}
+
+\subsubsection*{WF-17: Ekran końcowy}
+\textbf{User story:} Jako gracz chcę otrzymać czytelne podsumowanie po ukończeniu ostatniego poziomu, aby wiedzieć, że gra dobiegła końca.
+
+\textit{Kryteria akceptacji:}
+\begin{itemize}[noitemsep]
+    \item Mając ukończony ostatni poziom sekwencji, kiedy poziom zostaje zaliczony, wtedy wyświetlany jest ekran zakończenia gry.
+    \item Mając wyświetlony ekran końcowy, kiedy gracz potwierdza zakończenie, wtedy następuje powrót do menu głównego.
+\end{itemize}
+
+\subsubsection*{WF-18: Pauza}
+\textbf{User story:} Jako gracz chcę móc wstrzymać rozgrywkę w dowolnym momencie, aby przerwać sesję bez utraty stanu poziomu.
+
+\textit{Kryteria akceptacji:}
+\begin{itemize}[noitemsep]
+    \item Mając aktywny poziom, kiedy gracz wciska klawisz pauzy, wtedy symulacja gry zostaje zatrzymana i wyświetlone zostaje menu pauzy.
+    \item Mając wyświetlone menu pauzy, kiedy gracz wybiera \textit{Wznów}, wtedy symulacja jest kontynuowana od stanu sprzed pauzy.
+    \item Mając wyświetlone menu pauzy, kiedy gracz wybiera \textit{Wyjdź do menu}, wtedy bieżący poziom zostaje porzucony, a gra wraca do menu głównego.
+\end{itemize}
+
+\section{Wymagania niefunkcjonalne}
+
+Wymagania niefunkcjonalne określają cechy jakościowe gry, których spełnienie warunkuje grywalność i komfort odbioru. Wszystkie kryteria akceptacji wyrażono w formie mierzalnej i testowalnej. Szczególny nacisk położono na wydajność oraz determinizm symulacji, ponieważ mechanika parowania opiera się na precyzyjnych oknach czasowych liczonych w pojedynczych klatkach (\textit{frame data}); jakiekolwiek odchylenia w tym zakresie podważyłyby fundament rozgrywki.
+
+\subsection{Wydajność}
+
+\subsubsection*{WNF-01: Stabilność liczby klatek}
+Gra musi utrzymywać minimalnie 60 klatek na sekundę na sprzęcie referencyjnym (procesor klasy Intel Core i5 8. generacji lub odpowiednik, 8~GB RAM, zintegrowana karta graficzna, dysk SSD) podczas rozgrywki na dowolnym poziomie zawartym w wersji finalnej.
+
+\textit{Sposób weryfikacji:} pomiar FPS narzędziem wbudowanym w silnik gry przez co najmniej 60 sekund rozgrywki na każdym poziomie; dopuszczalne są spadki krótsze niż 100~ms.
+
+\subsubsection*{WNF-02: Opóźnienie wejścia}
+Opóźnienie pomiędzy fizycznym naciśnięciem klawisza a reakcją gry (zmiana stanu postaci) nie może przekraczać 50~ms w 95\% pomiarów.
+
+\textit{Sposób weryfikacji:} pomiar narzędziem rejestrującym wejście oraz analiza nagrania ekranu z licznikiem klatek dla 100 prób parowania.
+
+\subsubsection*{WNF-03: Czas restartu poziomu}
+Czas pomiędzy śmiercią postaci a ponownym uzyskaniem kontroli przez gracza nie może przekraczać 1 sekundy.
+
+\textit{Sposób weryfikacji:} pomiar dla 30 cykli śmierć--restart na każdym poziomie z agregacją wartości średniej i maksymalnej.
+
+\subsubsection*{WNF-04: Czas ładowania poziomu}
+Czas ładowania pojedynczego poziomu nie może przekraczać 3 sekund na sprzęcie referencyjnym.
+
+\textit{Sposób weryfikacji:} pomiar czasu od wyboru poziomu w menu do uzyskania sterowania postaci dla każdego poziomu osobno.
+
+\subsubsection*{WNF-05: Czas uruchomienia gry}
+Czas uruchomienia gry od momentu kliknięcia pliku wykonywalnego do wyświetlenia menu głównego nie może przekraczać 30 sekund na sprzęcie referencyjnym.
+
+\textit{Sposób weryfikacji:} pomiar stoperem dla pięciu uruchomień; brany pod uwagę jest wynik średni.
+
+\subsection{Niezawodność}
+
+\subsubsection*{WNF-06: Determinizm symulacji}
+Identyczna sekwencja wejść gracza na tym samym poziomie musi prowadzić do identycznego rezultatu fizycznego (pozycja postaci, stan przeciwników).
+
+\textit{Sposób weryfikacji:} odtworzenie zarejestrowanej sekwencji wejść dla 10 wybranych przejść poziomów; porównanie końcowego stanu sceny.
+
+\subsubsection*{WNF-07: Stabilność}
+Gra musi działać bez awarii (\textit{crash}) przez co najmniej 4 godziny ciągłej rozgrywki obejmującej powtarzane przejścia poziomów oraz restarty.
+
+\textit{Sposób weryfikacji:} sesja testowa zorganizowana w fazie testów końcowych z udziałem co najmniej dwóch testerów.
+
+\subsubsection*{WNF-08: Zachowanie postępu}
+Postęp gracza zapisany lokalnie nie może zostać utracony w wyniku zamknięcia gry przez menu, restartu komputera lub wymuszonego zamknięcia aplikacji po ukończeniu poziomu.
+
+\textit{Sposób weryfikacji:} test scenariuszowy --- ukończenie poziomu, zamknięcie gry trzema sposobami (przez menu, przez \textit{Alt+F4}, przez wymuszone zakończenie procesu), weryfikacja stanu zapisu po ponownym uruchomieniu.
+
+\subsection{Użyteczność}
+
+\subsubsection*{WNF-09: Czytelność informacji zwrotnej}
+Każde udane oraz nieudane parowanie musi być sygnalizowane efektem wizualnym oraz dźwiękowym rozróżnialnym w czasie krótszym niż 100~ms od zdarzenia.
+
+\textit{Sposób weryfikacji:} test obserwacyjny z udziałem co najmniej trzech osób spoza zespołu projektowego; każda z nich powinna prawidłowo rozróżnić wszystkie typy informacji zwrotnej.
+
+\subsubsection*{WNF-10: Krzywa uczenia się}
+Osoba niezaznajomiona z grą musi być w stanie ukończyć pierwszy poziom w czasie nieprzekraczającym 10 minut bez konieczności konsultowania zewnętrznych instrukcji.
+
+\textit{Sposób weryfikacji:} playtest z udziałem co najmniej trzech osób spoza zespołu projektowego; pomiar czasu ukończenia oraz zliczenie zadanych pytań.
+
+\subsubsection*{WNF-11: Konfigurowalność sterowania}
+Domyślny układ sterowania musi być zgodny z konwencjami gatunku (klawisze WASD lub strzałki dla ruchu, Spacja dla skoku, jeden dedykowany klawisz dla parowania). W wersji finalnej dopuszczalne jest sterowanie wyłącznie z klawiatury.
+
+\textit{Sposób weryfikacji:} przegląd manualny; weryfikacja zgodności z opisem w dokumentacji.
+
+\subsubsection*{WNF-12: Czytelność elementów rozgrywki}
+Wszystkie obiekty interaktywne (przeciwnicy, pociski, przełączniki, punkt końcowy poziomu) muszą być wizualnie odróżnialne od obiektów statycznych otoczenia oraz wzajemnie między sobą.
+
+\textit{Sposób weryfikacji:} ocena ekspercka przez Głównego Użytkownika oraz potwierdzenie w playtestach (brak pytań typu ,,czego mam dotknąć?'' podczas testów).
+
+\subsection{Kompatybilność i wdrożenie}
+
+\subsubsection*{WNF-13: Platforma docelowa}
+Gra musi uruchamiać się i działać poprawnie na systemie operacyjnym Windows 10 oraz Windows 11 w wersji 64-bitowej.
+
+\textit{Sposób weryfikacji:} test uruchomienia oraz przejście co najmniej jednego poziomu na każdej z platform.
+
+\subsubsection*{WNF-14: Rozdzielczość ekranu}
+Gra musi obsługiwać natywnie rozdzielczość 1920$\times$1080 oraz skalować interfejs do rozdzielczości od 1280$\times$720 do 2560$\times$1440 bez utraty czytelności i bez przycięć elementów HUD.
+
+\textit{Sposób weryfikacji:} test wizualny w trzech rozdzielczościach skrajnych i jednej pośredniej.
+
+\subsubsection*{WNF-15: Rozmiar dystrybucji}
+Rozmiar wersji dystrybucyjnej gry (plik wykonywalny wraz z zasobami) nie może przekraczać 15~GB.
+
+\textit{Sposób weryfikacji:} pomiar rozmiaru folderu wersji wydanej.
+
+\subsection{Utrzymywalność i rozszerzalność}
+
+\subsubsection*{WNF-16: Struktura danych poziomów}
+Poziomy gry muszą być przechowywane w plikach o formacie czytelnym dla człowieka (\textit{plain text} lub format silnika), umożliwiającym dodanie kolejnego poziomu bez modyfikacji kodu źródłowego logiki gry.
+
+\textit{Sposób weryfikacji:} dodanie poziomu testowego do gry z poziomu pliku danych i weryfikacja jego poprawnego załadowania.
+
+\subsubsection*{WNF-17: Parametryzacja przeciwników}
+Kluczowe parametry przeciwników (interwał ataku, prędkość pocisku, długość fazy zapowiedzi) muszą być definiowane w plikach konfiguracyjnych poza kodem źródłowym.
+
+\textit{Sposób weryfikacji:} zmiana parametru w pliku konfiguracyjnym i weryfikacja wpływu na zachowanie przeciwnika bez konieczności rekompilacji.
+
+\subsubsection*{WNF-18: Repozytorium kodu}
+Cały kod źródłowy gry musi być przechowywany w repozytorium z historią zmian umożliwiającą identyfikację autora oraz daty każdej zmiany.
+
+\textit{Sposób weryfikacji:} weryfikacja stanu repozytorium na koniec każdego sprintu w ramach \textit{code review}.

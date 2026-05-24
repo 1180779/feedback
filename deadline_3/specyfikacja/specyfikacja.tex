@@ -1,0 +1,181 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{tabularray}
+\usepackage{afterpage}
+\usepackage{rotating}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{pdflscape}
+
+\geometry{margin=2.5cm}
+
+\definecolor{accent}{RGB}{30, 60, 100}
+
+\titleformat{\section}{\large\bfseries\color{accent}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{}{0em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\small Specyfikacja Projektu}
+\lhead{\small Projekt: \textit{Feedback}}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\hypersetup{colorlinks=true, linkcolor=accent, urlcolor=accent}
+
+\begin{document}
+
+% ── STRONA TYTUŁOWA ──────────────────────────────────────────────
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+{\LARGE\bfseries\color{accent} Specyfikacja Projektu}\\[0.5cm]
+{\large Projekt: \textit{Feedback}}\\[0.3cm]
+{\normalsize Mechanika parowania jako klucz do sukcesu}\\[2cm]
+
+\begin{tabular}{ll}
+\textbf{Kierownik projektu:}   & Kacper Trzciński \\[0.3em]
+\textbf{Przewodnicząca KS:}    & Aleksandra Sobótka \\[0.3em]
+\textbf{Główny Dostawca:}      & Aleksander Płocharski \\[0.3em]
+\textbf{Główny Użytkownik:}    & Tomasz Herman \\[0.3em]
+\textbf{Zespół:}               & A. Bielicki, R. Głasek, J. Pączka, \\
+                               & M. Popkowicz, F. Shramko, K. Trzciński \\[0.3em]
+\textbf{Data opracowania:}     & \today \\[0.3em]
+\end{tabular}
+
+\vfill
+{\small Zarządzanie Przedsięwzięciami Informatycznymi\\
+Wydział Matematyki i Nauk Informacyjnych, Politechnika Warszawska}
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Wprowadzenie}
+
+\subsection{Krótki opis gry}
+„Feedback” to innowacyjna gra typu \textit{puzzle-action platformer}, która redefiniuje pojęcie walki w grach 2D. W przeciwieństwie do klasycznych przedstawicieli gatunku, gdzie dominują systemy oparte na zadawaniu obrażeń (agresji), „Feedback” eliminuje tradycyjną broń ofensywną na rzecz \textbf{mechaniki parowania (parry)}.
+
+Główne założenia rozgrywki opierają się na trzech filarach:
+\begin{itemize}[noitemsep]
+    \item \textbf{Defensywa jako jedyna forma interakcji:} Gracz nie atakuje wprost. Każde pokonanie przeciwnika wymaga przejęcia jego siły – poprzez odbicie pocisku lub zneutralizowanie ataku fizycznego w idealnym momencie.
+    \item \textbf{Manipulacja fizyką i momentum:} System parowania jest zintegrowany z modelem poruszania się. Udane parowanie pozwala graczowi na zmianę własnego wektora ruchu, co umożliwia pokonywanie przeszkód terenowych (np. \textit{rocket jump} po sparowaniu wybuchu).
+    \item \textbf{Zagadki środowiskowe:} Poziomy są zaprojektowane jako logiczne labirynty, w których przeciwnicy pełnią rolę „generatorów energii”. Aby otworzyć przejście, gracz musi sprowokować atak i precyzyjnie przekierować go w odpowiedni element otoczenia.
+\end{itemize}
+
+\subsection{Cel projektu}
+Nadrzędnym celem projektu jest stworzenie grywalnego prototypu, który udowodni, że mechanika obronna może być fundamentem dynamicznej i satysfakcjonującej pętli rozgrywki. Cele operacyjne obejmują:
+\begin{itemize}[noitemsep]
+    \item \textbf{Implementacja logiki systemowej parowania:} Opracowanie skryptów obsługujących tzw. \textit{frame-data}, czyli precyzyjne okna czasowe (\textit{parry windows}), w których akcja gracza kończy się sukcesem.
+    \item \textbf{Opracowanie systemu transferu energii:} Wykorzystanie wbudowanych mechanizmów silnika fizycznego do przeliczania i zmiany momentum postaci po udanym bloku.
+    \item \textbf{Przygotowanie trzech poziomów testowych:} Stworzenie etapów o narastającym stopniu skomplikowania zagadek logicznych.
+    \item \textbf{Dostarczenie pełnej dokumentacji:} Przygotowanie artefaktów zarządczych zgodnych z metodyką PRINCE2.
+\end{itemize}
+
+\subsection{Kontekst i innowacyjność}
+Projekt powstaje jako odpowiedź na stagnację w gatunku gier akcji, gdzie większość innowacji ogranicza się do modyfikacji statystyk postaci. „Feedback” przesuwa akcent na \textbf{czyste umiejętności techniczne gracza (skill-based design)}. Zamiast zbierania przedmiotów zwiększających siłę ataku, gracz rozwija własną biegłość w obsłudze jednej, doskonale dopracowanej mechaniki. Innowacja polega na transformacji parowania z narzędzia czysto pomocniczego (znanego z serii \textit{Souls} czy \textit{Sekiro}) w główny język interakcji ze światem gry.
+
+\section{Użytkownicy}
+
+\subsection{Grupa docelowa}
+Głównym odbiorcą gry są gracze preferujący gry zręcznościowe połączone z wyzwaniami logicznymi, którzy szukają innowacyjnych mechanik rozgrywki wykraczających poza standardowe schematy walki.
+
+\subsection{Charakterystyka użytkownika}
+Idealny użytkownik „Feedback” to osoba, która:
+\begin{itemize}[noitemsep]
+    \item Ceni wysoką responsywność sterowania i dynamikę ruchu.
+    \item Szuka gier wymagających analizy zachowań przeciwników i strategicznego planowania działań obronnych.
+    \item Potrafi czerpać satysfakcję z opanowania technicznych mechanik gry (tzw. \textit{skill-based gameplay}).
+\end{itemize}
+
+\subsection{Odbiorca wtórny (Interesariusze)}
+Zgodnie ze strukturą PRINCE2, istotnymi odbiorcami efektów projektu są:
+\begin{itemize}[noitemsep]
+    \item \textbf{Główny Użytkownik:} Tomasz Herman, reprezentujący perspektywę końcowego odbiorcy i weryfikujący grywalność mechanik.
+    \item \textbf{Komitet Sterujący:} Nadzorujący zgodność projektu z celami dydaktycznymi przedmiotu ZPI.
+    \item \textbf{Przyszli studenci:} Jako odbiorcy końcowej prezentacji i demo gry zaplanowanej na semestr letni 2027.
+\end{itemize}
+
+\section{Opis gry}
+
+\textit{Feedback} jest dwuwymiarową grą platformowo--zręcznościową z elementami logicznymi, której głównym założeniem projektowym jest całkowite odejście od tradycyjnych systemów walki opartych na zadawaniu obrażeń. Fundament rozgrywki stanowi mechanika parowania (\textit{parry}), pełniąca jednocześnie funkcję defensywną, ruchową oraz środowiskową.
+
+Gracz wciela się w postać poruszającą się po serii zamkniętych poziomów o strukturze logicznych torów przeszkód. Każdy poziom wymaga nie tylko zręczności i precyzyjnego sterowania, ale również analizy otoczenia oraz zrozumienia zależności pomiędzy rozmieszczeniem przeciwników, przeszkód i elementów interaktywnych.
+
+Rozgrywka opiera się na minimalistycznym zestawie mechanik:
+\begin{itemize}[noitemsep]
+    \item poruszaniu się,
+    \item skakaniu,
+    \item wykonywaniu parowania.
+\end{itemize}
+
+Pomimo ograniczonej liczby dostępnych akcji, gra oferuje dużą różnorodność sytuacji dzięki projektowi poziomów oraz interakcjom opartym na fizyce. Udane parowanie pozwala nie tylko neutralizować zagrożenia, ale również przejmować energię przeciwników i wykorzystywać ją do manipulowania własnym ruchem lub wpływania na otoczenie. Mechanika ta umożliwia m.in. wykonywanie dalekich skoków, zmianę kierunku ruchu w powietrzu czy aktywowanie elementów środowiska za pomocą odbitych pocisków.
+
+Przeciwnicy pełnią w grze podwójną rolę — stanowią zagrożenie dla gracza, ale jednocześnie są integralną częścią zagadek środowiskowych. W wielu przypadkach ukończenie poziomu wymaga świadomego sprowokowania ataku przeciwnika, a następnie odpowiedniego przekierowania jego efektu w celu odblokowania dalszej drogi.
+
+Projekt poziomów został podporządkowany idei stopniowego rozwijania kompetencji gracza. Kolejne etapy wprowadzają nowe elementy interakcji i coraz bardziej wymagające kombinacje mechanik, zachęcając do eksperymentowania oraz doskonalenia umiejętności. Gra premiuje zarówno refleks i precyzję wykonania, jak i zdolność planowania optymalnej ścieżki przejścia.
+
+Istotnym elementem doświadczenia jest szybki cykl prób i błędów. Niepowodzenie skutkuje natychmiastowym restartem poziomu, dzięki czemu gracz może płynnie podejmować kolejne próby bez zbędnych przerw. Rozwiązanie to wspiera dynamiczny charakter rozgrywki i wzmacnia satysfakcję wynikającą z opanowywania trudnych sekwencji ruchu.
+
+\section{Pętla rozgrywki}
+
+Poniższa sekcja opisuje poszczególne etapy pętli rozgrywki gry.
+ \subsection{Gameplay loop}
+
+Pojedynczy poziom gry \textit{Feedback} składa się z trzech podstawowych kategorii elementów:
+\begin{itemize}
+    \item \textbf{Obiekty statyczne} --- ściany, podłogi oraz nieruchome platformy tworzące podstawową strukturę poziomu.
+    \item \textbf{Obiekty dynamiczne} --- ruchome platformy, trampoliny, klucze, zamknięte drzwi oraz inne interaktywne elementy środowiska posiadające określone właściwości fizyczne lub logiczne.
+    \item \textbf{Przeciwnicy} --- główne źródło zagrożenia, ale jednocześnie integralny element zagadek środowiskowych i mechanik poziomu.
+\end{itemize}
+
+Celem gracza jest dotarcie od punktu początkowego poziomu do wyznaczonego miejsca końcowego, np. widocznego wyjścia lub aktywowanego portalu. Osiągnięcie tego punktu oznacza ukończenie poziomu i odblokowanie kolejnego etapu rozgrywki.
+
+Każdy element otoczenia może wpływać na przebieg rozgrywki. Nawet pasywne obiekty, takie jak ściany czy podłogi, pełnią istotną funkcję w systemie ruchu i fizyki. Odpowiednio ustawione powierzchnie umożliwiają wykonywanie odbić pod określonym kątem, co pozwala graczowi zachować lub zmienić momentum ruchu.
+
+Kluczowym aspektem gry jest struktura poziomów. Gracz dysponuje ograniczonym zestawem akcji --- poruszaniem się, skokiem oraz parowaniem --- jednak różnorodność wyzwań wynika z konfiguracji przeszkód, przeciwników i interaktywnych elementów środowiska. Poszczególne poziomy są projektowane w taki sposób, aby wymuszać kreatywne wykorzystanie tych samych mechanik w nowych kontekstach.
+
+Ze względu na logiczno--zręcznościowy charakter gry, odnalezienie poprawnej ścieżki przejścia może wymagać wielu prób oraz analizy zachowania przeciwników i otoczenia. Proces rozwiązywania poziomu opiera się na metodzie prób i błędów, obserwacji zależności pomiędzy elementami mapy oraz stopniowym doskonaleniu wykonania.
+
+Po odkryciu optymalnego rozwiązania poziom powinien być możliwy do ukończenia w sposób płynny i dynamiczny. Gra kładzie nacisk na precyzję sterowania, refleks oraz satysfakcję wynikającą z perfekcyjnego wykonania wcześniej zaplanowanej sekwencji działań.
+
+Próba ukończenia poziomu kończy się niepowodzeniem w momencie kontaktu postaci z zagrożeniem, np. przeciwnikiem, pociskiem lub przeszkodą środowiskową taką jak kolce. Po śmierci gracz natychmiast powraca do początku poziomu, co pozwala zachować wysoką dynamikę rozgrywki i zachęca do szybkiego podejmowania kolejnych prób.
+
+\subsection{Progression loop}
+
+Postęp w grze opiera się przede wszystkim na przechodzeniu kolejnych poziomów. Każdy ukończony etap odblokowuje następny, wprowadzający nowe konfiguracje przeszkód, przeciwników oraz mechanik środowiskowych.
+
+Rozwój gracza nie jest związany z klasycznym systemem statystyk, ekwipunku ani odblokowywaniem nowych umiejętności postaci. Zestaw dostępnych akcji pozostaje niezmienny przez całą grę. Progresja opiera się zamiast tego na stopniowym rozwijaniu umiejętności samego gracza, takich jak refleks, precyzja ruchu, znajomość zachowań przeciwników oraz zdolność analizowania poziomów.
+
+Kolejne etapy pełnią funkcję edukacyjną, prezentując nowe zastosowania istniejących mechanik. Początkowo elementy rozgrywki wprowadzane są w izolacji, a następnie stopniowo łączone w bardziej złożone układy wymagające szybkiego podejmowania decyzji oraz precyzyjnego wykonania.
+
+Struktura progresji została zaprojektowana zgodnie z zasadą kumulatywnego zwiększania złożoności. Oznacza to, że wcześniej poznane mechaniki pozostają istotne również na późniejszych etapach gry, gdzie są wykorzystywane w nowych kontekstach i bardziej wymagających kombinacjach.
+
+Pomimo ograniczonego nacisku na narrację, ukończenie ostatniego poziomu stanowi formalne zakończenie rozgrywki i główny cel gracza.
+
+\subsection{Meta loop}
+
+Ze względu na jednoosobowy i zręcznościowy charakter gry, system meta--progresji został celowo ograniczony. Projekt koncentruje się przede wszystkim na satysfakcji wynikającej z opanowywania mechanik oraz doskonalenia umiejętności gracza.
+
+Jednocześnie struktura rozgrywki naturalnie sprzyja podejściu opartemu na poprawianiu wyników i optymalizacji przejść poziomów. Krótki czas trwania pojedynczych prób oraz wysoka precyzja mechanik zachęcają do wielokrotnego powracania do ukończonych etapów w celu uzyskania lepszych rezultatów.
+
+Potencjalnym rozszerzeniem gry może być implementacja systemu rankingów oraz pomiaru czasu przejścia poziomów (\textit{time trial}). Rozwiązanie to umożliwiłoby porównywanie wyników pomiędzy graczami oraz wspierało społecznościowy aspekt rywalizacji bez naruszania podstawowych założeń projektowych.
+
+Meta--progresja w \textit{Feedback} nie opiera się więc na wzmacnianiu postaci, lecz na rozwijaniu wiedzy o poziomach, doskonaleniu techniki oraz zwiększaniu efektywności wykonywania poszczególnych sekwencji działań.
+
+\input{req}
+
+\end{document}
