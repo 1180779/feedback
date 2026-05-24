@@ -1,51 +1,17 @@
 \documentclass[11pt,a4paper]{article}
 
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[polish]{babel}
-\usepackage{geometry}
-\usepackage{booktabs}
-\usepackage{tabularray}
-\usepackage{afterpage}
-\usepackage{rotating}
-\usepackage{longtable}
-\usepackage{array}
-\usepackage{xcolor}
-\usepackage{hyperref}
-\usepackage{titlesec}
-\usepackage{parskip}
-\usepackage{enumitem}
-\usepackage{fancyhdr}
-\usepackage{pdflscape}
+\newcommand{\docTitle}{Plan Zarządzania Ryzykiem}
 
-\geometry{margin=2.5cm}
-
-\definecolor{accent}{RGB}{30, 60, 100}
-
-\titleformat{\section}{\large\bfseries\color{accent}}{}{0em}{}[\titlerule]
-\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
-\titleformat{\subsubsection}{\normalsize\itshape}{}{0em}{}
-
-\pagestyle{fancy}
-\fancyhf{}
-\rhead{\small Plan Zarządzania Ryzykiem}
-\lhead{\small Projekt: \textit{Feedback}}
-\cfoot{\thepage}
-\renewcommand{\headrulewidth}{0.4pt}
-
-\hypersetup{colorlinks=true, linkcolor=accent, urlcolor=accent}
-
-\setlength{\emergencystretch}{3em}
-\hyphenpenalty=1000
-\tolerance=2000
+\input{../../preamble}
+\input{../../header}
 
 \begin{document}
-	
+	\pagenumbering{Roman}
 	% ── STRONA TYTUŁOWA ──────────────────────────────────────────────
 	\begin{titlepage}
 		\centering
 		\vspace*{2cm}
-		{\LARGE\bfseries\color{accent} Plan Zarządzania Ryzykiem}\\[0.5cm]
+		{\LARGE\bfseries\color{accent} \docTitle}\\[0.5cm]
 		{\large Projekt: \textit{Feedback}}\\[0.3cm]
 		{\normalsize Mechanika parowania jako klucz do sukcesu}\\[2cm]
 		
@@ -64,18 +30,20 @@
 			Wydział Matematyki i Nauk Informacyjnych, Politechnika Warszawska}
 	\end{titlepage}
 	
+	
 	% ── SPIS TREŚCI ─────────────────────────────────────────────────
 	\tableofcontents
+	\pagenumbering{arabic}
 	\newpage
 	
 	% ════════════════════════════════════════════════════════════════
-	\section{Wstęp}
+	\section{Wstęp}\label{sec:wstep}
 	% ════════════════════════════════════════════════════════════════
 	
 	\subsection{Przeznaczenie dokumentu}
 	Niniejszy dokument opisuje sposób zarządzania ryzykiem w projekcie \textit{Feedback} ---
 	grze \textit{puzzle-action platformer} tworzonej przez 6-osobowy zespół studencki w ramach
-	przedmiotu Zarządzanie Przedsięwzięciami Informatycznymi. Plan określa, jak ryzyko będzie
+	przedmiotu \textit{Zarządzanie Przedsięwzięciami Informatycznymi}. Plan określa, jak ryzyko będzie
 	oceniane, planowane i wdrażane, w jaki sposób będzie komunikowane oraz jakie tolerancje
 	przyjmuje kierownictwo projektu.
 	
@@ -93,7 +61,7 @@
 	\end{itemize}
 	
 	\subsection{Definicje}
-	\begin{description}[style=nextline, leftmargin=0pt]
+	\begin{description}[style=nextline, leftmargin=*]
 		\item[Ryzyko] Niepewne zdarzenie lub zestaw zdarzeń, które --- jeśli wystąpią --- mogą mieć wpływ na osiągnięcie celów projektu. Ryzyko może być \textbf{zagrożeniem} (wpływ negatywny) albo \textbf{szansą} (wpływ pozytywny).
 		\item[Prawdopodobieństwo] Szacowana częstotliwość lub szansa wystąpienia ryzyka w horyzoncie projektu.
 		\item[Wpływ] Wielkość konsekwencji wystąpienia ryzyka dla celów projektu (zakres, harmonogram, jakość, ocena z przedmiotu).
@@ -103,25 +71,25 @@
 	\end{description}
 	
 	% ════════════════════════════════════════════════════════════════
-	\section{Ocena ryzyka}
+	\section{Ocena ryzyka}\label{sec:ocena}
 	% ════════════════════════════════════════════════════════════════
 	
 	\subsection{Skala prawdopodobieństwa}
-	Prawdopodobieństwo wystąpienia ryzyka oceniane jest w skali pięciostopniowej (patrz tabela~\ref{tab:prawdopodobienstwo}). Skala została zaprojektowana w sposób umożliwiający przypisanie wartości na podstawie obserwowalnych przesłanek, bez konieczności analizy statystycznej.
+	Prawdopodobieństwo wystąpienia ryzyka oceniane jest w skali pięciostopniowej (patrz \cref{tab:prawdopodobienstwo}). Skala została zaprojektowana w sposób umożliwiający przypisanie wartości na podstawie obserwowalnych przesłanek w bieżącej sytuacji projektu, bez konieczności szacowania liczbowego prawdopodobieństwa.
 	
-	\begin{table}[h!]
+	\begin{table}[ht!]
 		\centering
 		\begin{tblr}{
-				colspec = {c l c p{8cm}},
+				colspec = {c l p{9cm}},
 				hlines,
 				row{1} = {font=\bfseries},
 			}
-			Ocena & Określenie & Wartość & Charakterystyka \\
-			1 & Bardzo niskie & ok. 10\% & Wystąpienie ryzyka jest mało prawdopodobne; brak przesłanek w bieżącej sytuacji projektu. \\
-			2 & Niskie       & ok. 30\% & Ryzyko może wystąpić w określonych okolicznościach; nie ma jeszcze obserwowanych sygnałów. \\
-			3 & Średnie      & ok. 50\% & Wystąpienie ryzyka jest równie prawdopodobne co jego brak; występują pojedyncze przesłanki. \\
-			4 & Wysokie      & ok. 70\% & Występują wyraźne przesłanki wskazujące na materializację ryzyka. \\
-			5 & Bardzo wysokie & ok. 90\% & Materializacja ryzyka jest niemal pewna, jeżeli nie zostaną podjęte działania zaradcze. \\
+			Ocena & Określenie & Charakterystyka \\
+			1 & Bardzo niskie  & Wystąpienie ryzyka jest mało prawdopodobne; brak przesłanek w bieżącej sytuacji projektu. \\
+			2 & Niskie         & Ryzyko może wystąpić w określonych okolicznościach; nie ma jeszcze obserwowanych sygnałów. \\
+			3 & Średnie        & Wystąpienie ryzyka jest równie prawdopodobne co jego brak; występują pojedyncze przesłanki. \\
+			4 & Wysokie        & Występują wyraźne przesłanki wskazujące na materializację ryzyka. \\
+			5 & Bardzo wysokie & Materializacja ryzyka jest niemal pewna, jeżeli nie zostaną podjęte działania zaradcze. \\
 		\end{tblr}
 		\caption{Skala oceny prawdopodobieństwa wystąpienia ryzyka.}
 		\label{tab:prawdopodobienstwo}
@@ -131,9 +99,9 @@
 	Wpływ ryzyka oceniany jest w skali pięciostopniowej, z opisem konsekwencji dla kluczowych
 	celów projektu: harmonogramu (terminowe oddanie dokumentów i wersji grywalnej), zakresu
 	(kompletność wymagań funkcjonalnych) oraz oceny z przedmiotu (patrz
-	tabela~\ref{tab:wplyw}).
+	\cref{tab:wplyw}).
 	
-	\begin{table}[h!]
+	\begin{table}[ht!]
 		\centering
 		\begin{tblr}{
 				colspec = {c l p{11cm}},
@@ -151,22 +119,18 @@
 		\label{tab:wplyw}
 	\end{table}
 	
-	\subsection{Macierz ryzyka}
+	\subsection{Macierz ryzyka}\label{sec:macierz}
 	Ekspozycja na ryzyko obliczana jest jako iloczyn prawdopodobieństwa i wpływu
 	($E = P \cdot W$), co daje wartości w zakresie 1--25. Na podstawie ekspozycji ryzyka
-	klasyfikuje się do trzech poziomów (patrz tabela~\ref{tab:macierz}):
+	klasyfikuje się do trzech poziomów (patrz \cref{tab:macierz}):
 	
 	\begin{itemize}[noitemsep]
-		\item \textbf{Niskie} ($1 \le E \le 4$, kolor zielony) --- akceptowane, monitorowane;
-		\item \textbf{Średnie} ($5 \le E \le 12$, kolor żółty) --- wymagają zaplanowanej reakcji;
+		\item \textbf{Niskie} ($1 \le E \le 5$, kolor zielony) --- akceptowane, monitorowane;
+		\item \textbf{Średnie} ($6 \le E \le 12$, kolor żółty) --- wymagają zaplanowanej reakcji;
 		\item \textbf{Wysokie} ($E \ge 15$, kolor czerwony) --- wymagają natychmiastowej reakcji i eskalacji do Komitetu Sterującego.
 	\end{itemize}
 	
-	\definecolor{lowrisk}{RGB}{200, 230, 200}
-	\definecolor{medrisk}{RGB}{255, 235, 170}
-	\definecolor{highrisk}{RGB}{245, 195, 195}
-	
-	\begin{table}[h!]
+	\begin{table}[ht!]
 		\centering
 		\begin{tblr}{
 				colspec = {|c|c|c|c|c|c|},
@@ -208,16 +172,16 @@
 			1 & 1  & 2  & 3  & 4  & 5  \\
 		\end{tblr}
 		
-		\vspace{2mm} % Opcjonalny delikatny odstęp między tabelą a podpisem wzorowany na rysunku
+		\vspace{2mm}
 		\caption{Macierz ekspozycji na ryzyko (prawdopodobieństwo $\times$ wpływ).}
 		\label{tab:macierz}
 	\end{table}
 	
 	\subsection{Kategorie reakcji na ryzyko}
 	W projekcie stosowane są kategorie reakcji zgodne z metodyką PRINCE2, w podziale na
-	zagrożenia i szanse (patrz tabela~\ref{tab:reakcje}).
+	zagrożenia i szanse (patrz \cref{tab:reakcje}).
 	
-	\begin{table}[h!]
+	\begin{table}[ht!]
 		\centering
 		\begin{tblr}{
 				colspec = {p{1.8cm} p{3cm} p{9.7cm}},
@@ -240,11 +204,11 @@
 	\end{table}
 	
 	% ════════════════════════════════════════════════════════════════
-	\section{Planowanie i wdrażanie reakcji na ryzyko}
+	\section{Planowanie i wdrażanie reakcji na ryzyko}\label{sec:planowanie}
 	% ════════════════════════════════════════════════════════════════
 	
 	\subsection{Wybór reakcji}
-	Dobór reakcji odbywa się w oparciu o klasyfikację ekspozycji (sekcja 2.3) oraz typ ryzyka
+	Dobór reakcji odbywa się w oparciu o klasyfikację ekspozycji (\cref{sec:macierz}) oraz typ ryzyka
 	(zagrożenie lub szansa). Ogólne zasady doboru reakcji:
 	\begin{itemize}[noitemsep]
 		\item Dla ryzyk \textbf{niskich} (zielonych) domyślną reakcją jest \textit{akceptacja} z monitorowaniem.
@@ -262,7 +226,7 @@
 		\item aktualizuje pozycję w rejestrze ryzyk;
 		\item zgłasza wynik kierownikowi projektu w trakcie najbliższego stand-upu.
 	\end{enumerate}
-	Jeżeli ryzyko rezydualne nadal przekracza tolerancję (sekcja~6), planowane jest kolejne
+	Jeżeli ryzyko rezydualne nadal przekracza tolerancję (\cref{sec:tolerancja}), planowane jest kolejne
 	działanie zaradcze.
 	
 	\subsection{Plan awaryjny}
@@ -279,7 +243,7 @@
 	priorytetyzacją MoSCoW), a nie wydłużenia harmonogramu.
 	
 	% ════════════════════════════════════════════════════════════════
-	\section{Identyfikacja ryzyka}
+	\section{Identyfikacja ryzyka}\label{sec:identyfikacja}
 	% ════════════════════════════════════════════════════════════════
 	
 	\subsection{Źródła i odpowiedzialność}
@@ -303,7 +267,7 @@
 		Krótkie indywidualne rozmowy kierownika projektu z członkami zespołu odbywają się przy każdej zmianie zakresu, składu lub harmonogramu. Wywiady ujawniają ryzyka, których członek zespołu mógłby nie zgłosić publicznie (przeciążenie, niejasność wymagań, problemy techniczne na początkowym etapie).
 		
 		\item[Przegląd dokumentacji]
-		Analiza Karty projektu, Rejestru Interesariuszy, WBS, harmonogramu i wymagań pod kątem założeń (\textit{assumptions}) i zależności, które mogą stać się ryzykiem.
+		Analiza Karty projektu, Rejestru Interesariuszy, WBS, harmonogramu i wymagań pod kątem założeń i zależności, które mogą stać się ryzykiem.
 		
 		\item[Zgłoszenia ad hoc]
 		Każdy członek zespołu może zgłosić ryzyko poza cyklem burzy mózgów --- przez kanał \texttt{\#ryzyka} na serwerze Discord zespołu lub bezpośrednią wiadomość do kierownika projektu.
@@ -320,9 +284,8 @@
 	Aby rejestr ryzyk nie utracił aktualności, w projekcie wprowadzono następujące mechanizmy:
 	\begin{itemize}[noitemsep]
 		\item \textbf{Przegląd cykliczny} --- pełny przegląd rejestru ryzyk odbywa się na końcu każdego sprintu, w ramach przeglądu sprintu z Komitetem Sterującym. Każda pozycja jest weryfikowana pod kątem aktualności prawdopodobieństwa, wpływu i statusu.
-		\item \textbf{Przegląd przy kamieniu milowym} --- pełny przegląd rejestru poprzedza każdy kamień milowy (Karta projektu, Prezentacja koncepcji, WBS + harmonogram, kolejne sprinty implementacyjne).
 		\item \textbf{Aktualizacja ad hoc} --- każda zmiana stanu ryzyka (materializacja, zamknięcie, zmiana oceny) skutkuje natychmiastową aktualizacją rejestru przez właściciela ryzyka, najpóźniej w ciągu 48 godzin od wykrycia zmiany.
-		\item \textbf{Audyt kierownika projektu} --- raz na dwa tygodnie kierownik projektu przegląda rejestr pod kątem pozycji nieaktualizowanych dłużej niż 30 dni i konsultuje je z właścicielami.
+		\item \textbf{Audyt kierownika projektu} --- raz na miesiąc kierownik projektu przegląda rejestr pod kątem pozycji nieaktualizowanych dłużej niż 30 dni i konsultuje je z właścicielami.
 	\end{itemize}
 	
 	\subsection{Struktura wpisu w rejestrze ryzyk}
@@ -332,7 +295,7 @@
 		\item data zgłoszenia, autor zgłoszenia;
 		\item typ (zagrożenie / szansa);
 		\item opis zdarzenia, przyczyna, skutek;
-		\item prawdopodobieństwo, wpływ, ekspozycja (klasyfikacja: niska / średnia / wysoka);
+		\item prawdopodobieństwo, wpływ, ekspozycja;
 		\item kategoria reakcji i konkretne działanie zaradcze;
 		\item właściciel ryzyka; termin wdrożenia działania;
 		\item status (\textit{open / mitigated / materialised / closed});
@@ -341,7 +304,7 @@
 	\end{itemize}
 	
 	% ════════════════════════════════════════════════════════════════
-	\section{Komunikacja zarządzania ryzykiem}
+	\section{Komunikacja zarządzania ryzykiem}\label{sec:komunikacja}
 	% ════════════════════════════════════════════════════════════════
 	
 	Komunikacja w obszarze ryzyka stanowi część ogólnego systemu komunikacji opisanego w
@@ -363,7 +326,7 @@
 		Sekcja ,,Ryzyko'' --- lista nowych ryzyk, zmian w ocenie istniejących oraz ryzyk zmaterializowanych. Raport trafia do KS i prowadzących przez Discord serwera specjalności.
 		
 		\item[Eskalacja]
-		Eskalacja do Komitetu Sterującego następuje niezwłocznie --- bez czekania na cykl raportowy --- w przypadku: (a) zidentyfikowania ryzyka o ekspozycji wysokiej (czerwonej); (b) materializacji ryzyka o wpływie 4 lub 5; (c) przekroczenia tolerancji ryzyka (sekcja~6). Eskalacja prowadzona jest przez kierownika projektu w formie wiadomości na serwerze specjalności.
+		Eskalacja do Komitetu Sterującego następuje niezwłocznie --- bez czekania na cykl raportowy --- w przypadku: (a) zidentyfikowania ryzyka o ekspozycji wysokiej (czerwonej); (b) materializacji ryzyka o wpływie 4 lub 5; (c) przekroczenia tolerancji ryzyka (\cref{sec:tolerancja}). Eskalacja prowadzona jest przez kierownika projektu w formie wiadomości na serwerze specjalności.
 	\end{description}
 	
 	\subsection{Odpowiedzialności komunikacyjne}
@@ -374,17 +337,17 @@
 	\end{itemize}
 	
 	% ════════════════════════════════════════════════════════════════
-	\section{Tolerancja ryzyka}
+	\section{Tolerancja ryzyka}\label{sec:tolerancja}
 	% ════════════════════════════════════════════════════════════════
 	
 	\subsection{Tolerancje na poziomie projektu}
-	Poniższe tolerancje stanowią propozycję zespołu projektowego sformułowaną w ramach
+	Poniższe tolerancje (\cref{tab:tolerancje}) stanowią propozycję zespołu projektowego sformułowaną w ramach
 	niniejszego planu i podlegają zatwierdzeniu przez Komitet Sterujący w toku oceny
 	dokumentu. Przekroczenie którejkolwiek z zaakceptowanych tolerancji w trakcie realizacji
 	projektu skutkuje obowiązkiem eskalacji do KS i wymaga jego decyzji o dalszych krokach
 	(dostosowanie zakresu, zmiana planu, akceptacja odstępstwa).
 	
-	\begin{table}[h!]
+	\begin{table}[ht!]
 		\centering
 		\begin{tblr}{
 				colspec = {p{4cm} p{10.5cm}},
@@ -404,8 +367,8 @@
 	
 	\subsection{Tolerancje pojedynczego ryzyka}
 	\begin{itemize}[noitemsep]
-		\item \textbf{Ryzyko niskie} ($E \le 4$) --- akceptowane bez ograniczeń; monitorowanie cykliczne.
-		\item \textbf{Ryzyko średnie} ($5 \le E \le 12$) --- akceptowane pod warunkiem wdrożenia zaplanowanej reakcji; brak wdrożenia w terminie powoduje eskalację.
+		\item \textbf{Ryzyko niskie} ($1 \le E \le 5$) --- akceptowane bez ograniczeń; monitorowanie cykliczne.
+		\item \textbf{Ryzyko średnie} ($6 \le E \le 12$) --- akceptowane pod warunkiem wdrożenia zaplanowanej reakcji; brak wdrożenia w terminie powoduje eskalację.
 		\item \textbf{Ryzyko wysokie} ($E \ge 15$) --- niemożliwe do zaakceptowania bez decyzji KS; wymaga planu awaryjnego.
 	\end{itemize}
 	
@@ -419,7 +382,7 @@
 	\end{enumerate}
 	
 	% ════════════════════════════════════════════════════════════════
-	\section{Przegląd planu}
+	\section{Przegląd planu}\label{sec:przeglad}
 	% ════════════════════════════════════════════════════════════════
 	
 	\noindent Niniejszy plan podlega przeglądowi na końcu każdego etapu projektu oraz przy każdej

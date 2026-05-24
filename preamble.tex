@@ -1,0 +1,66 @@
+% ─────────────────────────────────────────────────────────────────
+% Preambuła wspólna dla dokumentów projektu Feedback
+% ─────────────────────────────────────────────────────────────────
+
+% Kodowanie i język
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+
+% Układ strony
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+% Tabele
+\usepackage{booktabs}
+\usepackage{tabularray}
+\usepackage{longtable}
+\usepackage{array}
+
+% Grafika i strony specjalne
+\usepackage{afterpage}
+\usepackage{rotating}
+\usepackage{pdflscape}
+
+% Kolory
+\usepackage{xcolor}
+\definecolor{accent}{RGB}{30, 60, 100}
+\definecolor{lowrisk}{RGB}{200, 230, 200}
+\definecolor{medrisk}{RGB}{255, 235, 170}
+\definecolor{highrisk}{RGB}{245, 195, 195}
+
+% Tytuły, listy, akapity
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+% Hyperref i cleveref – kolejność ma znaczenie:
+% hyperref musi być załadowany przed cleveref
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=accent, urlcolor=accent, citecolor=accent}
+\usepackage[nameinlink]{cleveref}
+% Polskie nazwy dla cleveref – formy skrócone unikają problemu z odmianą
+\crefname{section}{sek.}{sek.}
+\Crefname{section}{Sek.}{Sek.}
+\crefname{subsection}{sek.}{sek.}
+\Crefname{subsection}{Sek.}{Sek.}
+\crefname{table}{tab.}{tab.}
+\Crefname{table}{Tab.}{Tab.}
+\crefname{figure}{rys.}{rys.}
+\Crefname{figure}{Rys.}{Rys.}
+\crefname{equation}{rów.}{rów.}
+\Crefname{equation}{Rów.}{Rów.}
+\crefname{enumi}{pkt}{pkt}
+\Crefname{enumi}{Pkt}{Pkt}
+
+
+% Numerowane sekcje z kolorem akcentu
+\titleformat{\section}{\large\bfseries\color{accent}}{\thesection.}{0.6em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{\thesubsubsection}{0.6em}{}
+
+% Łamanie wierszy – tolerancja dla polskich tekstów
+\setlength{\emergencystretch}{3em}
+\hyphenpenalty=1000
+\tolerance=2000
