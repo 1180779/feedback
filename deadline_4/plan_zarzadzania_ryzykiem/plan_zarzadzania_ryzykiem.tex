@@ -6,7 +6,7 @@
 \input{../../header}
 
 \begin{document}
-	\pagenumbering{Roman}
+	
 	% ── STRONA TYTUŁOWA ──────────────────────────────────────────────
 	\begin{titlepage}
 		\centering
@@ -30,10 +30,8 @@
 			Wydział Matematyki i Nauk Informacyjnych, Politechnika Warszawska}
 	\end{titlepage}
 	
-	
 	% ── SPIS TREŚCI ─────────────────────────────────────────────────
 	\tableofcontents
-	\pagenumbering{arabic}
 	\newpage
 	
 	% ════════════════════════════════════════════════════════════════
@@ -61,7 +59,7 @@
 	\end{itemize}
 	
 	\subsection{Definicje}
-	\begin{description}[style=nextline, leftmargin=*]
+	\begin{description}[style=nextline, leftmargin=0pt]
 		\item[Ryzyko] Niepewne zdarzenie lub zestaw zdarzeń, które --- jeśli wystąpią --- mogą mieć wpływ na osiągnięcie celów projektu. Ryzyko może być \textbf{zagrożeniem} (wpływ negatywny) albo \textbf{szansą} (wpływ pozytywny).
 		\item[Prawdopodobieństwo] Szacowana częstotliwość lub szansa wystąpienia ryzyka w horyzoncie projektu.
 		\item[Wpływ] Wielkość konsekwencji wystąpienia ryzyka dla celów projektu (zakres, harmonogram, jakość, ocena z przedmiotu).
@@ -77,7 +75,7 @@
 	\subsection{Skala prawdopodobieństwa}
 	Prawdopodobieństwo wystąpienia ryzyka oceniane jest w skali pięciostopniowej (patrz \cref{tab:prawdopodobienstwo}). Skala została zaprojektowana w sposób umożliwiający przypisanie wartości na podstawie obserwowalnych przesłanek w bieżącej sytuacji projektu, bez konieczności szacowania liczbowego prawdopodobieństwa.
 	
-	\begin{table}[ht!]
+	\begin{table}[h!]
 		\centering
 		\begin{tblr}{
 				colspec = {c l p{9cm}},
@@ -101,7 +99,7 @@
 	(kompletność wymagań funkcjonalnych) oraz oceny z przedmiotu (patrz
 	\cref{tab:wplyw}).
 	
-	\begin{table}[ht!]
+	\begin{table}[h!]
 		\centering
 		\begin{tblr}{
 				colspec = {c l p{11cm}},
@@ -125,12 +123,12 @@
 	klasyfikuje się do trzech poziomów (patrz \cref{tab:macierz}):
 	
 	\begin{itemize}[noitemsep]
-		\item \textbf{Niskie} ($1 \le E \le 5$, kolor zielony) --- akceptowane, monitorowane;
-		\item \textbf{Średnie} ($6 \le E \le 12$, kolor żółty) --- wymagają zaplanowanej reakcji;
+		\item \textbf{Niskie} ($1 \le E \le 4$, kolor zielony) --- akceptowane, monitorowane;
+		\item \textbf{Średnie} ($5 \le E \le 12$, kolor żółty) --- wymagają zaplanowanej reakcji;
 		\item \textbf{Wysokie} ($E \ge 15$, kolor czerwony) --- wymagają natychmiastowej reakcji i eskalacji do Komitetu Sterującego.
 	\end{itemize}
 	
-	\begin{table}[ht!]
+	\begin{table}[h!]
 		\centering
 		\begin{tblr}{
 				colspec = {|c|c|c|c|c|c|},
@@ -181,7 +179,7 @@
 	W projekcie stosowane są kategorie reakcji zgodne z metodyką PRINCE2, w podziale na
 	zagrożenia i szanse (patrz \cref{tab:reakcje}).
 	
-	\begin{table}[ht!]
+	\begin{table}[h!]
 		\centering
 		\begin{tblr}{
 				colspec = {p{1.8cm} p{3cm} p{9.7cm}},
@@ -275,7 +273,7 @@
 	
 	\subsection{Narzędzia}
 	\begin{itemize}[noitemsep]
-		\item \textbf{Rejestr ryzyk} --- arkusz Google Sheets w folderze \texttt{/Dokumenty} na Google Drive; podstawowe narzędzie operacyjne.
+		\item \textbf{Rejestr ryzyk --- arkusz Google Sheets} w folderze \texttt{/Dokumenty} na dysku zespołu; operacyjne narzędzie aktualizacji. Wersjonowany mirror w formacie \LaTeX{} (zob.\ \cref{sec:mirror}) służy jako artefakt do oddania.
 		\item \textbf{Discord, kanał \texttt{\#ryzyka}} --- zgłaszanie ryzyk ad hoc oraz dyskusja nad reakcjami.
 		\item \textbf{System śledzenia zadań w repozytorium kodu (z etykietą \texttt{risk})} --- techniczne ryzyka związane z konkretnym kodem lub komponentem; powiązane z odpowiednią pozycją w rejestrze.
 	\end{itemize}
@@ -288,20 +286,32 @@
 		\item \textbf{Audyt kierownika projektu} --- raz na miesiąc kierownik projektu przegląda rejestr pod kątem pozycji nieaktualizowanych dłużej niż 30 dni i konsultuje je z właścicielami.
 	\end{itemize}
 	
-	\subsection{Struktura wpisu w rejestrze ryzyk}
-	Każda pozycja w rejestrze ryzyk zawiera następujące pola:
-	\begin{itemize}[noitemsep]
+	\subsection{Struktura wpisu w rejestrze ryzyk}\label{sec:struktura-wpisu}
+	Każda pozycja w rejestrze ryzyk zawiera następujące pola (kolumny 3--9 odpowiadają wymaganiom prowadzącego dotyczącym minimalnej zawartości rejestru):
+	\begin{enumerate}[noitemsep]
 		\item identyfikator (R-XX);
-		\item data zgłoszenia, autor zgłoszenia;
 		\item typ (zagrożenie / szansa);
-		\item opis zdarzenia, przyczyna, skutek;
-		\item prawdopodobieństwo, wpływ, ekspozycja;
-		\item kategoria reakcji i konkretne działanie zaradcze;
-		\item właściciel ryzyka; termin wdrożenia działania;
+		\item opis zdarzenia (zdarzenie, przyczyna, skutek --- w jednej komórce);
+		\item właściciel ryzyka;
+		\item data zgłoszenia ryzyka;
+		\item prawdopodobieństwo wystąpienia (P, skala 1--5);
+		\item potencjalny wpływ na projekt (W, skala 1--5);
+		\item ocena ryzyka (ekspozycja $E = P \cdot W$, z klasyfikacją kolorystyczną);
+		\item proponowana reakcja (kategoria zgodnie z \cref{tab:reakcje});
+		\item akcje minimalizujące zagrożenie / zwiększające szansę (konkretne działania);
+		\item termin wdrożenia akcji;
 		\item status (\textit{open / mitigated / materialised / closed});
-		\item ryzyko rezydualne po wdrożeniu reakcji;
-		\item historia zmian (data, zmiana, autor).
+		\item ryzyko rezydualne po wdrożeniu reakcji (P/W/E).
+	\end{enumerate}
+	Historia zmian każdej pozycji prowadzona jest w arkuszu Google Sheets (osobna karta) i nie jest powielana w wersjonowanym mirrorze \LaTeX{}.
+	
+	\subsection{Mirror w \LaTeX{} a operacyjny arkusz Google Sheets}\label{sec:mirror}
+	Rejestr ryzyk występuje w dwóch synchronizowanych formach:
+	\begin{itemize}[noitemsep]
+		\item \textbf{Operacyjny arkusz Google Sheets} (\textit{źródło zmian}) --- folder \texttt{/Dokumenty} na dysku zespołu. Tu członkowie zespołu rejestrują nowe ryzyka, aktualizują oceny i statusy, prowadzą historię zmian. Aktualizacja w trybie ciągłym, zgodnie z procedurami opisanymi w \cref{sec:identyfikacja}.
+		\item \textbf{Wersjonowany dokument \LaTeX{}} (\textit{stan do oddania}) --- odzwierciedla stan arkusza w wybranym momencie. Odświeżany przed każdym przeglądem końca sprintu, przy eskalacji do KS oraz przed każdym oddaniem dokumentacji prowadzącemu.
 	\end{itemize}
+	Za synchronizację (odświeżenie wersji \LaTeX{} na podstawie arkusza) odpowiada kierownik projektu. Każda wersja dokumentu \LaTeX{} ma w stopce tytułowej datę odzwierciedlanego stanu.
 	
 	% ════════════════════════════════════════════════════════════════
 	\section{Komunikacja zarządzania ryzykiem}\label{sec:komunikacja}
@@ -347,7 +357,7 @@
 	projektu skutkuje obowiązkiem eskalacji do KS i wymaga jego decyzji o dalszych krokach
 	(dostosowanie zakresu, zmiana planu, akceptacja odstępstwa).
 	
-	\begin{table}[ht!]
+	\begin{table}[h!]
 		\centering
 		\begin{tblr}{
 				colspec = {p{4cm} p{10.5cm}},
@@ -367,8 +377,8 @@
 	
 	\subsection{Tolerancje pojedynczego ryzyka}
 	\begin{itemize}[noitemsep]
-		\item \textbf{Ryzyko niskie} ($1 \le E \le 5$) --- akceptowane bez ograniczeń; monitorowanie cykliczne.
-		\item \textbf{Ryzyko średnie} ($6 \le E \le 12$) --- akceptowane pod warunkiem wdrożenia zaplanowanej reakcji; brak wdrożenia w terminie powoduje eskalację.
+		\item \textbf{Ryzyko niskie} ($1 \le E \le 4$) --- akceptowane bez ograniczeń; monitorowanie cykliczne.
+		\item \textbf{Ryzyko średnie} ($5 \le E \le 12$) --- akceptowane pod warunkiem wdrożenia zaplanowanej reakcji; brak wdrożenia w terminie powoduje eskalację.
 		\item \textbf{Ryzyko wysokie} ($E \ge 15$) --- niemożliwe do zaakceptowania bez decyzji KS; wymaga planu awaryjnego.
 	\end{itemize}
 	
