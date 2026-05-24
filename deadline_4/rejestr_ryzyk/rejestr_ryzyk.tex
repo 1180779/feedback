@@ -1,0 +1,256 @@
+\documentclass[11pt,a4paper]{article}
+
+\newcommand{\docTitle}{Rejestr Ryzyk}
+
+\input{../../preamble}
+\input{../../header}
+
+% Dodatkowe pakiety/ustawienia specyficzne dla rejestru
+\usepackage{makecell}
+
+% Kolorowanie komórek P/W/E – używamy \SetCell{bg=...} bezpośrednio
+% (skróty \newcommand nie działają z tabularray, bo \SetCell musi być
+% pierwszym tokenem komórki przed ekspansją makra)
+
+\begin{document}
+	
+	% ── STRONA TYTUŁOWA ──────────────────────────────────────────────
+	\begin{titlepage}
+		\centering
+		\vspace*{2cm}
+		{\LARGE\bfseries\color{accent} \docTitle}\\[0.5cm]
+		{\large Projekt: \textit{Feedback}}\\[0.3cm]
+		{\normalsize Stan na: \today}\\[2cm]
+		
+		\begin{tabular}{ll}
+			\textbf{Kierownik projektu:}   & Kacper Trzciński \\[0.3em]
+			\textbf{Wersja dokumentu:}     & 1.0 \\[0.3em]
+			\textbf{Źródło operacyjne:}    & Google Sheets (folder \texttt{/Dokumenty}) \\[0.3em]
+		\end{tabular}
+		
+		\vfill
+		{\small Zarządzanie Przedsięwzięciami Informatycznymi\\
+			Wydział Matematyki i Nauk Informacyjnych, Politechnika Warszawska}
+	\end{titlepage}
+	
+	\pagenumbering{roman}
+	
+	% ── NOTA WPROWADZAJĄCA ──────────────────────────────────────────
+	\section*{O dokumencie}
+	\addcontentsline{toc}{section}{O dokumencie}
+	
+	Niniejszy dokument stanowi formalny rejestr ryzyk projektu \textit{Feedback} w stanie
+	na dzień podany na stronie tytułowej. Pełne zasady zarządzania ryzykiem (skale, macierz,
+	tolerancje, procedury) opisuje dokument \textit{Plan Zarządzania Ryzykiem}.
+	
+	Operacyjnym kanałem aktualizacji rejestru jest arkusz Google Sheets w folderze
+	\texttt{/Dokumenty} na dysku zespołu --- to tam członkowie zespołu rejestrują zmiany na
+	bieżąco. Niniejszy dokument \LaTeX{} jest \textbf{wersjonowanym mirrorem} arkusza,
+	odświeżanym przed każdym przeglądem końca sprintu i przy każdej eskalacji do Komitetu
+	Sterującego. Historia zmian poszczególnych pozycji prowadzona jest w arkuszu (osobna
+	karta) i nie jest powielana w niniejszym dokumencie.
+	
+	\subsection*{Legenda skrótów}
+	\begin{itemize}[noitemsep]
+		\item \textbf{Typ}: Z --- zagrożenie, S --- szansa.
+		\item \textbf{P} --- prawdopodobieństwo (1--5).
+		\item \textbf{W} --- wpływ (1--5).
+		\item \textbf{E} --- ekspozycja ($E = P \cdot W$); kolor komórki odpowiada klasie ryzyka (zielony / żółty / czerwony).
+		\item \textbf{Status}: \textit{open} --- aktywne, \textit{mitigated} --- po wdrożeniu reakcji, \textit{materialised} --- zmaterializowane, \textit{closed} --- zamknięte.
+		\item \textbf{Rezydualne} --- ocena P/W/E po wdrożeniu zaplanowanej reakcji; ,,---'' gdy reakcja nie została jeszcze wdrożona lub nie zmieniła oceny.
+	\end{itemize}
+	
+	\subsection*{Podsumowanie}
+	\begin{itemize}[noitemsep]
+		\item Łączna liczba pozycji: 18 (16 zagrożeń, 2 szanse).
+		\item Ryzyka wysokie (czerwone): 2.
+		\item Ryzyka średnie (żółte): 11.
+		\item Ryzyka niskie (zielone): 5.
+	\end{itemize}
+	
+	\clearpage
+	\pagenumbering{arabic}
+	
+	% ── REJESTR RYZYK (LANDSCAPE) ───────────────────────────────────
+	\begin{landscape}
+		\setlength{\tabcolsep}{3pt}
+		
+		\section*{Rejestr ryzyk}
+		\addcontentsline{toc}{section}{Rejestr ryzyk}
+		
+		\begin{longtblr}[
+			caption = {Rejestr ryzyk projektu \textit{Feedback}.},
+			label = {tab:rejestr},
+			]{
+				colspec = {
+					|p{0.7cm}    % ID
+					|p{1.5cm}    % Data
+					|p{0.6cm}    % Typ
+					|p{3.3cm}    % Opis
+					|p{1.8cm}    % Właściciel
+					|c|c|c        % P, W, E
+					|p{2.3cm}    % Reakcja  (pomieści "Wykorzystanie")
+					|p{3.3cm}    % Akcje
+					|p{1.4cm}    % Termin
+					|p{1.85cm}   % Status   (pomieści "materialised")
+					|p{1.3cm}|   % Rezydualne
+				},
+				rowhead = 1,
+				row{1}  = {font=\bfseries\scriptsize, c, m},
+				rows    = {font=\scriptsize, halign=l, valign=t},
+				hlines, vlines,
+			}
+			ID & Data & \makecell{Typ} & Opis (zdarzenie / przyczyna / skutek) & Właściciel & P & W & E & Reakcja & Akcje minimalizujące / zwiększające & Termin & Status & \makecell{Rezy-\\dualne} \\
+			% ────── RYZYKA TECHNICZNE ──────
+			R-01 & 2026-04-15 & Z &
+			Mechanika parowania okazuje się trudna do zbalansowania (sterowanie nieintuicyjne, brak ,,zabawowości''). Przyczyna: złożoność fizyki parowania, niewielkie doświadczenie zespołu w game-feel. Skutek: konieczność przeprojektowania kluczowej mechaniki w późnej fazie projektu. &
+			A. Płocharski &
+			4 & \SetCell{bg=highrisk} 5 & \SetCell{bg=highrisk} 20 &
+			Ograniczanie &
+			Wczesny grywalny prototyp parowania (sprint 2). Cykliczne playtesty wewnętrzne co sprint. Playtest zewnętrzny po prototypie ,,szarej kostki''. Zarezerwowany budżet czasu na iteracje mechaniki w sprintach 3--5. &
+			Sprint 2 & open & 3 / 4 / 12 \\
+			
+			R-02 & 2026-04-15 & Z &
+			Wybrany silnik (np. Godot) okazuje się niewystarczający dla wymagań mechaniki parowania --- problemy z wydajnością fizyki lub brakujące funkcje. Przyczyna: niedostateczna walidacja silnika na etapie wyboru. Skutek: migracja na inny silnik lub gruntowna przebudowa rozwiązań. &
+			F. Shramko &
+			2 & \SetCell{bg=highrisk} 5 & \SetCell{bg=medrisk} 10 &
+			Ograniczanie &
+			Spike techniczny w sprincie 1: implementacja minimalnego prototypu parowania w wybranym silniku przed pełnym commitmentem. Identyfikacja punktów ryzyka technicznego i alternatyw (Unity, custom). &
+			Sprint 1 & open & 1 / 5 / 5 \\
+			
+			R-03 & 2026-04-15 & Z &
+			Niska wydajność (spadki FPS poniżej zakładanego minimum) na docelowym sprzęcie. Przyczyna: złożoność symulacji fizyki parowania, nieoptymalne shadery. Skutek: pogorszenie jakości oddania, możliwa redukcja zakresu wizualnego. &
+			F. Shramko &
+			3 & \SetCell{bg=medrisk} 3 & \SetCell{bg=medrisk} 9 &
+			Ograniczanie &
+			Profilowanie wydajności w każdym sprincie implementacyjnym. Budżet FPS na pojedyncze efekty. Plan B: redukcja gęstości cząstek pary i jakości shaderów do akceptowalnego poziomu (degradacja \textit{Could}). &
+			Sprint 4 & open & --- \\
+			
+			R-04 & 2026-04-15 & Z &
+			Bugi krytyczne wykryte po finalnej kompilacji, niemożliwe do naprawienia przed prezentacją. Przyczyna: brak czasu na pełne testy regresyjne. Skutek: prezentacja gry z widocznymi defektami. &
+			K. Trzciński &
+			3 & \SetCell{bg=medrisk} 4 & \SetCell{bg=medrisk} 12 &
+			Ograniczanie &
+			Code freeze na 2 tygodnie przed prezentacją końcową. Dedykowane sprinty testowe (sprint 7 i 8). Rotacja testerów wewnątrz zespołu. Lista bugów blokujących utrzymywana w systemie zadań z etykietą \texttt{blocker}. &
+			Sprint 7 & open & 2 / 4 / 8 \\
+			
+			R-05 & 2026-04-15 & Z &
+			Utrata danych projektu (kod, assety, dokumentacja). Przyczyna: błąd lokalny, awaria dysku, błąd w obsłudze repozytorium. Skutek: utrata postępu, opóźnienie. &
+			R. Głasek &
+			2 & \SetCell{bg=medrisk} 4 & \SetCell{bg=lowrisk} 8 &
+			Ograniczanie &
+			Kod w repozytorium GitHub (gałąź główna chroniona, wymagane PR). Assety i dokumentacja w Google Drive (wersjonowanie automatyczne). Cotygodniowy lokalny backup wykonywany przez właściciela ryzyka. &
+			Sprint 1 & mitigated & 1 / 3 / 3 \\
+			
+			% ────── RYZYKA ZESPOŁOWE ──────
+			R-06 & 2026-04-15 & Z &
+			Choroba lub niedostępność członka zespołu w krytycznym momencie (egzaminy, praca, sytuacje losowe). Przyczyna: równoległe obciążenie studiami i pracą zawodową. Skutek: opóźnienie zadań, presja na pozostałych. &
+			K. Trzciński &
+			4 & \SetCell{bg=medrisk} 3 & \SetCell{bg=medrisk} 12 &
+			Ograniczanie &
+			Wymóg sparowania (peer review) każdego zadania --- każdy obszar zna co najmniej 2 osoby. Bufor planistyczny: zespół planuje sprint na 80\% pojemności. Wczesne komunikowanie planowanej niedostępności (urlopów, sesji). &
+			Sprint 1 & open & 3 / 3 / 9 \\
+			
+			R-07 & 2026-04-15 & Z &
+			Konflikt w zespole prowadzący do spadku produktywności lub odejścia członka zespołu. Przyczyna: różnice w zaangażowaniu, niejasny podział odpowiedzialności. Skutek: opóźnienia, atmosfera utrudniająca pracę. &
+			K. Trzciński &
+			2 & \SetCell{bg=medrisk} 4 & \SetCell{bg=lowrisk} 8 &
+			Ograniczanie &
+			Retrospektywa po każdym sprincie z przestrzenią na zgłaszanie problemów. Jasna definicja ról i odpowiedzialności w karcie projektu. Otwarty kanał z kierownikiem projektu dla zgłoszeń niepublicznych. &
+			Ciągły & open & --- \\
+			
+			R-08 & 2026-04-15 & Z &
+			Brak kompetencji w obszarze krytycznym (np. shadery, optymalizacja, projektowanie poziomów). Przyczyna: zespół studencki, brak doświadczenia w gamedev. Skutek: niska jakość komponentu lub konieczność rezygnacji. &
+			A. Płocharski &
+			3 & \SetCell{bg=medrisk} 3 & \SetCell{bg=medrisk} 9 &
+			Ograniczanie &
+			Identyfikacja luk kompetencyjnych na początku semestru. Czas na naukę w sprincie 1 i 2. Konsultacje z prowadzącym i społecznością (np. Godot Discord). Plan B: redukcja zakresu obszaru. &
+			Sprint 2 & open & 2 / 3 / 6 \\
+			
+			R-09 & 2026-04-15 & Z &
+			Przeciążenie kierownika projektu (kumulacja zadań koordynacyjnych i implementacyjnych). Przyczyna: brak delegacji, koncentracja odpowiedzialności. Skutek: pogorszenie jakości koordynacji, opóźnienia w dokumentacji. &
+			K. Trzciński &
+			3 & \SetCell{bg=medrisk} 3 & \SetCell{bg=medrisk} 9 &
+			Ograniczanie &
+			Wyznaczony zastępca KP (rotacyjnie). Delegacja prowadzenia stand-upów. Wyraźny budżet czasu KP na koordynację (max 30\% jego czasu w sprincie). &
+			Sprint 2 & open & --- \\
+			
+			% ────── RYZYKA PROCESOWE ──────
+			R-10 & 2026-04-15 & Z &
+			Niedoszacowanie zadań w planowaniu sprintu prowadzące do regularnego niedowożenia. Przyczyna: brak doświadczenia w estymacji, optymistyczne planowanie. Skutek: kumulacja opóźnień, narastający dług. &
+			K. Trzciński &
+			4 & \SetCell{bg=medrisk} 3 & \SetCell{bg=medrisk} 12 &
+			Ograniczanie &
+			Estymacja w story points (porównawcza, nie godzinowa). Po sprincie 2 kalibracja velocity zespołu. Bufor 20\% w planowaniu. Retrospektywa estymacji co sprint. &
+			Sprint 2 & open & 3 / 3 / 9 \\
+			
+			R-11 & 2026-04-15 & Z &
+			Dokumentacja pisana w ostatniej chwili, niespójna ze stanem projektu. Przyczyna: priorytet implementacji, brak nawyku dokumentowania na bieżąco. Skutek: dokumenty oddane w słabej jakości, obniżenie oceny. &
+			A. Bielicki &
+			4 & \SetCell{bg=medrisk} 3 & \SetCell{bg=medrisk} 12 &
+			Ograniczanie &
+			Definicja ukończenia (DoD) zadania obejmuje aktualizację dokumentacji. Sekcja ,,dokumentacja'' w przeglądzie końca sprintu. Wspólny szablon \LaTeX{} (preamble.tex) zmniejszający narzut. &
+			Sprint 1 & open & 3 / 3 / 9 \\
+			
+			R-12 & 2026-04-15 & Z &
+			Niejasne wymagania od prowadzącego, zmieniające się w trakcie projektu. Przyczyna: ewolucja oczekiwań w trakcie semestru, interpretacje. Skutek: przebudowy zakresu, marnowanie pracy. &
+			K. Trzciński &
+			3 & \SetCell{bg=medrisk} 3 & \SetCell{bg=medrisk} 9 &
+			Ograniczanie &
+			Pytania do prowadzącego konsolidowane raz na sprint (jeden kanał, jeden moderator). Decyzje prowadzącego dokumentowane w rejestrze decyzji projektu. Wyjaśnienia w razie wątpliwości na bieżąco. &
+			Ciągły & open & --- \\
+			
+			R-13 & 2026-04-15 & Z &
+			Niezaliczenie etapu projektu (Karta projektu, prezentacja koncepcji, WBS + harmonogram). Przyczyna: niespełnienie wymagań prowadzącego, niska jakość dokumentu. Skutek: utrata punktów, ryzyko niezaliczenia przedmiotu. &
+			K. Trzciński &
+			2 & \SetCell{bg=highrisk} 5 & \SetCell{bg=medrisk} 10 &
+			Ograniczanie &
+			Konsultacja draftu z prowadzącym przed oddaniem (minimum 1 tydzień przed terminem). Wewnętrzne review dokumentu przez 2 członków zespołu spoza autora. Lista checkpointów na podstawie wymagań przedmiotu. &
+			Każdy etap & open & 1 / 5 / 5 \\
+			
+			R-14 & 2026-04-15 & Z &
+			Brak playtesterów zewnętrznych w kluczowych momentach (early prototype, beta). Przyczyna: brak wcześniejszych ustaleń, niska dostępność wolontariuszy. Skutek: brak zewnętrznej walidacji mechaniki, ryzyko rozjazdu z odbiorcą. &
+			T. Herman &
+			3 & \SetCell{bg=medrisk} 3 & \SetCell{bg=medrisk} 9 &
+			Ograniczanie &
+			Zbudowanie listy 8--10 potencjalnych playtesterów (znajomi z roku, niższe roczniki) w sprincie 1. Kalendarz sesji playtestowych z wyprzedzeniem. Plan B: playtest wewnątrzzespołowy z rotacją ról. &
+			Sprint 2 & open & 2 / 3 / 6 \\
+			
+			% ────── RYZYKA ZEWNĘTRZNE ──────
+			R-15 & 2026-04-15 & Z &
+			Awaria sprzętu członka zespołu w późnej fazie projektu (laptop deweloperski). Przyczyna: awaria losowa, brak rezerwy sprzętowej. Skutek: utrata produktywności dotkniętej osoby na czas naprawy. &
+			K. Trzciński &
+			2 & \SetCell{bg=medrisk} 3 & \SetCell{bg=lowrisk} 6 &
+			Akceptacja &
+			Środowisko deweloperskie odtwarzalne z repozytorium (kontener, instrukcja setup). Możliwość pracy na pożyczonym sprzęcie z dostępu MiNI. Backup dzienny do chmury. &
+			Sprint 1 & mitigated & 1 / 3 / 3 \\
+			
+			R-16 & 2026-04-15 & Z &
+			Zmiana prowadzącego przedmiot lub jego oczekiwań w trakcie roku akademickiego. Przyczyna: czynniki zewnętrzne (urlop, choroba, decyzje wydziału). Skutek: konieczność dostosowania zakresu lub formy oddania. &
+			K. Trzciński &
+			1 & \SetCell{bg=medrisk} 3 & \SetCell{bg=lowrisk} 3 &
+			Akceptacja &
+			Dokumentacja prowadzona zgodnie ze standardami metodyk projektowych (PRINCE2-lite), nie tylko pod konkretnego prowadzącego. Wczesne zorientowanie się w polityce wydziału w razie sygnałów. &
+			Ciągły & open & --- \\
+			
+			% ────── SZANSE ──────
+			R-17 & 2026-04-15 & S &
+			Mechanika parowania okazuje się na tyle ciekawa, że przyciąga uwagę szerszej społeczności (np. itch.io, Reddit r/gamedev). Przyczyna: unikalność konceptu, jakość prototypu. Skutek: feedback od zewnętrznych odbiorców, potencjalne dalsze rozwijanie po projekcie. &
+			A. Płocharski &
+			2 & \SetCell{bg=medrisk} 3 & \SetCell{bg=lowrisk} 6 &
+			Wykorzystanie &
+			Wcześniejsze przygotowanie krótkiego devloga / GIF-a z mechaniki. Publikacja po sprincie 4 (po stabilnym prototypie). Monitorowanie reakcji i włączenie cennego feedbacku do iteracji. &
+			Sprint 4 & open & --- \\
+			
+			R-18 & 2026-04-15 & S &
+			Któryś z członków zespołu odkrywa elegancką, niespodziewaną interakcję mechaniki parowania (\textit{emergent gameplay}) podczas implementacji. Przyczyna: właściwości fizycznego systemu, eksperymenty zespołu. Skutek: dodatkowy mechanizm zwiększający głębię rozgrywki bez większych kosztów. &
+			T. Herman &
+			3 & \SetCell{bg=medrisk} 3 & \SetCell{bg=medrisk} 9 &
+			Wykorzystanie &
+			Spotkania ,,zabaw z prototypem'' co 2 sprinty --- cały zespół eksperymentuje z mechaniką bez konkretnego zadania. Rejestrowanie odkryć w kanale Discord \texttt{\#emergent}. Włączanie najciekawszych do projektu poziomów. &
+			Sprint 3 & open & --- \\
+		\end{longtblr}
+		
+	\end{landscape}
+	
+\end{document}
