@@ -89,15 +89,15 @@ class Slide:
             self.line(x+math.cos(t)*r,y+math.sin(t)*r,x+math.cos(t)*(r+15),y+math.sin(t)*(r+15),c,3)
 
 # 1 — A hook, supported by a conceptual action drawing.
-s=Slide('Pitch projektu','',
+s=Slide('Koncepcja gry','',
 '''[0:00–0:30] Feedback opiera się na prostym pomyśle: siła przeciwnika może stać się naszym następnym ruchem. Parowanie pozwala odbijać pociski, pokonywać przeszkody i rozwiązywać zagadki. Przedstawiamy koncepcję gry na podstawie dokumentów projektu.
 Ilustracja jest schematem koncepcyjnym przygotowanym do prezentacji, a nie zrzutem gry. Hasło jest propozycją redakcyjną.
 Źródło: feedback/deadline_3/specyfikacja/specyfikacja.tex, Wprowadzenie i Opis gry.''',
 'Schemat koncepcyjny')
 s.text(72,165,850,150,'FEEDBACK',136,WHITE,True)
 s.rect(76,312,112,7,CYAN)
-s.text(72,355,800,190,'Siła przeciwnika.\nTwój następny ruch.',66,WHITE,True)
-s.text(76,602,665,90,'Parowanie, które pozwala\nprzetrwać, poruszać się i odkrywać drogę.',30,MUTED)
+s.text(72,355,800,190,'Wykorzystaj siłę\nprzeciwnika.',66,WHITE,True)
+s.text(76,602,665,90,'Paruj ataki, pokonuj przeszkody\ni rozwiązuj zagadki.',30,MUTED)
 s.pill(76,739,330,'KONCEPCJA GRY 2D')
 for x in [1000,1120,1240,1360,1480]:s.line(x,250,x,760,GRID,1)
 s.platform(933,701,563)
@@ -111,11 +111,11 @@ s.sparks(1175,560,120)
 s.text(1000,770,470,32,'Ruch zaczyna się od parowania.',23,CYAN,align='r')
 
 # 2 — Three applications of one mechanic.
-s=Slide('01 / Obietnica gry','Każdy atak to okazja.',
+s=Slide('01 / Główna mechanika','Każdy atak to okazja.',
 '''[0:30–1:10] Jedna mechanika ma trzy zastosowania. Możemy oddać przeciwnikowi jego pocisk, przejąć pęd ataku fizycznego i użyć odbitego pocisku do uruchomienia elementu otoczenia. Przeciwnik jest zarówno zagrożeniem, jak i częścią rozwiązania. To opis projektowanej mechaniki, nie deklaracja ukończonej implementacji.
 Źródło: specyfikacja.tex, trzy filary; req.tex, WF-03–WF-05 i WF-13.''',
 'Schematy koncepcyjne')
-cards=[(72,'01','Odbij pocisk','Wykorzystaj atak przeciwnika.',CYAN),(566,'02','Przejmij pęd','Dotrzyj dalej dzięki parowaniu.',VIOLET),(1060,'03','Otwórz drogę','Uruchom element otoczenia.',AMBER)]
+cards=[(72,'01','Odbij pocisk','Skieruj go na przeciwnika.',CYAN),(566,'02','Przejmij pęd','Dotrzyj dalej dzięki parowaniu.',VIOLET),(1060,'03','Otwórz drogę','Uruchom przełącznik.',AMBER)]
 for x,n,title,body,c in cards:
     s.rect(x,257,468,489,PANEL)
     s.text(x+30,280,100,42,n,28,c,True)
@@ -127,13 +127,13 @@ s.switch(1403,391,1.5,True);s.line(1333,430,1200,430,AMBER,6,True);s.circle(1250
 s.text(72,782,1456,38,'Przeciwnik jest częścią zagadki.',30,CYAN,True)
 
 # 3 — A clear three-frame puzzle storyboard.
-s=Slide('02 / Przykład interakcji','Zagrożenie staje się rozwiązaniem.',
-'''[1:10–1:55] Oto schemat jednej interakcji, a nie gotowy projekt poziomu. Po lewej przeciwnik wysyła pocisk w stronę gracza. W środku gracz paruje i odwraca jego kierunek. Po prawej odbity pocisk trafia przełącznik, który otwiera drzwi. Przełącznik reaguje na pocisk po odbiciu. Pozostaje przejść dalej. Ten przykład pokazuje połączenie obserwacji, timingu i zagadki.
+s=Slide('02 / Przykład interakcji','Odbij pocisk. Otwórz przejście.',
+'''[1:10–1:55] Oto schemat jednej interakcji, a nie gotowy projekt poziomu. Po lewej przeciwnik wysyła pocisk w stronę gracza. W środku gracz paruje i odwraca jego kierunek. Po prawej odbity pocisk trafia przełącznik, który otwiera drzwi. Przełącznik reaguje na pocisk po odbiciu. Pozostaje przejść dalej. Ten przykład pokazuje połączenie obserwacji, wyczucia czasu i rozwiązywania zagadek.
 Schemat nie ustala finalnego układu poziomów ani oprawy. Źródło: req.tex, WF-04 i WF-13.''',
-'Storyboard koncepcyjny')
+'Schemat interakcji')
 for idx,x in enumerate([72,566,1060]):
     s.rect(x,264,468,382,PANEL)
-    s.text(x+26,283,415,38,['1  Sprowokuj','2  Sparuj','3  Przejdź'][idx],29,[AMBER,CYAN,VIOLET][idx],True)
+    s.text(x+26,283,415,38,['1  Wyczekaj','2  Sparuj','3  Przejdź'][idx],29,[AMBER,CYAN,VIOLET][idx],True)
     s.platform(x+25,560,418)
     s.enemy(x+42,483,.95)
     s.player(x+314,480,1,idx==1,left=True)
@@ -152,13 +152,13 @@ for idx,x in enumerate([72,566,1060]):
     else:
         s.line(x+354,600,x+424,600,VIOLET,5,True)
     s.text(x+26,679,419,92,[
-        'Obserwujesz atak\ni wybierasz moment.',
-        'Odbijasz pocisk\nw stronę przełącznika.',
-        'Przełącznik otwiera drzwi.\nMożesz ruszyć dalej.'
+        'Obserwuj atak.\nWybierz moment.',
+        'Odbij pocisk\nw stronę przełącznika.',
+        'Przełącznik otwiera drzwi.\nRuszaj dalej.'
     ][idx],29,WHITE)
 
 # 4 — The second major interaction: movement through parry.
-s=Slide('03 / Ruch','Sparuj. Wykorzystaj pęd.',
+s=Slide('03 / Ruch','Przejmij pęd. Dotrzyj dalej.',
 '''[1:55–2:30] Drugie zastosowanie parowania to ruch. Udane sparowanie ataku fizycznego może nadać postaci pęd i pozwolić dotrzeć na wyższą lub dalszą platformę. Gracz musi więc zaplanować nie tylko moment parowania, lecz także to, gdzie chce się znaleźć po nim.
 Strzałki ilustrują ideę transferu pędu; nie przedstawiają pomiaru trajektorii ani ustalonego modelu fizyki. Źródło: req.tex, WF-05; specyfikacja.tex, Manipulacja fizyką i momentum.''',
 'Schemat koncepcyjny')
@@ -172,16 +172,16 @@ pts=[(487,570),(535,504),(590,445),(649,399),(710,370),(772,359),(833,366),(878,
 for i in range(len(pts)-1):s.line(*pts[i],*pts[i+1],VIOLET,5,arrow=i==len(pts)-2,dash=True)
 s.player(925,328,1.2)
 s.sparks(441,601,65)
-s.text(125,711,600,39,'Atak → parowanie → zmiana ruchu',27,CYAN,True)
-s.text(1160,320,370,100,'Twoja obrona\nwyznacza trasę.',41,WHITE,True)
-s.text(1160,490,360,135,'Ten sam przycisk.\nNowe zastosowanie.\nInna droga przez poziom.',29,MUTED)
+s.text(125,711,600,39,'Atak → parowanie → pęd',27,CYAN,True)
+s.text(1160,320,370,100,'Paruj, by dotrzeć\nna platformę.',41,WHITE,True)
+s.text(1160,490,360,135,'Ten sam przycisk.\nNowe zastosowanie.\nKolejna droga do celu.',29,MUTED)
 
 # 5 — Skill progression and fast retries.
-s=Slide('04 / Doświadczenie gracza','Zobacz. Zaplanuj. Wykonaj.',
-'''[2:30–3:05] Chcemy, żeby każdy poziom zaczynał się od zrozumienia sytuacji, a kończył płynnym wykonaniem. Pomyłka prowadzi do szybkiej kolejnej próby. Postęp wynika z poznania zasad, rozpoznawania ataków i doskonalenia własnego timingu. Nie pokazujemy tu obiecanego czasu przejścia ani wyników playtestów.
+s=Slide('04 / Doświadczenie gracza','Obserwuj. Zaplanuj. Działaj.',
+'''[2:30–3:05] Chcemy, żeby każdy poziom zaczynał się od zrozumienia sytuacji, a kończył płynnym wykonaniem. Pomyłka prowadzi do szybkiej kolejnej próby. Postęp wynika z poznania zasad, rozpoznawania ataków i coraz lepszego wyczucia momentu parowania. Nie pokazujemy tu obiecanego czasu przejścia ani wyników testów z graczami.
 Źródło: specyfikacja.tex, Gameplay loop i Progression loop; req.tex, WF-11.''',
 'Schemat pętli rozgrywki')
-for x,n,title,body,c in [(72,'1','Obserwacja','Rozpoznajesz atak\ni układ przeszkód.',AMBER),(566,'2','Plan','Wybierasz moment\ni sposób użycia parry.',VIOLET),(1060,'3','Wykonanie','Łączysz refleks\nz rozwiązaniem zagadki.',CYAN)]:
+for x,n,title,body,c in [(72,'1','Obserwacja','Rozpoznaj atak.\nSprawdź układ przeszkód.',AMBER),(566,'2','Plan','Zaplanuj, kiedy\ni jak sparować atak.',VIOLET),(1060,'3','Wykonanie','Sparuj atak.\nRozwiąż zagadkę.',CYAN)]:
     s.circle(x+126,272,180,None,c,3)
     s.text(x+126,307,180,110,n,86,c,True,align='ctr')
     s.text(x,496,468,60,title,44,WHITE,True,align='ctr')
@@ -190,10 +190,10 @@ s.line(409,364,532,364,MUTED,4,True)
 s.line(903,364,1026,364,MUTED,4,True)
 s.line(1276,710,1276,755,CYAN,3)
 s.line(1276,755,287,755,CYAN,3,True)
-s.text(511,716,640,37,'Pomyłka → szybka kolejna próba',28,CYAN,True,align='ctr')
+s.text(511,716,640,37,'Pomyłka → szybki powrót do gry',28,CYAN,True,align='ctr')
 
 # 6 — Audience, based on stated design intent rather than invented market data.
-s=Slide('05 / Dla kogo','Refleks spotyka łamigłówkę.',
+s=Slide('05 / Dla kogo','Dla miłośników zręczności i zagadek.',
 '''[3:05–3:40] Projekt kierujemy do osób, które lubią wyzwania zręcznościowe i jednocześnie szukają logicznej satysfakcji ze zrozumienia poziomu. Punkt wspólny to frajda z opanowania jednej mechaniki i odkrywania jej kolejnych zastosowań. To grupa docelowa opisana w materiałach, a nie wynik przeprowadzonych badań rynku.
 Źródło: specyfikacja.tex, Użytkownicy; deadline_1/value proposition canvas.pdf.''',
 'Grupa docelowa z dokumentacji')
@@ -203,33 +203,33 @@ s.text(213,441,300,66,'REFLEKS',49,VIOLET,True,align='ctr')
 s.text(573,441,300,66,'ZAGADKI',49,CYAN,True,align='ctr')
 s.circle(515,446,54,WHITE)
 s.text(160,738,760,44,'Satysfakcja z opanowania mechaniki',28,WHITE,True,align='ctr')
-for y,n,t,c in [(299,'01','Wyczucie właściwego momentu',VIOLET),(447,'02','Odkrywanie zależności',CYAN),(595,'03','Coraz płynniejsze przejścia',AMBER)]:
+for y,n,t,c in [(299,'01','Wyczucie właściwego momentu',VIOLET),(447,'02','Odkrywanie zależności',CYAN),(595,'03','Płynne pokonywanie poziomów',AMBER)]:
     s.text(1042,y,86,37,n,24,c,True)
     s.rect(1042,y+52,42,4,c)
     s.text(1114,y-2,389,105,t,35,WHITE,True)
 
 # 7 — Actual user-supplied visual evidence.
-s=Slide('06 / Pierwszy kierunek wizualny','',
-'''[3:40–4:10] To jest istniejący mockup menu oraz oryginalna postać z dostarczonego pliku Figma Make. Po prawej widzimy neutralną pozę oraz klatkę animacji parowania mieczem. To statyczne kadry odzyskanych komponentów SVG, nie przerysowane postacie. Traktujemy go jako kierunek do dalszej rozmowy, nie jako zatwierdzoną oprawę całej gry. Etykieta wersji w obrazie należy do makiety i nie oznacza wydanej wersji gry.
+s=Slide('06 / Koncepcja graficzna','',
+'''[3:40–4:10] To jest wstępna makieta menu oraz oryginalna postać z dostarczonego pliku Figma Make. Po prawej widzimy neutralną pozę oraz klatkę animacji parowania mieczem. To statyczne kadry odzyskanych komponentów SVG, nie przerysowane postacie. Traktujemy te materiały jako punkt wyjścia do dalszej rozmowy, nie jako zatwierdzoną oprawę całej gry. Etykieta wersji w obrazie należy do makiety i nie oznacza wydanej wersji gry.
 Źródło grafiki: Feedback mockup.make, images/00131dcf29b7204da054f6a204fc6d419a773f8a. Oryginalny obraz menu, bez zmiany treści, zachowane proporcje. Postać: CharacterShowcase.tsx, neutralna poza i pierwszy utrzymany klucz parry. Źródła SVG zapisano w assets/figma-characters/.''',
-'Oryginalny mockup • Figma Make')
-s.title='Pierwszy obraz świata Feedback.'
+'Makieta • Figma Make')
+s.title='Tak może wyglądać Feedback.'
 s.rect(72,111,793,670,PANEL,GRID,1)
 s.photo(82,121,773,652.21875,'figma-menu.png')
-s.pill(931,146,306,'ISTNIEJĄCY MOCKUP',CYAN)
-s.text(930,235,595,155,'Pierwszy obraz\nświata Feedback.',59,WHITE,True)
+s.pill(931,146,306,'WSTĘPNA MAKIETA',CYAN)
+s.text(930,235,595,155,'Tak może wyglądać\nFeedback.',59,WHITE,True)
 s.photo(929,439,225,200,'figma-characters/player-idle.png')
 s.photo(1229,439,225,200,'figma-characters/player-parry.png')
 s.text(929,659,225,40,'Spoczynek',25,MUTED,align='ctr')
 s.text(1229,659,225,40,'Parowanie',25,MUTED,align='ctr')
-s.text(933,731,580,57,'Postać i menu z istniejącej makiety',22,CYAN)
+s.text(933,731,580,57,'Menu i postać z makiety gry',22,CYAN)
 
 # 8 — Explicitly planned scope; no invented progress numbers or dates.
 s=Slide('07 / Planowany prototyp','Jedna mechanika. Różne wyzwania.',
 '''[4:10–4:45] Zapisany w specyfikacji zakres prototypu obejmuje co najmniej trzy poziomy, dwa typy przeciwników oraz trzy podstawowe akcje: ruch, skok i parowanie. To zakres planowany. Nie przedstawiamy tych liczb jako stanu ukończenia. Celem jest sprawdzenie, czy różne zastosowania parowania tworzą przyjemną grę.
 Źródło: specyfikacja.tex, Cel projektu; req.tex, WF-01–WF-03, WF-07–WF-08 i WF-12. Aktualność zakresu pozostaje do potwierdzenia przez zespół, zgodnie z kwestionariuszem.''',
-'Zakres zapisany w specyfikacji • plan')
-for x,number,label,detail,c in [(72,'3','poziomy','Zagadki o rosnącej złożoności',CYAN),(566,'2','typy przeciwników','Atak dystansowy i fizyczny',AMBER),(1060,'3','podstawowe akcje','Ruch · skok · parowanie',VIOLET)]:
+'Planowany zakres prototypu')
+for x,number,label,detail,c in [(72,'3','poziomy','Zagadki o rosnącej złożoności',CYAN),(566,'2','typy przeciwników','Ataki na dystans i w zwarciu',AMBER),(1060,'3','podstawowe akcje','Ruch · skok · parowanie',VIOLET)]:
     s.rect(x,263,468,441,PANEL)
     s.text(x+29,282,400,211,number,178,c,True)
     s.text(x+30,515,408,68,label,40,WHITE,True)
@@ -243,7 +243,7 @@ Zespół według dokumentów: Aleksander Bielicki, Radosław Głasek, Jakub Pąc
 Źródło koncepcji: specyfikacja.tex i req.tex. Brak deklaracji daty premiery, ceny, stanu ukończenia lub wyników testów.''',
 'Schemat koncepcyjny')
 s.text(72,162,1190,215,'Jak wykorzystasz\nnastępny atak?',89,WHITE,True)
-s.text(78,450,780,53,'Pytania i uwagi do koncepcji',32,MUTED)
+s.text(78,450,780,53,'Porozmawiajmy o grze',32,MUTED)
 s.text(78,724,580,57,'FEEDBACK',53,CYAN,True)
 s.platform(932,741,563)
 s.enemy(1382,618,1.8)

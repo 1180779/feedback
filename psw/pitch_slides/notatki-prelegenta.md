@@ -21,15 +21,15 @@ Grafika postaci/przeciwnika pochodzi z dostarczonego Figma Make (CharacterShowca
 
 
 
-## 3. Zagrożenie staje się rozwiązaniem.
+## 3. Odbij pocisk. Otwórz przejście.
 
-[1:10–1:55] Oto schemat jednej interakcji, a nie gotowy projekt poziomu. Po lewej przeciwnik wysyła pocisk w stronę gracza. W środku gracz paruje i odwraca jego kierunek. Po prawej odbity pocisk trafia przełącznik, który otwiera drzwi. Przełącznik reaguje na pocisk po odbiciu. Pozostaje przejść dalej. Ten przykład pokazuje połączenie obserwacji, timingu i zagadki.
+[1:10–1:55] Oto schemat jednej interakcji, a nie gotowy projekt poziomu. Po lewej przeciwnik wysyła pocisk w stronę gracza. W środku gracz paruje i odwraca jego kierunek. Po prawej odbity pocisk trafia przełącznik, który otwiera drzwi. Przełącznik reaguje na pocisk po odbiciu. Pozostaje przejść dalej. Ten przykład pokazuje połączenie obserwacji, wyczucia czasu i rozwiązywania zagadek.
 Schemat nie ustala finalnego układu poziomów ani oprawy. Źródło: req.tex, WF-04 i WF-13.
 Grafika postaci/przeciwnika pochodzi z dostarczonego Figma Make (CharacterShowcase.tsx / PixelEnemy.tsx). Statyczne klatki SVG; schematy interakcji są opracowaniem do prezentacji. Jednego wzoru przeciwnika użyto ilustracyjnie, bez ustalania wyglądu poszczególnych typów.
 
 
 
-## 4. Sparuj. Wykorzystaj pęd.
+## 4. Przejmij pęd. Dotrzyj dalej.
 
 [1:55–2:30] Drugie zastosowanie parowania to ruch. Udane sparowanie ataku fizycznego może nadać postaci pęd i pozwolić dotrzeć na wyższą lub dalszą platformę. Gracz musi więc zaplanować nie tylko moment parowania, lecz także to, gdzie chce się znaleźć po nim.
 Strzałki ilustrują ideę transferu pędu; nie przedstawiają pomiaru trajektorii ani ustalonego modelu fizyki. Źródło: req.tex, WF-05; specyfikacja.tex, Manipulacja fizyką i momentum.
@@ -37,23 +37,23 @@ Grafika postaci/przeciwnika pochodzi z dostarczonego Figma Make (CharacterShowca
 
 
 
-## 5. Zobacz. Zaplanuj. Wykonaj.
+## 5. Obserwuj. Zaplanuj. Działaj.
 
-[2:30–3:05] Chcemy, żeby każdy poziom zaczynał się od zrozumienia sytuacji, a kończył płynnym wykonaniem. Pomyłka prowadzi do szybkiej kolejnej próby. Postęp wynika z poznania zasad, rozpoznawania ataków i doskonalenia własnego timingu. Nie pokazujemy tu obiecanego czasu przejścia ani wyników playtestów.
+[2:30–3:05] Chcemy, żeby każdy poziom zaczynał się od zrozumienia sytuacji, a kończył płynnym wykonaniem. Pomyłka prowadzi do szybkiej kolejnej próby. Postęp wynika z poznania zasad, rozpoznawania ataków i coraz lepszego wyczucia momentu parowania. Nie pokazujemy tu obiecanego czasu przejścia ani wyników testów z graczami.
 Źródło: specyfikacja.tex, Gameplay loop i Progression loop; req.tex, WF-11.
 
 
 
-## 6. Refleks spotyka łamigłówkę.
+## 6. Dla miłośników zręczności i zagadek.
 
 [3:05–3:40] Projekt kierujemy do osób, które lubią wyzwania zręcznościowe i jednocześnie szukają logicznej satysfakcji ze zrozumienia poziomu. Punkt wspólny to frajda z opanowania jednej mechaniki i odkrywania jej kolejnych zastosowań. To grupa docelowa opisana w materiałach, a nie wynik przeprowadzonych badań rynku.
 Źródło: specyfikacja.tex, Użytkownicy; deadline_1/value proposition canvas.pdf.
 
 
 
-## 7. Pierwszy obraz świata Feedback.
+## 7. Tak może wyglądać Feedback.
 
-[3:40–4:10] To jest istniejący mockup menu oraz oryginalna postać z dostarczonego pliku Figma Make. Po prawej widzimy neutralną pozę oraz klatkę animacji parowania mieczem. To statyczne kadry odzyskanych komponentów SVG, nie przerysowane postacie. Traktujemy go jako kierunek do dalszej rozmowy, nie jako zatwierdzoną oprawę całej gry. Etykieta wersji w obrazie należy do makiety i nie oznacza wydanej wersji gry.
+[3:40–4:10] To jest wstępna makieta menu oraz oryginalna postać z dostarczonego pliku Figma Make. Po prawej widzimy neutralną pozę oraz klatkę animacji parowania mieczem. To statyczne kadry odzyskanych komponentów SVG, nie przerysowane postacie. Traktujemy te materiały jako punkt wyjścia do dalszej rozmowy, nie jako zatwierdzoną oprawę całej gry. Etykieta wersji w obrazie należy do makiety i nie oznacza wydanej wersji gry.
 Źródło grafiki: Feedback mockup.make, images/00131dcf29b7204da054f6a204fc6d419a773f8a. Oryginalny obraz menu, bez zmiany treści, zachowane proporcje. Postać: CharacterShowcase.tsx, neutralna poza i pierwszy utrzymany klucz parry. Źródła SVG zapisano w assets/figma-characters/.
 Grafika postaci/przeciwnika pochodzi z dostarczonego Figma Make (CharacterShowcase.tsx / PixelEnemy.tsx). Statyczne klatki SVG; schematy interakcji są opracowaniem do prezentacji. Jednego wzoru przeciwnika użyto ilustracyjnie, bez ustalania wyglądu poszczególnych typów.
 
