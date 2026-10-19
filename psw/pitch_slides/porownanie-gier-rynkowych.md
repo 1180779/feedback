@@ -1,0 +1,33 @@
+# Punkty odniesienia: gry podobne do Feedbacku i ich silniki
+
+**Stan źródeł: 19 października 2026.** To porównanie pomaga sprawdzić, czy rozważane silniki nadają się do konkretnych mechanik. Nie mierzy jakości silnika ani nie przesądza o wyborze. Popularna gra potwierdza, że zespół dowiózł swój projekt w danej technologii; nie dowodzi, że ta technologia będzie najlepsza dla innego zespołu.
+
+## Najbliższe przykłady
+
+| Gra | Co łączy ją z Feedbackiem | Silnik | Co można z niej wywnioskować |
+|---|---|---|---|
+| [Nine Sols](https://store.steampowered.com/app/1809540/Nine_Sols/) | Ręcznie rysowana platformówka 2D; walka oparta na odbijaniu ataków. Najbliższy przykład dla wyczucia czasu i parowania. | **Unity**. Unity wymienia grę w oficjalnym przeglądzie tytułów wydanych w 2024 r. | Unity obsłużyło rozbudowaną, dopracowaną grę 2D, w której parowanie jest centralną częścią walki. Zakres *Nine Sols* jest dużo większy od planowanego prototypu Feedbacku, więc nie należy porównywać zespołów ani czasu produkcji wprost. [Unity: gry z 2024](https://unity.com/blog/games-made-with-unity-2024-releases) |
+| [Katana ZERO](https://store.steampowered.com/app/460950/Katana_ZERO/) | Platformówka akcji 2D; odbijanie pocisków, uniki, pułapki i precyzyjnie projektowane krótkie sekwencje. Bliskie tempo i pomysł „użyj ataku przeciwnika”. | **GameMaker**. Oficjalna prezentacja GameMaker wymienia grę; strona Steam opisuje odbijanie pocisków i ręcznie projektowane poziomy. | Nie trzeba wybierać dużego, wielozadaniowego silnika, by stworzyć szybkie 2D starcia i poziomy oparte na sekwencjach. GameMaker nie jest jednym z obecnych czterech kandydatów, ale jest wartościowym punktem odniesienia dla Unity/Godot/Bevy. [GameMaker Showcase](https://gamemaker.io/en/showcase/katana-zero) |
+| [Blasphemous 2](https://store.steampowered.com/app/2114740/Blasphemous_2/) | Platformówka 2D z walką, unikami i parowaniem; większa gra z wieloma poziomami, przeciwnikami i zasobami. | **Unity**. Tytuł pojawia się w oficjalnym przeglądzie gier Unity z 2023 r. | To kolejny przykład, że Unity działa w rozbudowanej produkcji 2D. Pokazuje skalę możliwego workflow, ale nie jest próbą porównawczą silników. [Unity: gry z 2023](https://unity.com/blog/games/made-with-unity-2023-review) |
+| [Cedric’s Quest — The Waning Ward](https://store.steampowered.com/app/4569680/) | Niezależne RPG akcji z unikami, blokiem i parowaniem; nie jest platformówką 2D. | **Rust + Bevy** — karta Steam podaje to wprost. Tytuł jest zapowiedziany, jeszcze bez recenzji. | Pokazuje, że Bevy może być podstawą pełnej gry z walką i parowaniem. Nie potwierdza jeszcze wydanej gry ani podobnego do Feedbacku workflow poziomów. To przykład technologiczny, nie dowód rynkowego sukcesu. |
+| [Weather Dragger](https://store.steampowered.com/app/4254840/Weather_Dragger/) | Gra logiczno-symulacyjna z trzema ręcznie zaprojektowanymi poziomami; nie ma walki ani platformowego parowania. | **Bevy** — autor potwierdza użycie silnika w [opisie projektu](https://www.reddit.com/r/bevy/comments/1szdec7/we_released_our_game_made_entirely_in_bevy/). | Przykład małej gry Bevy wydanej na Steamie i użycia własnych narzędzi do edycji danych poziomu. Może pomóc w rozmowie o narzędziach, ale nie dowodzi, że Bevy będzie lepsze dla zręcznościowego sterowania. |
+
+## Widoczność na Steamie
+
+Steam pokazuje wiele recenzji dla *Nine Sols*, *Katana ZERO* i *Blasphemous 2*; to użyteczne potwierdzenie, że są rozpoznawalnymi produktami wśród graczy. Liczba recenzji zmienia się i zależy od języka oraz sposobu wyświetlenia strony, dlatego nie traktujemy jej jako liczby sprzedanych kopii ani przewidywania popytu na Feedback. W chwili sprawdzenia Steam wyświetlał m.in. ponad 20 tys. anglojęzycznych recenzji *Nine Sols*, ponad 22 tys. *Katana ZERO* i ponad 6 tys. *Blasphemous 2*. [Steam: Nine Sols](https://store.steampowered.com/app/1809540/Nine_Sols/), [Steam: Katana ZERO](https://store.steampowered.com/app/460950/Katana_ZERO/), [Steam: Blasphemous 2](https://store.steampowered.com/app/2114740/Blasphemous_2/).
+
+Sukces komercyjny tych tytułów nie pozwala wywnioskować, że ich silnik go spowodował. Wpływa na niego także projekt gry, oprawa, doświadczenie studia, czas produkcji, marketing, wydawca i wiele innych czynników. Porównanie dotyczy dopasowania funkcji i istniejących precedensów, nie rankingu silników.
+
+## Co to mówi o czterech kandydatach
+
+- **Unity:** najsilniejszy precedens wśród znalezionych, bliskich gier. *Nine Sols* łączy 2D i parowanie, a *Blasphemous 2* pokazuje workflow większej platformówki 2D. To wspiera rozważanie Unity, zwłaszcza przy znajomości C#, ale nie przesądza o koszcie nauki edytora.
+- **Bevy:** ma przykłady gier wydanych na Steamie i projekty pokazujące parowanie oraz walkę, ale w zebranym zestawie brak równie bliskiego, wydanego odpowiednika platformówki 2D z parowaniem i zagadkami. Ważny atut zespołu to wcześniejsze doświadczenie Bevy; ryzyko narzędzi poziomów trzeba sprawdzić próbą.
+- **Unreal:** nie pojawia się w najbliższych przykładach, które udało się potwierdzić. To słaby precedens dla tego wąskiego gatunku, a nie dowód, że Unreal się nie nadaje. Doświadczenie zespołu może mieć większą wartość niż popularność technologii w innych gatunkach.
+- **Godot:** również nie znalazł się w tej niewielkiej próbce bliskich gier. Próbka nie jest przeglądem wszystkich gier na Steamie i brak tytułu nie świadczy o ograniczeniach silnika.
+- **GameMaker:** nie jest obecnie na krótkiej liście, ale *Katana ZERO* to mocny punkt odniesienia dla zwartej gry akcji 2D z odbijaniem pocisków i projektowanymi sekwencjami. Warto sprawdzić, które cechy takiego workflow oferują pozostali kandydaci.
+
+## Wniosek do rozmowy zespołu
+
+Rynek pokazuje, że gry z zacięciem 2D i mechaniką parowania można zrealizować w Unity oraz wyspecjalizowanym silniku 2D, takim jak GameMaker. Przykłady Bevy wskazują, że można w nim wydać grę i zbudować systemy walki, ale nie znaleźliśmy równie bliskiego odpowiednika Feedbacku. Dla tego zespołu najbardziej rzeczowe porównanie to **Unity kontra Bevy**: znany język i mocne precedensy Unity zestawić z Rustem oraz już zdobytym doświadczeniem zespołu w Bevy. Unreal pozostaje uzasadnionym kandydatem, jeśli konkretne doświadczenie członków istotnie skróci pracę.
+
+To wniosek o tym, co sprawdzić najpierw, nie wybór silnika. Próbny pionowy wycinek powinien obejmować ruch, odbicie pocisku, impuls po ataku, przełącznik i reset poziomu. W Bevy trzeba dodatkowo sprawdzić zapis oraz edycję poziomu; w Unity — czy zespół szybko opanuje sceny, komponenty i pracę na wspólnych zasobach. Autor poziomu i druga osoba powinni wykonać zmianę w edytorze i przygotować build.

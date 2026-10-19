@@ -126,6 +126,8 @@ Dla każdego silnika wpiszcie **największy atut dla naszego zespołu**, **najwi
 
 ## Karty silników — korzyści i koszty do skonfrontowania z odpowiedziami
 
+Przed porównaniem silników można przejrzeć [rynkowe przykłady gier z parowaniem i odbijaniem pocisków](porownanie-gier-rynkowych.md). Są to precedensy produkcyjne, nie wyniki benchmarków silników; podobieństwo gry i liczba recenzji nie zastępują sprawdzenia workflow zespołu.
+
 ### Unity — C# i zintegrowany workflow
 
 **Możliwe korzyści:** wykorzystanie znanego C#; narzędzia do sprite'ów, tilemap, fizyki 2D i animacji; wizualna praca nad poziomami oraz UI. Zmniejsza potrzebę dobierania podstawowych narzędzi z różnych projektów. [U1]

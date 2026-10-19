@@ -31,6 +31,8 @@ Kolejność nie jest rankingiem. Koszty organizacyjne to kwestie do sprawdzenia 
 
 Źródła: [Unity 2D](https://docs.unity3d.com/Manual/Unity2D.html), [Bevy Introduction](https://bevy.org/learn/quick-start/introduction/), [stan rozwoju Bevy](https://bevy.org/news/bevys-sixth-birthday/), [Paper 2D](https://dev.epicgames.com/documentation/unreal-engine/paper-2d-in-unreal-engine?application_version=5.2), [Godot CharacterBody2D](https://docs.godotengine.org/en/stable/classes/class_characterbody2d.html), [TileMapLayer](https://docs.godotengine.org/en/stable/classes/class_tilemaplayer.html).
 
+Porównanie konkretnych gier 2D z parowaniem, odbijaniem pocisków i zagadkami oraz ich silników opisuje osobny [przegląd gier rynkowych](porownanie-gier-rynkowych.md). Najbliższe potwierdzone przykłady wskazują Unity (*Nine Sols*, *Blasphemous 2*) i GameMaker (*Katana ZERO*); przykłady Bevy są mniej zbliżone do gatunku, ale potwierdzają wydawanie gier z walką i poziomami na Steamie. Wniosek zawęża sensowną próbę do Unity i Bevy, nie wybiera silnika.
+
 **Unreal i 2D:** tak, jest to obsługiwany scenariusz. Trzeba ocenić, czy doświadczenie zespołu i potrzebne narzędzia równoważą koszty konkretnego workflow. Sam wymiar gry nie wyklucza silnika.
 
 **Bevy i doświadczenie sprzed roku:** to wartościowy punkt startowy. Nie zakładamy konieczności migracji. Najpierw ustalamy wersję, potrzebne funkcje, kompatybilny zestaw dodatków oraz możliwość wykorzystania istniejącej wiedzy. Oficjalny edytor jest rozwijany; alternatywą do tworzenia poziomów może być np. LDtk z importerem. [Bevy Setup](https://bevy.org/learn/quick-start/getting-started/setup/), [bevy_ecs_ldtk](https://github.com/Trouv/bevy_ecs_ldtk).
