@@ -1,0 +1,383 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{fontspec}
+\setmainfont{Lato}
+\usepackage[margin=18mm,headheight=15pt]{geometry}
+\usepackage{xcolor,hyperref,longtable,array,booktabs,fancyhdr,enumitem,titlesec}
+\definecolor{accent}{HTML}{176E72}
+\definecolor{ink}{HTML}{202D3A}
+\hypersetup{colorlinks=true,urlcolor=accent,linkcolor=accent,pdftitle={Feedback — kwestionariusz wyboru silnika}}
+\color{ink}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\emergencystretch}{3em}
+\renewcommand{\arraystretch}{1.3}
+\setlist[itemize]{leftmargin=*,nosep}
+\titleformat{\section}{\Large\bfseries\color{accent}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries}{}{0pt}{}
+\pagestyle{fancy}\fancyhf{}
+\lhead{\small FEEDBACK / WYBÓR TECHNOLOGII}
+\rhead{\small DECYZJA OTWARTA}
+\cfoot{\small\thepage}
+\begin{document}
+
+{\Huge\bfseries Feedback — kwestionariusz wyboru silnika\par}\vspace{3mm}
+
+
+\textbf{Status: silnik nie został wybrany.} Materiał do dyskusji zespołu, 19.10.2026. Porównujemy Unity, Bevy, Unreal Engine i Godot bez ustalonego zwycięzcy. Kolejność nie oznacza rankingu.
+
+
+
+\section*{Co wiemy, a co trzeba potwierdzić}
+
+
+\textbf{Potwierdzone przez zespół:} dobra znajomość C\# i Rust; część osób pracowała w Unreal Engine; część tworzyła proste gry w Bevy na innym przedmiocie około rok temu. Dostępny jest eksport mockupu Figma Make.
+
+
+
+\textbf{Zapisane w dokumentacji, do potwierdzenia aktualności:} platformówka 2D z parowaniem, transferem pędu i zagadkami; 3 poziomy i 2 typy przeciwników; Windows 10/11; 60 FPS na grafice zintegrowanej; restart do 1 s; budżet pieniężny 0 zł; deterministyczne odtwarzanie wejść. Starsze materiały używają też etykiety roguelike. Nie zakładamy, że wszystkie te zapisy nadal obowiązują.
+
+
+
+\textbf{Nieustalone:} liczba osób samodzielnych w każdym silniku, zakres ich doświadczenia, docelowa oprawa, sposób edycji poziomów, aktualny budżet czasu i wymagania prowadzącego na jutro.
+
+
+
+\section*{Jak wypełnić}
+
+
+Propozycja organizacyjna: każdy najpierw uzupełnia tabelę doświadczenia; potem zespół wspólnie odpowiada na pytania. Można wpisać „nie wiemy”. Nie przyznajemy punktów za samą popularność silnika ani znajomość jego języka. Oddzielamy preferencję od doświadczenia i wyników próby.
+
+
+
+\subsection*{1. Kto potrafi co zrobić?}
+
+
+Skala: \textbf{0} — bez doświadczenia; \textbf{1} — ćwiczenia/tutorial; \textbf{2} — samodzielna mała gra; \textbf{3} — projekt z buildem dla innych i rozwiązywaniem problemów. To skala doświadczenia, nie ranking silników. Opis projektu jest ważniejszy od liczby.
+
+
+
+{\scriptsize\setlength{\tabcolsep}{2mm}\begin{longtable}{>{\raggedright\arraybackslash}p{11.36mm}>{\raggedright\arraybackslash}p{7.81mm}>{\raggedright\arraybackslash}p{7.81mm}>{\raggedright\arraybackslash}p{17.04mm}>{\raggedright\arraybackslash}p{26.98mm}>{\raggedright\arraybackslash}p{26.98mm}>{\raggedright\arraybackslash}p{21.30mm}>{\raggedright\arraybackslash}p{22.72mm}}
+\toprule \textbf{Osoba} & \textbf{C\#} & \textbf{Rust} & \textbf{Unity 0–3} & \textbf{Bevy 0–3 + wersja} & \textbf{Unreal 0–3 + BP/C++} & \textbf{Godot 0–3 + język} & \textbf{Co dowieziono / link} \\ \midrule\endhead
+… & … & … & … & … & … & … & … \\ \addlinespace[2pt]
+… & … & … & … & … & … & … & … \\ \addlinespace[2pt]
+… & … & … & … & … & … & … & … \\ \addlinespace[2pt]
+… & … & … & … & … & … & … & … \\ \addlinespace[2pt]
+… & … & … & … & … & … & … & … \\ \addlinespace[2pt]
+… & … & … & … & … & … & … & … \\ \addlinespace[2pt]
+\bottomrule\end{longtable}}
+
+
+\textbf{Doprecyzowanie doświadczenia Bevy:} czy wcześniejsze gry obejmowały kolizje, UI, animacje, poziomy w plikach i eksport na Windows? Które biblioteki wykorzystano? Czy da się uruchomić stare repozytorium? Nie zakładamy konieczności migracji — dopiero ustalamy, czy użyć starej, przypiętej wersji, czy nowszej.
+
+
+
+\textbf{Doprecyzowanie doświadczenia Unreal:} czy chodzi o Blueprinty, C++, projekt 2D/Paper 2D czy 3D? Czy ktoś przygotował samodzielny build? Doświadczenie w UE jest atutem, ale zakres ma znaczenie.
+
+
+
+Odpowiedzi / osoby mogące pomóc innym: …
+
+
+
+\subsection*{2. Co rzeczywiście ma być grą?}
+
+
+Wybierzcie lub opiszcie: \textbf{platformówka boczna 2D / widok z góry / izometria / 2.5D / jeszcze nieustalone}. Czy poziomy będą ręcznie projektowane, proceduralne czy mieszane? Czy mockup odzwierciedla docelowy produkt, czy wyłącznie kierunek wizualny?
+
+
+
+\textbf{Znaczenie:} wszystkie cztery silniki obsłużą mechanikę parowania. Istotna rola scen 3D, kamery i oświetlenia zwiększa znaczenie doświadczenia w Unreal; płaska grafika i tilemapy kierują uwagę na workflow 2D. Żaden wariant sam nie rozstrzyga wyboru.
+
+
+
+Odpowiedź: …
+
+
+
+\subsection*{3. Co jest obowiązkowe na ocenę i na jutro?}
+
+
+Co dokładnie jest wymagane: \textbf{pitch i plan technologii / pokaz makiety / grywalny prototyp / inne}? Czy prowadzący wymaga konkretnego silnika, funkcji, platformy lub uzasadnienia wyboru? Czy jutro można uczciwie pokazać shortlistę i plan próby zamiast deklarować decyzję?
+
+
+
+\textbf{Znaczenie:} zakres prezentacji i zakres końcowej gry to osobne ustalenia. Nie opisujemy planowanych funkcji jako już działających.
+
+
+
+Odpowiedź: …
+
+
+
+\subsection*{4. Co chcemy osiągnąć poza zaliczeniem?}
+
+
+Ustalcie własną kolejność: \textbf{dopracowana gra / nauka silnika / rozwój Rust lub C\# / portfolio / wspólna praca / eksperyment techniczny}. Jaką część dostępnego czasu akceptujemy na naukę i narzędzia?
+
+
+
+\textbf{Znaczenie:} nauka Bevy lub Unreal może być celem sama w sobie. Jeśli liczy się głównie gotowa gra, przewagę daje rzeczywiście opanowany workflow. Nie zakładamy, że mniej kodu oznacza dla tego zespołu mniej pracy.
+
+
+
+Priorytety i limit czasu: …
+
+
+
+\subsection*{5. Kto będzie tworzył poziomy i balansował grę?}
+
+
+Czy autorzy poziomów chcą pracować w edytorze wizualnym? Czy powinni zmieniać układ mapy, parametry przeciwników i okno parry bez zmiany kodu i rekompilacji? Kto zrobi trzy poziomy, a kto przejmie tę pracę podczas nieobecności autora?
+
+
+
+\textbf{Znaczenie:} Unity, Godot i Unreal oferują zintegrowane edytory. Przy Bevy należy wskazać konkretny workflow: np. LDtk + kompatybilny importer, własne dane lub wybrany edytor. To nie oznacza konieczności pisania edytora od zera. Aktualny projekt edytora Bevy trzeba ocenić na używanej wersji, bez traktowania roadmapy jako gotowej funkcji. [B2, B4]
+
+
+
+Autor / zastępca / narzędzie / format: …
+
+
+
+\subsection*{6. Jak ma działać ruch i parowanie?}
+
+
+Czy potrzebujemy pełnej symulacji brył, czy kontrolowanego ruchu postaci i pocisków z wybranymi reakcjami na kolizje? Czy parry odwraca pocisk, odbija go według kąta, czy pozwala celować? Co dzieje się z grawitacją i sterowaniem po impulsie?
+
+
+
+\textbf{Znaczenie:} silnik nie dostarcza automatycznie satysfakcjonującego parry. W każdym wariancie potrzebne są reguły ruchu, hitboxy i timing. W Bevy trzeba też wskazać warstwę kolizji/fizyki, np. Avian, Rapier albo własne testy kolizji dla ograniczonego zakresu. Wersje pluginów muszą pasować do silnika. [B5, B6]
+
+
+
+Reguły / niewiadome do sprawdzenia: …
+
+
+
+\subsection*{7. Co oznacza „deterministyczna” gra w wymaganiach?}
+
+
+Czy chodzi o podobne zachowanie przy różnych FPS, powtarzalne wyniki na tym samym buildzie i komputerze, czy identyczny stan między komputerami? Czy porównujemy wynik poziomu, pozycje z tolerancją czy dokładne wartości? Czy wymóg jest obowiązkowy?
+
+
+
+\textbf{Znaczenie:} stały krok symulacji nie jest dowodem determinizmu. Rust ani ECS też go nie gwarantują. Godot wprost ostrzega o niedeterministyczności fizyki; w pozostałych wariantach trzeba sprawdzić konkretny backend, konfigurację i zakres gwarancji. To pytanie może zmienić architekturę niezależnie od silnika. [G2]
+
+
+
+Zakres i test akceptacyjny: …
+
+
+
+\subsection*{8. Na czym tworzymy i na czym pokazujemy grę?}
+
+
+Jakie systemy, CPU, RAM i GPU ma zespół? Jaki komputer będzie na prezentacji? Czy nadal celujemy w Windows, czy potrzebny jest również Linux lub link do wersji WWW? Czy w sali będzie dostęp do sieci?
+
+
+
+\textbf{Znaczenie:} trzeba sprawdzić działający eksport i sterowniki na konkretnym sprzęcie. Nie zakładamy automatycznie, że Bevy będzie szybsze, Unreal za ciężki, a Godot uruchomi się wszędzie. C\# w Godot 4 ma obecnie ograniczenie eksportu WWW; staje się to istotne dopiero, gdy potwierdzimy potrzebę WWW. [G3]
+
+
+
+Sprzęt / platformy / sposób dostarczenia: …
+
+
+
+\subsection*{9. Jak szybka musi być iteracja?}
+
+
+Ile czasu akceptujemy od zmiany parametru lub skryptu do sprawdzenia go w grze? Czy przy każdej zmianie potrzebny jest build, czy konfiguracja może być przeładowywana? Czy mierzymy to na komputerze autora poziomów?
+
+
+
+\textbf{Znaczenie:} w Bevy należy zmierzyć kompilację przyrostową i sposób ładowania danych; oficjalne materiały opisują sposoby skracania kompilacji. W pozostałych silnikach również mierzymy faktyczną pętlę pracy, w tym import zasobów i przebudowę kodu. [B3]
+
+
+
+Akceptowalny czas / pomiar: …
+
+
+
+\subsection*{10. Kto utrzyma projekt, gdy główna osoba wypadnie?}
+
+
+Kto poza autorem uruchomi projekt, naprawi błąd parry i przygotuje build? Czy jesteśmy gotowi przypiąć wersje silnika, pluginów i toolchainu na czas projektu? Co robimy, gdy potrzebna biblioteka nie wspiera wybranej wersji?
+
+
+
+\textbf{Znaczenie:} znajomość silnika przez jedną osobę może przyspieszyć start, ale stworzyć wąskie gardło. Bevy dokumentuje częste zmiany API; przypięcie wersji ogranicza koszt migracji, lecz nadal trzeba sprawdzić zestaw pluginów. Podobną dyscyplinę stosujemy do wersji Unity, Unreal i Godot. [B1]
+
+
+
+Osoba główna / zastępca / polityka wersji: …
+
+
+
+\subsection*{11. Jakie ograniczenia finansowe i licencyjne obowiązują?}
+
+
+Czy 0 zł nadal jest warunkiem? Czy gra pozostanie niekomercyjna? Czy zespół dopuszcza płatne pluginy lub assety? Czy są ograniczenia uczelni dotyczące kont i licencji?
+
+
+
+\textbf{Znaczenie:} Godot i Bevy mają licencje permissive. Unity Personal i Unreal mogą pasować do projektu, ale trzeba sprawdzić warunki konkretnego użycia. Osobno sprawdzamy licencje grafik, fontów, muzyki i zależności. Nie zakładamy planu sprzedaży. [L1–L4]
+
+
+
+Odpowiedź / ograniczenia: …
+
+
+
+\subsection*{12. Co przesądzi o decyzji?}
+
+
+Dla każdego silnika wpiszcie \textbf{największy atut dla naszego zespołu}, \textbf{największą obawę} oraz \textbf{jedną próbę, która ją rozstrzygnie}. Czy mamy dość danych, żeby wybrać bez porównywania wszystkich czterech implementacji?
+
+
+
+{\scriptsize\setlength{\tabcolsep}{2mm}\begin{longtable}{>{\raggedright\arraybackslash}p{18.48mm}>{\raggedright\arraybackslash}p{29.26mm}>{\raggedright\arraybackslash}p{33.88mm}>{\raggedright\arraybackslash}p{44.66mm}>{\raggedright\arraybackslash}p{27.72mm}}
+\toprule \textbf{Silnik} & \textbf{Nasz konkretny atut} & \textbf{Obawa} & \textbf{Dowód / próba} & \textbf{Osoba odpowiedzialna} \\ \midrule\endhead
+Unity & … & … & … & … \\ \addlinespace[2pt]
+Bevy & … & … & … & … \\ \addlinespace[2pt]
+Unreal & … & … & … & … \\ \addlinespace[2pt]
+Godot & … & … & … & … \\ \addlinespace[2pt]
+\bottomrule\end{longtable}}
+
+
+\clearpage
+\section*{Karty silników — korzyści i koszty do skonfrontowania z odpowiedziami}
+
+
+\subsection*{Unity — C\# i zintegrowany workflow}
+
+
+\textbf{Możliwe korzyści:} wykorzystanie znanego C\#; narzędzia do sprite'ów, tilemap, fizyki 2D i animacji; wizualna praca nad poziomami oraz UI. Zmniejsza potrzebę dobierania podstawowych narzędzi z różnych projektów. [U1]
+
+
+
+\textbf{Koszty / pytania:} znajomość C\# nie oznacza jeszcze znajomości komponentów, cyklu życia Unity i pracy z zasobami. Trzeba ustalić pakiety, wersję edytora, pracę nad wspólnymi scenami i warunki licencji. Nie ma tu potwierdzenia wcześniejszych projektów zespołu w Unity.
+
+
+
+\textbf{Próba rozstrzygająca:} osoba znająca C\# tworzy ruch, parry i małą scenę; druga osoba zmienia układ i balans bez pomocy autora. Mierzymy czas oraz trudności.
+
+
+
+\subsection*{Bevy — Rust i wcześniejsze małe gry zespołu}
+
+
+\textbf{Możliwe korzyści:} bezpośrednie wykorzystanie Rust oraz rzeczywistego doświadczenia w Bevy; ECS może pasować do komponentów pocisków, parry, przeciwników i przełączników; kod oraz dane mogą dobrze współgrać z przeglądami zmian. Silnik obsługuje 2D i 3D i jest rozwijany jako zestaw modułów. [B1]
+
+
+
+\textbf{Koszty / pytania:} trzeba wybrać i sprawdzić workflow poziomów, UI, kolizji oraz zgodne pluginy. Oficjalny edytor jest rozwijany; nie utożsamiamy prototypów z dojrzałym workflow Unity/UE/Godot. Dochodzą czasy kompilacji oraz zmiany API. Doświadczenie sprzed roku należy powiązać z konkretną wersją, a nie traktować jako nieaktualne z definicji. [B2, B3]
+
+
+
+\textbf{Próba rozstrzygająca:} uruchomić wcześniejszą grę, wskazać przydatne wzorce i przygotować minimalny zestaw wersji: silnik + kolizje + edycja poziomu. Osoba inna niż autor ma zmienić mapę i wyeksportować build. Nie zakładamy, że stary kod jest odpowiedni ani że wymaga migracji.
+
+
+
+\subsection*{Unreal Engine — doświadczenie części zespołu i rozbudowany edytor}
+
+
+\textbf{Możliwe korzyści:} znany części zespołu workflow; Blueprints umożliwiają wizualne definiowanie logiki, a C++ rozszerzanie kodu. Paper 2D oferuje sprite'y, flipbooki i tilemapy; możliwa jest też oprawa 2.5D/3D. Gra 2D nie wyklucza Unreal. [E1]
+
+
+
+\textbf{Koszty / pytania:} doświadczenie w grze 3D nie rozstrzyga znajomości Paper 2D. Potrzebne jest sprawdzenie ruchu na płaszczyźnie, kolizji, organizacji Blueprintów, pracy na zasobach i eksportu na docelowy sprzęt. Znajomość C\# i Rust nie przenosi się bezpośrednio na C++/Blueprinty. Rozbudowane narzędzia pomagają tylko wtedy, gdy zespół umie z nich korzystać.
+
+
+
+\textbf{Próba rozstrzygająca:} osoba z doświadczeniem UE robi scenę 2D z parry i samodzielny build, a druga osoba wprowadza zmianę. Sprawdzamy czas pracy oraz wydajność, zamiast odrzucać UE za samą etykietę „silnik 3D”.
+
+
+
+\subsection*{Godot — narzędzia 2D i możliwość użycia C\#}
+
+
+\textbf{Możliwe korzyści:} dedykowane węzły 2D, sceny, tilemapy i kontroler CharacterBody2D; C\# pozwala wykorzystać znany język bez konieczności wybierania GDScript. Zewnętrzne zasoby umożliwiają oddzielenie balansu od kodu. [G1, G4]
+
+
+
+\textbf{Koszty / pytania:} nie potwierdzono wcześniejszej pracy zespołu w Godot. Trzeba nauczyć się modelu scen/węzłów i sprawdzić workflow .NET, eksport oraz integrację zasobów. Użycie C\# nie eliminuje nauki silnika. Eksport WWW w Godot 4 C\# jest obecnie ograniczeniem, jeśli WWW okaże się wymaganiem. Fizyka nie daje automatycznej gwarancji determinizmu. [G2, G3]
+
+
+
+\textbf{Próba rozstrzygająca:} mała scena w C\# lub innym świadomie wybranym języku; druga osoba zmienia parametry i poziom w edytorze, a build działa na docelowym Windows.
+
+
+
+\clearpage
+\section*{Wspólna próba — jeśli po rozmowie zostanie dwóch kandydatów}
+
+
+To propozycja do zatwierdzenia, nie ustalony zakres implementacji. Ustalcie jednakowy limit czasu i podobną scenę dla obu. Nie porównujcie samego FPS ani jakości gotowych assetów. Zapisujcie, kto wykonywał próbę i jakie miał doświadczenie.
+
+
+
+\textbf{Scena:} ruch, skok, parry, jeden przeciwnik z pociskiem, przełącznik i drzwi; osobno sparowany impuls ruchu; śmierć i reset. Parametry poza kodem. Potem osoba inna niż autor zmienia poziom i parametr parry.
+
+
+
+{\scriptsize\setlength{\tabcolsep}{2mm}\begin{longtable}{>{\raggedright\arraybackslash}p{61.60mm}>{\raggedright\arraybackslash}p{23.10mm}>{\raggedright\arraybackslash}p{23.10mm}>{\raggedright\arraybackslash}p{23.10mm}>{\raggedright\arraybackslash}p{23.10mm}}
+\toprule \textbf{Co sprawdzamy} & \textbf{Unity} & \textbf{Bevy} & \textbf{Unreal} & \textbf{Godot} \\ \midrule\endhead
+Czas do działającej sceny & … & … & … & … \\ \addlinespace[2pt]
+Czas zmiany parametru → sprawdzenie w grze & … & … & … & … \\ \addlinespace[2pt]
+Autor poziomu pracuje samodzielnie & … & … & … & … \\ \addlinespace[2pt]
+Okno parry niezależne od FPS renderowania & … & … & … & … \\ \addlinespace[2pt]
+Kolizje przy największej planowanej prędkości & … & … & … & … \\ \addlinespace[2pt]
+Powtarzalność według odpowiedzi na pytanie 7 & … & … & … & … \\ \addlinespace[2pt]
+FPS i czas resetu na ustalonym komputerze & … & … & … & … \\ \addlinespace[2pt]
+Build działa na drugim komputerze & … & … & … & … \\ \addlinespace[2pt]
+Druga osoba potrafi naprawić prosty błąd & … & … & … & … \\ \addlinespace[2pt]
+Dodatkowy kod, pluginy i nierozwiązane problemy & … & … & … & … \\ \addlinespace[2pt]
+\bottomrule\end{longtable}}
+
+
+\section*{Arkusz decyzji — pozostaje pusty do rozmowy}
+
+
+\begin{itemize}
+\item Potwierdzony zakres gry i obowiązkowe platformy: …
+\item Trzy najważniejsze kryteria zespołu: …
+\item Kandydaci pozostający po rozmowie: …
+\item Wymaganie, którego kandydat nie spełnia, i dowód: …
+\item Próba potrzebna przed wyborem / osoba / termin: …
+\item Decyzja: \textbf{otwarta / warunkowa / potwierdzona}: …
+\item Wybrany silnik i wersja, jeśli ustalono: …
+\item Dlaczego pasuje do tego zespołu i zakresu: …
+\item Koszt lub ograniczenie, które świadomie akceptujemy: …
+\item Właściciel projektu i zastępca: …
+\item Co można powiedzieć jutro o technologii bez wyprzedzania decyzji: …
+\end{itemize}
+
+
+\clearpage
+\section*{Źródła}
+
+
+Fakty o funkcjach i licencjach pochodzą ze źródeł producentów i projektów; przewidywany wpływ na pracę zespołu jest oceną do weryfikacji. Wersje oraz zgodność dodatków należy przypiąć dopiero przy wyborze konkretnego zestawu. Weryfikacja stron: 19.10.2026.
+
+
+
+\begin{itemize}
+\item B1: \href{https://bevy.org/learn/quick-start/introduction/}{Bevy — Introduction: Rust, ECS, licencja i rozwój API}.
+\item B2: \href{https://bevy.org/news/bevys-sixth-birthday/}{Bevy — Sixth Birthday, stan scen, UI i prac nad edytorem, 10.08.2026}.
+\item B3: \href{https://bevy.org/learn/quick-start/getting-started/setup/}{Bevy — Setup, konfiguracja i czasy kompilacji}.
+\item B4: \href{https://github.com/Trouv/bevy_ecs_ldtk}{bevy\_ecs\_ldtk — dokumentacja importera i zgodność wersji}.
+\item B5: \href{https://docs.rs/avian2d/latest/avian2d/}{Avian 2D — dokumentacja projektu}.
+\item B6: \href{https://rapier.rs/docs/user_guides/bevy_plugin/getting_started_bevy/}{Rapier — integracja z Bevy}.
+\item U1: \href{https://docs.unity3d.com/Manual/Unity2D.html}{Unity — narzędzia 2D}.
+\item E1: \href{https://dev.epicgames.com/documentation/unreal-engine/paper-2d-in-unreal-engine?application_version=5.2}{Epic — Paper 2D, opis systemu; dokumentacja wersji 5.2}. Nie jest to potwierdzenie zgodności pluginów z dowolną nowszą wersją.
+\item G1: \href{https://docs.godotengine.org/en/stable/classes/class_characterbody2d.html}{Godot — CharacterBody2D}.
+\item G2: \href{https://docs.godotengine.org/en/stable/tutorials/physics/physics_introduction.html}{Godot — Physics introduction, ograniczenia determinizmu}.
+\item G3: \href{https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_web.html}{Godot — eksport WWW i ograniczenia C\#}.
+\item G4: \href{https://docs.godotengine.org/en/stable/tutorials/scripting/resources.html}{Godot — Resources, dane poza logiką}.
+\item L1: \href{https://godotengine.org/license/}{Godot — MIT}.
+\item L2: \href{https://github.com/bevyengine/bevy}{Bevy — repozytorium i licencje MIT / Apache 2.0}.
+\item L3: \href{https://unity.com/products}{Unity — plany i kwalifikacja}, \href{https://unity.com/products/pricing-updates}{anulowanie Runtime Fee}.
+\item L4: \href{https://www.unrealengine.com/license}{Unreal Engine — warunki licencyjne}.
+\end{itemize}
+\end{document}
